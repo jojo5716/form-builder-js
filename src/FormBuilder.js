@@ -20,7 +20,7 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const Component = MAP_COMPONENT_INPUTS[ inputData.type ];
+        const Component = MAP_COMPONENT_INPUTS[inputData.type];
         return Component ? <Component key={index} {...inputData}/> : null;
     }
 

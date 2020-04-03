@@ -20,9 +20,9 @@ describe('FormBuilder', () => {
         data = Object.assign({}, fixtures);
     });
 
-    it('renders an H1', () => {
+    it('renders a form', () => {
         const wrapper = shallow(<FormBuilder {...data}/>);
-        wrapper.is('div').should.be.true;
+        wrapper.is('Container').should.be.true;
     });
 
 

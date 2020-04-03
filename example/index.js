@@ -9,16 +9,13 @@ import './style.less';
 // Example of use of the component in an application
 import form from './fixtures';
 
-const Container = ({ children, onSubmit }) => {
+const Container = ({ children, onSubmit }) => (
+    <div className="container-form">
+        {children}
 
-    return (
-        <div className="container-form">
-            {children}
-
-            <button onClick={onSubmit}>Custom submit form</button>
-        </div>
-    );
-};
+        <button onClick={onSubmit}>Custom submit form</button>
+    </div>
+);
 
 function onCustomSubmit(formData) {
     console.log(formData);
