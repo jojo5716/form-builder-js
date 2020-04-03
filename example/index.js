@@ -7,9 +7,9 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import data from './fixtures';
+import form from './fixtures';
 
 ReactDOM.render(
-    <FormBuilder {...data}/>,
+    <FormBuilder form={form}/>,
     document.getElementById('content'),
 );

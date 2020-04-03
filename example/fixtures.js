@@ -1,3 +1,13 @@
-const data = {};
+const form = [
+    {
+        id: 'name',
+        type: 'text',
+        className: 'class_name',
+        required: true,
+        onChange: (event) => {
+            console.log(event.target.value);
+        },
+    },
+];
 
-export default data;
+export default form;
