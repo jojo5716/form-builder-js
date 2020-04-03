@@ -1,6 +1,7 @@
 const form = [
     {
         id: 'name',
+        name: 'name',
         type: 'text',
         className: 'class_name',
         required: true,

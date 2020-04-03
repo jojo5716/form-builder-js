@@ -9,7 +9,28 @@ import './style.less';
 // Example of use of the component in an application
 import form from './fixtures';
 
+const Container = ({ children, onSubmit }) => {
+
+    return (
+        <div className="container-form">
+            {children}
+
+            <button onClick={onSubmit}>Custom submit form</button>
+        </div>
+    );
+};
+
+function onCustomSubmit(formData) {
+    console.log(formData);
+}
+
 ReactDOM.render(
-    <FormBuilder form={form}/>,
+    <FormBuilder
+        form={form}
+        container={Container}
+        onSubmit={onCustomSubmit}
+        hasToSubmit={true}
+        showSubmitButton={false}
+    />,
     document.getElementById('content'),
 );
