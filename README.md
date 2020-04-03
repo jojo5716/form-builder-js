@@ -1,5 +1,5 @@
 # Component form builder #
-
+[![Build Status](https://travis-ci.com/jojo5716/form-builder-js.svg?branch=master)](https://travis-ci.com/jojo5716/form-builder-js)
 
 ## Requirements ##
 

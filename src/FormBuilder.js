@@ -11,6 +11,8 @@ import { buildFormState } from './helpers';
 const MAP_COMPONENT_INPUTS = {
     text: Input,
 };
+const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
+
 
 class FormBuilder extends React.Component {
     constructor(props) {
@@ -50,13 +52,7 @@ class FormBuilder extends React.Component {
 
     render() {
         const elementsRendered = this.props.form.map(this.renderInput);
-        let Container;
-
-        if (this.props.container) {
-            Container = this.props.container;
-        } else {
-            Container = ({ children }) => <React.Fragment>{children}</React.Fragment>;
-        }
+        const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
             <Container onSubmit={this.onSubmit}>
