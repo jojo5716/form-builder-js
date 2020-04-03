@@ -21,7 +21,7 @@
     "release:minor": "npm run prerelease && changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor",
     "release:major": "npm run prerelease && changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major",
     "postversion": "git push --follow-tags",
-    "deploy": "webpack --config webpack.deploy.js && surge ./deploy/builds/ form-builder-js.surge.sh"
+    "build:deploy": "webpack --config webpack.deploy.js"
   },
   "repository": {
     "type": "git",

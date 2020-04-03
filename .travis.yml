@@ -8,10 +8,11 @@ script:
   - npm run lint
   - npm run test:ci
   - npm run build
+  - npm run build:deploy
 deploy:
   provider: surge
   skip_cleanup: true
   domain: form-builder-js.surge.sh
-  project: ./deploy/
+  project: ./deploy/builds/
 on:
   branch: master
