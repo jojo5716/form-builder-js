@@ -75,7 +75,7 @@ cd form-builder-js/
 * Install dependencies
 
 ```
-npm i
+npm ci
 ```
 
 * Start the development. This will command will start the development server builds, automatic testing and linting.

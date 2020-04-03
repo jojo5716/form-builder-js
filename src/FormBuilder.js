@@ -4,13 +4,10 @@ import PropTypes from 'prop-types';
 import FormView from './views/index.jsx';
 import Input from './views/elements/Input';
 import Button from './views/elements/Button';
-
+import MAP_COMPONENT_INPUTS from './constants';
 import { buildFormState } from './helpers';
 
 
-const MAP_COMPONENT_INPUTS = {
-    text: Input,
-};
 const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
 
 
