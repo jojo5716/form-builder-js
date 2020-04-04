@@ -1,7 +1,7 @@
 {
   "name": "form-builder-js",
   "version": "0.0.0",
-  "description": "Form builder js",
+  "description": "React component to generate a form from javascript object.",
   "main": "src/index.js",
   "module": "src/index.js",
   "scripts": {
@@ -27,7 +27,13 @@
     "type": "git",
     "url": "git+https://github.com/jojo5716/form-builder-js"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "reactjs",
+    "form",
+    "form-builder",
+    "form-builder-js"
+  ],
   "author": "",
   "license": "ISC",
   "homepage": "https://github.com/jojo5716/form-builder-js",
