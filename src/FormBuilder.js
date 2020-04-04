@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import FormView from './views/index.jsx';
 import Input from './views/elements/Input';
 import Button from './views/elements/Button';
-import { MAP_COMPONENT_INPUTS } from './constants';
+import { MAP_COMPONENT_INPUTS, EMPTY_CONTAINER } from './constants';
 import { buildFormState, isObjectArray } from './helpers';
-
-
-const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
 
 
 class FormBuilder extends React.Component {
@@ -17,17 +14,35 @@ class FormBuilder extends React.Component {
         this.state = buildFormState(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
+        this.nodes = [];
     }
 
     renderInput(inputData, index) {
-        const Component = MAP_COMPONENT_INPUTS[ inputData.type ];
-        const onChange = event => this.setState({ [ inputData.name ]: event.target.value });
+        const Component = MAP_COMPONENT_INPUTS[ inputData.type ] || MAP_COMPONENT_INPUTS.default;
+        const setFieldValueState = elementValue => this.setState({ [ inputData.name ]: elementValue });
+        const reference = React.createRef();
+        this.nodes.push(reference);
 
-        return Component ? <Component key={index} {...inputData} onChange={onChange}/> : null;
+        return Component ? <Component
+            key={index}
+            reference={el => this.nodes.push(el)}
+            {...inputData}
+            setFieldValueState={setFieldValueState}
+            fieldContainer={this.props.fieldContainer}
+        /> : null;
+    }
+
+    isValidForm() {
+
     }
 
     onSubmit() {
-        this.props.onSubmit({ ...this.state });
+        if (this.isValidForm()) {
+            this.props.onSubmit({ ...this.state });
+
+        } else {
+            console.log('Invalid form');
+        }
     }
 
     renderSubmitButton() {
@@ -75,6 +90,7 @@ export default FormBuilder;
 FormBuilder.propTypes = {
     form: PropTypes.array,
     container: PropTypes.any,
+    fieldContainer: PropTypes.any,
     onSubmit: PropTypes.func,
     submitButtonText: PropTypes.string,
     method: PropTypes.string,
@@ -85,6 +101,7 @@ FormBuilder.propTypes = {
 FormBuilder.defaultProps = {
     form: [],
     container: null,
+    fieldContainer: null,
     hasToSubmit: true,
     showSubmitButton: true,
     onSubmit: () => {

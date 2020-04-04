@@ -17,6 +17,13 @@ const Container = ({ children, onSubmit }) => (
     </div>
 );
 
+const fieldContainer = ({ children, label }) => (
+    <div className="form-control">
+        {label}
+        {children}
+    </div>
+);
+
 function onCustomSubmit(formData) {
     console.log(formData);
 }
@@ -25,6 +32,7 @@ ReactDOM.render(
     <FormBuilder
         form={form}
         container={Container}
+        fieldContainer={fieldContainer}
         onSubmit={onCustomSubmit}
         hasToSubmit={true}
         showSubmitButton={false}
