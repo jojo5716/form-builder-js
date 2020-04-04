@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import FormView from './views/index.jsx';
 import Input from './views/elements/Input';
 import Button from './views/elements/Button';
-import { MAP_COMPONENT_INPUTS} from './constants';
-import { buildFormState } from './helpers';
+import { MAP_COMPONENT_INPUTS } from './constants';
+import { buildFormState, isObjectArray } from './helpers';
 
 
 const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
@@ -16,15 +16,18 @@ class FormBuilder extends React.Component {
         super(props);
         this.state = buildFormState(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.renderInput = this.renderInput.bind(this);
     }
 
     renderInput(inputData, index) {
-        const Component = MAP_COMPONENT_INPUTS[inputData.type];
-        return Component ? <Component key={index} {...inputData}/> : null;
+        const Component = MAP_COMPONENT_INPUTS[ inputData.type ];
+        const onChange = event => this.setState({ [ inputData.name ]: event.target.value });
+
+        return Component ? <Component key={index} {...inputData} onChange={onChange}/> : null;
     }
 
     onSubmit() {
-        this.props.onSubmit('submitting');
+        this.props.onSubmit({ ...this.state });
     }
 
     renderSubmitButton() {
@@ -47,7 +50,7 @@ class FormBuilder extends React.Component {
         return <Component {...attributes} />;
     }
 
-    render() {
+    renderForm() {
         const elementsRendered = this.props.form.map(this.renderInput);
         const Container = this.props.container || EMPTY_CONTAINER;
 
@@ -59,6 +62,10 @@ class FormBuilder extends React.Component {
                 </FormView>
             </Container>
         );
+    }
+
+    render() {
+        return isObjectArray(this.props.form) ? this.renderForm() : null;
     }
 }
 
