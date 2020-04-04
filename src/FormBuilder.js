@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import FormView from './views/index.jsx';
 import Input from './views/elements/Input';
 import Button from './views/elements/Button';
-import MAP_COMPONENT_INPUTS from './constants';
+import { MAP_COMPONENT_INPUTS} from './constants';
 import { buildFormState } from './helpers';
 
 
