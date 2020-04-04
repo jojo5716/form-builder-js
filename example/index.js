@@ -24,6 +24,13 @@ const fieldContainer = ({ children, label }) => (
     </div>
 );
 
+const fieldGroupContainer = ({ children, label }) => (
+    <div className="form-group">
+        {label}
+        {children}
+    </div>
+);
+
 function onCustomSubmit(formData) {
     console.log(formData);
 }
@@ -33,6 +40,7 @@ ReactDOM.render(
         form={form}
         container={Container}
         fieldContainer={fieldContainer}
+        fieldGroupContainer={fieldGroupContainer}
         onSubmit={onCustomSubmit}
         hasToSubmit={true}
         showSubmitButton={false}

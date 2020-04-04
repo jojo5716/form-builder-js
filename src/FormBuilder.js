@@ -14,7 +14,29 @@ class FormBuilder extends React.Component {
         this.state = buildFormState(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
+        this.renderElement = this.renderElement.bind(this);
         this.nodes = [];
+    }
+
+    renderElement(inputData, index) {
+        let html;
+
+        if (isObjectArray(inputData)) {
+            const Container = this.props.fieldGroupContainer || EMPTY_CONTAINER;
+
+            html = (
+                <Container key={`index-parent-field-${index}-${inputData.length}`}>
+                    {
+                        inputData.map((element, inputIndex) =>
+                            this.renderElement(element, `index-${element.name}-${inputIndex}`))
+                    }
+                </Container>
+            );
+        } else {
+            html = this.renderInput(inputData, index);
+        }
+
+        return html;
     }
 
     renderInput(inputData, index) {
@@ -33,7 +55,7 @@ class FormBuilder extends React.Component {
     }
 
     isValidForm() {
-
+        console.log(this.nodes);
     }
 
     onSubmit() {
@@ -66,7 +88,7 @@ class FormBuilder extends React.Component {
     }
 
     renderForm() {
-        const elementsRendered = this.props.form.map(this.renderInput);
+        const elementsRendered = this.props.form.map(this.renderElement);
         const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
@@ -90,6 +112,7 @@ export default FormBuilder;
 FormBuilder.propTypes = {
     form: PropTypes.array,
     container: PropTypes.any,
+    fieldGroupContainer: PropTypes.any,
     fieldContainer: PropTypes.any,
     onSubmit: PropTypes.func,
     submitButtonText: PropTypes.string,
@@ -101,6 +124,7 @@ FormBuilder.propTypes = {
 FormBuilder.defaultProps = {
     form: [],
     container: null,
+    fieldGroupContainer: null,
     fieldContainer: null,
     hasToSubmit: true,
     showSubmitButton: true,
