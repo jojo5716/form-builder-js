@@ -1,3 +1,10 @@
+#### 1.0.1 (2020-04-05)
+
+##### Other Changes
+
+*  Updating README.md ([964cb95c](https://github.com/jojo5716/form-builder-js/commit/964cb95ca955a1c6784b7ffc5da22d10ceaeb2e8))
+*  Updating package name and deploy html ([fc29d9c6](https://github.com/jojo5716/form-builder-js/commit/fc29d9c69f74d3737251f55874a09bd9d1c1c5b3))
+
 ## 1.0.0 (2020-04-05)
 
 ##### New Features
