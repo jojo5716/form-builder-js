@@ -14,7 +14,7 @@ const form = [
             },
             {
                 id: 'last_name',
-                name: 'last_name',
+                name: 'lastName',
                 minLength: 3,
                 type: 'text',
                 className: 'class_name',
@@ -56,6 +56,7 @@ const form = [
             className: 'class_name',
             required: true,
             placeholder: 'Birthday',
+            label: 'Birthday label',
             onChange: (event) => {
                 console.log(`Birthday: ${event.target.value}`);
             },

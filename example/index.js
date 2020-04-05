@@ -50,6 +50,15 @@ const formErrorContainer = ({ children }) => (
 );
 
 /**
+* Render label field into a custom html block.
+*/
+const labelContainer = ({ children }) => (
+    <label className="label">
+        {children}
+    </label>
+);
+
+/**
 * Called on submit button.
 * Return all form data as json
 */
@@ -64,10 +73,12 @@ function render(formProps) {
             container={Container}
             fieldContainer={fieldContainer}
             fieldGroupContainer={fieldGroupContainer}
+            labelContainer={labelContainer}
             formErrorContainer={formErrorContainer}
             onSubmit={onCustomSubmit}
             hasToSubmit={true}
             showSubmitButton={false}
+            hasToShowLabel={true}
             showFormErrorMessage={true}
         />,
         document.getElementById('content'),

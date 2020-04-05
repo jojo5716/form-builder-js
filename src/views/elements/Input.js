@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { convertStringToCamelCase } from '../../helpers';
+
 const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
+const EMPTY_LABEL_CONTAINER = ({ children }) => <label>{children}</label>;
 
 
 class Input extends React.Component {
@@ -51,11 +54,23 @@ class Input extends React.Component {
         );
     }
 
+    renderLabel() {
+        const Container = this.props.labelContainer || EMPTY_LABEL_CONTAINER;
+        const labelText = convertStringToCamelCase(this.props.label || this.props.name);
+
+        return (
+            <Container>
+                {labelText}
+            </Container>
+        );
+    }
+
     render() {
         const Container = this.props.fieldContainer || EMPTY_CONTAINER;
 
         return (
             <Container>
+                {this.props.hasToShowLabel ? this.renderLabel() : null}
                 <input ref={this.setElementReference} {...this.props} onChange={this.onChange}/>
                 {this.state.hasToShowErrorMessage ? this.renderErrorMessage() : null}
             </Container>
@@ -72,19 +87,24 @@ Input.propTypes = {
     setFieldValueState: PropTypes.func,
     setReference: PropTypes.func,
     reference: PropTypes.any,
+    labelContainer: PropTypes.any,
     onChange: PropTypes.func,
     fieldContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
+    hasToShowLabel: PropTypes.bool,
 };
 
 Input.defaultProps = {
     type: 'text',
     errorMessage: 'This field is required',
     fieldContainer: null,
+    labelContainer: null,
     setErrorOnChange: true,
+    hasToShowLabel: true,
     setFieldValueState: () => {
     },
-    setReference: () => {},
+    setReference: () => {
+    },
     onChange: () => {
     },
     reference: React.createRef(),

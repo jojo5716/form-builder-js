@@ -52,11 +52,13 @@ class FormBuilder extends React.Component {
         });
 
         return Component ? <Component
+            {...inputData}
             key={index}
             setReference={el => this.nodes.push(el)}
-            {...inputData}
             setFieldValueState={setFieldValueState}
             fieldContainer={this.props.fieldContainer}
+            labelContainer={this.props.labelContainer}
+            hasToShowLabel={this.props.hasToShowLabel}
         /> : null;
     }
 

@@ -90,6 +90,7 @@ ReactDOM.render(
         onSubmit={onCustomSubmit}
         hasToSubmit={true}
         showSubmitButton={false}
+        hasToShowLabel={true}
         showFormErrorMessage={true}
     />,
     document.getElementById('form'),
