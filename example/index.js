@@ -9,6 +9,9 @@ import './style.less';
 // Example of use of the component in an application
 import form from './fixtures';
 
+/**
+* Render all form into a custom html block.
+*/
 const Container = ({ children, onSubmit }) => (
     <div className="container-form">
         {children}
@@ -17,6 +20,9 @@ const Container = ({ children, onSubmit }) => (
     </div>
 );
 
+/**
+* Render field into a custom html block.
+*/
 const fieldContainer = ({ children, label }) => (
     <div className="form-control">
         {label}
@@ -24,6 +30,9 @@ const fieldContainer = ({ children, label }) => (
     </div>
 );
 
+/**
+* Render fields group into a custom html block.
+*/
 const fieldGroupContainer = ({ children, label }) => (
     <div className="form-group">
         {label}
@@ -31,30 +40,36 @@ const fieldGroupContainer = ({ children, label }) => (
     </div>
 );
 
+/**
+* Render form error message into a custom html block.
+*/
 const formErrorContainer = ({ children }) => (
     <div className="error">
         {children}
     </div>
 );
 
+/**
+* Called on submit button.
+* Return all form data as json
+*/
 function onCustomSubmit(formData) {
     console.log(formData);
 }
 
 function render(formProps) {
     ReactDOM.render(
-        // <FormBuilder
-        //     form={formProps}
-        //     container={Container}
-        //     fieldContainer={fieldContainer}
-        //     fieldGroupContainer={fieldGroupContainer}
-        //     formErrorContainer={formErrorContainer}
-        //     onSubmit={onCustomSubmit}
-        //     hasToSubmit={true}
-        //     showSubmitButton={false}
-        //     showFormErrorMessage={true}
-        // />,
-        <FormBuilder form={formProps} onSubmit={onCustomSubmit} hasToSubmit={false}/>,
+        <FormBuilder
+            form={formProps}
+            container={Container}
+            fieldContainer={fieldContainer}
+            fieldGroupContainer={fieldGroupContainer}
+            formErrorContainer={formErrorContainer}
+            onSubmit={onCustomSubmit}
+            hasToSubmit={true}
+            showSubmitButton={false}
+            showFormErrorMessage={true}
+        />,
         document.getElementById('content'),
     );
 }
