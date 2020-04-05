@@ -17,7 +17,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import FormBuilder from 'form-builder-js';
+import FormBuilder from 'js-form-builder';
 
 const form = [
     {
