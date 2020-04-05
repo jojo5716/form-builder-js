@@ -43,17 +43,18 @@ function onCustomSubmit(formData) {
 
 function render(formProps) {
     ReactDOM.render(
-        <FormBuilder
-            form={formProps}
-            container={Container}
-            fieldContainer={fieldContainer}
-            fieldGroupContainer={fieldGroupContainer}
-            formErrorContainer={formErrorContainer}
-            onSubmit={onCustomSubmit}
-            hasToSubmit={true}
-            showSubmitButton={false}
-            showFormErrorMessage={true}
-        />,
+        // <FormBuilder
+        //     form={formProps}
+        //     container={Container}
+        //     fieldContainer={fieldContainer}
+        //     fieldGroupContainer={fieldGroupContainer}
+        //     formErrorContainer={formErrorContainer}
+        //     onSubmit={onCustomSubmit}
+        //     hasToSubmit={true}
+        //     showSubmitButton={false}
+        //     showFormErrorMessage={true}
+        // />,
+        <FormBuilder form={formProps} onSubmit={onCustomSubmit} hasToSubmit={false}/>,
         document.getElementById('content'),
     );
 }

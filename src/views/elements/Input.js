@@ -70,6 +70,7 @@ Input.propTypes = {
     type: PropTypes.string,
     errorMessage: PropTypes.string,
     setFieldValueState: PropTypes.func,
+    setReference: PropTypes.func,
     reference: PropTypes.any,
     onChange: PropTypes.func,
     fieldContainer: PropTypes.any,
@@ -83,6 +84,7 @@ Input.defaultProps = {
     setErrorOnChange: true,
     setFieldValueState: () => {
     },
+    setReference: () => {},
     onChange: () => {
     },
     reference: React.createRef(),

@@ -17,7 +17,7 @@ module.exports = {
         '^.+\\.(js|jsx)$': 'babel-jest',
     },
     verbose: true,
-    transformIgnorePatterns: ['/node_modules/'],
+    transformIgnorePatterns: ['/node_modules/', 'src/polyfills/'],
     moduleNameMapper: {
         '.svg': '<rootDir>/test/__mocks__/fileMock.js',
     },
