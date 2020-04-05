@@ -56,7 +56,7 @@ class Input extends React.Component {
 
     renderLabel() {
         const Container = this.props.labelContainer || EMPTY_LABEL_CONTAINER;
-        const labelText = convertStringToCamelCase(this.props.label || this.props.name);
+        const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
 
         return (
             <Container>

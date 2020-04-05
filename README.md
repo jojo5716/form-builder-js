@@ -19,6 +19,11 @@ import ReactDOM from 'react-dom';
 
 import FormBuilder from 'js-form-builder';
 
+
+const displayOnChangeFieldValue = (event) => {
+    console.log(event.target.value);
+};
+
 const form = [
     {
         id: 'name',
@@ -26,9 +31,14 @@ const form = [
         type: 'text',
         className: 'class_name',
         required: true,
-        onChange: (event) => {
-            console.log(event.target.value);
-        },
+        onChange: displayOnChangeFieldValue,
+    }, {
+        id: 'lastName',
+        name: 'lastName',
+        type: 'text',
+        className: 'class_name',
+        required: true,
+        onChange: displayOnChangeFieldValue,
     },
 ];
 /**
@@ -82,7 +92,7 @@ function onCustomSubmit(formData) {
 
 ReactDOM.render(
  <FormBuilder
-        form={formProps}
+        form={form}
         container={Container}
         fieldContainer={fieldContainer}
         fieldGroupContainer={fieldGroupContainer}
