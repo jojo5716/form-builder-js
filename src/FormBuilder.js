@@ -11,7 +11,10 @@ import { buildFormState, isObjectArray } from './helpers';
 class FormBuilder extends React.Component {
     constructor(props) {
         super(props);
-        this.state = buildFormState(props.form);
+        this.state = {
+            form: buildFormState(props.form),
+            hasToShowFormError: false,
+        };
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);
@@ -27,8 +30,8 @@ class FormBuilder extends React.Component {
             html = (
                 <Container key={`index-parent-field-${index}-${inputData.length}`}>
                     {
-                        inputData.map((element, inputIndex) =>
-                            this.renderElement(element, `index-${element.name}-${inputIndex}`))
+                        inputData.map((element, inputIndex) => (
+                            this.renderElement(element, `index-${element.name}-${inputIndex}`)))
                     }
                 </Container>
             );
@@ -41,13 +44,16 @@ class FormBuilder extends React.Component {
 
     renderInput(inputData, index) {
         const Component = MAP_COMPONENT_INPUTS[ inputData.type ] || MAP_COMPONENT_INPUTS.default;
-        const setFieldValueState = elementValue => this.setState({ [ inputData.name ]: elementValue });
-        const reference = React.createRef();
-        this.nodes.push(reference);
+        const setFieldValueState = elementValue => this.setState({
+            form: {
+                ...this.state.form,
+                [ inputData.name ]: elementValue,
+            },
+        });
 
         return Component ? <Component
             key={index}
-            reference={el => this.nodes.push(el)}
+            setReference={el => this.nodes.push(el)}
             {...inputData}
             setFieldValueState={setFieldValueState}
             fieldContainer={this.props.fieldContainer}
@@ -55,15 +61,17 @@ class FormBuilder extends React.Component {
     }
 
     isValidForm() {
-        console.log(this.nodes);
+        const fieldsValidityValues = this.nodes.map(node => node.validity.valid);
+
+        return fieldsValidityValues.every(value => value);
     }
 
     onSubmit() {
         if (this.isValidForm()) {
-            this.props.onSubmit({ ...this.state });
-
-        } else {
-            console.log('Invalid form');
+            this.setState({ hasToShowFormError: false });
+            this.props.onSubmit({ ...this.state.form });
+        } else if (this.props.showFormErrorMessage) {
+            this.setState({ hasToShowFormError: true });
         }
     }
 
@@ -87,12 +95,22 @@ class FormBuilder extends React.Component {
         return <Component {...attributes} />;
     }
 
+    renderFormErrorMessage() {
+        const Container = this.props.formErrorContainer || EMPTY_CONTAINER;
+        return (
+            <Container>
+                {this.props.customFormErrorMessage}
+            </Container>
+        );
+    }
+
     renderForm() {
         const elementsRendered = this.props.form.map(this.renderElement);
         const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
             <Container onSubmit={this.onSubmit}>
+                {this.state.hasToShowFormError ? this.renderFormErrorMessage() : null}
                 <FormView {...this.props}>
                     {elementsRendered}
                     {this.props.showSubmitButton ? this.renderSubmitButton() : null}
@@ -114,11 +132,14 @@ FormBuilder.propTypes = {
     container: PropTypes.any,
     fieldGroupContainer: PropTypes.any,
     fieldContainer: PropTypes.any,
+    formErrorContainer: PropTypes.any,
     onSubmit: PropTypes.func,
     submitButtonText: PropTypes.string,
+    customFormErrorMessage: PropTypes.string,
     method: PropTypes.string,
     hasToSubmit: PropTypes.bool,
     showSubmitButton: PropTypes.bool,
+    showFormErrorMessage: PropTypes.bool,
 };
 
 FormBuilder.defaultProps = {
@@ -126,10 +147,13 @@ FormBuilder.defaultProps = {
     container: null,
     fieldGroupContainer: null,
     fieldContainer: null,
+    formErrorContainer: null,
     hasToSubmit: true,
     showSubmitButton: true,
+    showFormErrorMessage: true,
     onSubmit: () => {
     },
     submitButtonText: 'Submit',
     method: 'GET',
+    customFormErrorMessage: 'Invalid form',
 };

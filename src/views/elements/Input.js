@@ -42,6 +42,7 @@ class Input extends React.Component {
 
     setElementReference(element) {
         this.ref = element;
+        this.props.setReference(element);
     }
 
     renderErrorMessage() {

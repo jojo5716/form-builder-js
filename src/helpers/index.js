@@ -9,7 +9,7 @@ function getFieldNamesFromForm(formData, formState) {
     if (isObjectArray(formData)) {
         formData.forEach(group => getFieldNamesFromForm(group, formState));
     } else {
-        formState[ formData.name ] = formData.value || '';
+        formState[formData.name] = formData.value || ''; // eslint-disable-line no-param-reassign
     }
 
     return formState;
@@ -17,9 +17,8 @@ function getFieldNamesFromForm(formData, formState) {
 
 function buildFormState(formData) {
     const newFormState = {};
-    const fieldsValues = getFieldNamesFromForm(formData, newFormState);
 
-    return fieldsValues;
+    return getFieldNamesFromForm(formData, newFormState);
 }
 
 function isObjectArray(object) {
