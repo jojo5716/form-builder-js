@@ -11,7 +11,7 @@ import { buildFormState, isObjectArray } from './helpers';
 class FormBuilder extends React.Component {
     constructor(props) {
         super(props);
-        this.state = buildFormState(props);
+        this.state = buildFormState(props.form);
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);

@@ -24,18 +24,6 @@ const form = [
                     console.log(`Last name: ${event.target.value}`);
                 },
             },
-            {
-                id: 'last_name',
-                name: 'last_name',
-                minLength: 3,
-                type: 'text',
-                className: 'class_name',
-                required: true,
-                placeholder: 'Last name',
-                onChange: (event) => {
-                    console.log(`Last name: ${event.target.value}`);
-                },
-            },
         ],
     ],
     [

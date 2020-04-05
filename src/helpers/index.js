@@ -5,13 +5,21 @@ module.exports = {
     isObjectArray,
 };
 
-function buildFormState(formData) {
-    const formState = {};
-    formData.form.forEach((element) => {
-        formState[ element.name ] = element.value || '';
-    });
+function getFieldNamesFromForm(formData, formState) {
+    if (isObjectArray(formData)) {
+        formData.forEach(group => getFieldNamesFromForm(group, formState));
+    } else {
+        formState[ formData.name ] = formData.value || '';
+    }
 
     return formState;
+}
+
+function buildFormState(formData) {
+    const newFormState = {};
+    const fieldsValues = getFieldNamesFromForm(formData, newFormState);
+
+    return fieldsValues;
 }
 
 function isObjectArray(object) {
