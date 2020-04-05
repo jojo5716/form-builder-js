@@ -1,5 +1,5 @@
 {
-  "name": "form-builder-js",
+  "name": "js-form-builder",
   "version": "1.0.0",
   "description": "React component to generate a form from javascript object.",
   "main": "src/index.js",
