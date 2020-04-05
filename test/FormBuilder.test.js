@@ -28,7 +28,7 @@ describe('FormBuilder', () => {
         });
 
         it('Dont render anything if form prop is not an array', () => {
-            wrapper = mount(<FormBuilder form={{...data}}/>);
+            wrapper = mount(<FormBuilder form={{ ...data }}/>);
 
             wrapper.find('form').length.should.be.eq(0);
         });
@@ -135,7 +135,7 @@ describe('FormBuilder', () => {
                         onSubmit={onSubmitMock}
                         hasToSubmit={false}
                         showFormErrorMessage={false}
-                    />
+                    />,
                 );
 
                 const buttonElement = wrapper.find('button');

@@ -61,7 +61,13 @@ describe('Input element', () => {
                 const onChangeMock = jest.fn();
                 // Input.prototype.isFieldValid = () => true;
 
-                wrapper = shallow(<Input {...data} onChange={onChangeMock} setFieldValueState={setFieldValueStateMock}/>);
+                wrapper = shallow(
+                    <Input
+                        {...data}
+                        onChange={onChangeMock}
+                        setFieldValueState={setFieldValueStateMock}
+                    />,
+                );
 
                 wrapper.instance().isFieldValid = () => true;
 

@@ -2,9 +2,6 @@
 /* eslint "import/no-extraneous-dependencies": ["error", {"devDependencies": true }] */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable max-statements */
-
-import React from 'react';
-
 require('../src/polyfills/arrays');
 
 
