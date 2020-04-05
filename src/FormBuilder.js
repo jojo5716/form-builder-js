@@ -43,11 +43,11 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const Component = MAP_COMPONENT_INPUTS[ inputData.type ] || MAP_COMPONENT_INPUTS.default;
+        const Component = MAP_COMPONENT_INPUTS[inputData.type] || MAP_COMPONENT_INPUTS.default;
         const setFieldValueState = elementValue => this.setState({
             form: {
                 ...this.state.form,
-                [ inputData.name ]: elementValue,
+                [inputData.name]: elementValue,
             },
         });
 
