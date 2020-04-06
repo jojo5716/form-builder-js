@@ -78,14 +78,14 @@ describe('FormBuilder', () => {
 
         describe('onClick submit button', () => {
             it('onSuccess prop is called and hasToShowFormError state is change to false if fields is valid', () => {
-                const onSubmitMock = jest.fn();
+                const onSuccessMock = jest.fn();
                 const customFields = [{
                     name: 'name',
                     type: 'text',
                     value: 'Jhon',
                 }];
 
-                wrapper = mount(<FormBuilder fields={customFields} onSubmit={onSubmitMock} hasToSubmit={false}/>);
+                wrapper = mount(<FormBuilder fields={customFields} onSuccess={onSuccessMock} hasToSubmit={false}/>);
 
                 const buttonElement = wrapper.find('button');
 
@@ -93,9 +93,9 @@ describe('FormBuilder', () => {
 
                 buttonElement.length.should.be.eq(1);
 
-                expect(onSubmitMock.mock.calls.length).toBe(1);
+                expect(onSuccessMock.mock.calls.length).toBe(1);
 
-                expect(onSubmitMock).toHaveBeenCalledWith({ name: 'Jhon' });
+                expect(onSuccessMock).toHaveBeenCalledWith({ name: 'Jhon' });
 
             });
 
