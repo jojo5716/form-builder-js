@@ -14,12 +14,12 @@ chai.should();
 
 describe('FormBuilder', () => {
 
-    let data;
+    let fields;
     let wrapper;
 
     beforeEach(() => {
-        data = [...formFixtures];
-        wrapper = mount(<FormBuilder form={data}/>);
+        fields = [...formFixtures];
+        wrapper = mount(<FormBuilder fields={fields}/>);
     });
 
     describe('Render element', () => {
@@ -28,7 +28,7 @@ describe('FormBuilder', () => {
         });
 
         it('Dont render anything if fields prop is not an array', () => {
-            wrapper = mount(<FormBuilder form={{ ...data }}/>);
+            wrapper = mount(<FormBuilder fields={{ ...fields }}/>);
 
             wrapper.find('form').length.should.be.eq(0);
         });
@@ -45,19 +45,19 @@ describe('FormBuilder', () => {
                     <button onClick={onSubmit}>Custom submit form</button>
                 </div>
             );
-            wrapper = mount(<FormBuilder form={data} container={Container}/>);
+            wrapper = mount(<FormBuilder fields={fields} container={Container}/>);
 
-            wrapper.find('.container-fields').length.should.be.eq(1);
+            wrapper.find('.container-form').length.should.be.eq(1);
         });
 
         it('Default container', () => {
-            wrapper = mount(<FormBuilder form={data} container={null}/>);
+            wrapper = mount(<FormBuilder fields={fields} container={null}/>);
 
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(10);
+            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(8);
         });
 
         it('Submit button', () => {
-            wrapper = mount(<FormBuilder form={data} showSubmitButton={false}/>);
+            wrapper = mount(<FormBuilder fields={fields} showSubmitButton={false}/>);
 
             wrapper.find('input[type="submit"]').length.should.be.eq(0);
         });
@@ -68,8 +68,8 @@ describe('FormBuilder', () => {
             });
 
             it('Invalid type dont will be rendered', () => {
-                const newForm = [...data, { type: 'invalid-type' }];
-                wrapper = mount(<FormBuilder form={newForm} showSubmitButton={false}/>);
+                const newForm = [...fields, { type: 'invalid-type' }];
+                wrapper = mount(<FormBuilder fields={newForm} showSubmitButton={false}/>);
 
                 wrapper.find('input').length.should.be.eq(6);
             });
@@ -79,13 +79,13 @@ describe('FormBuilder', () => {
         describe('onClick submit button', () => {
             it('onSubmit prop is called and hasToShowFormError state is change to false if fields is valid', () => {
                 const onSubmitMock = jest.fn();
-                const form = [{
+                const customFields = [{
                     name: 'name',
                     type: 'text',
                     value: 'Jhon',
                 }];
 
-                wrapper = mount(<FormBuilder form={form} onSubmit={onSubmitMock} hasToSubmit={false}/>);
+                wrapper = mount(<FormBuilder fields={customFields} onSubmit={onSubmitMock} hasToSubmit={false}/>);
 
                 const buttonElement = wrapper.find('button');
 
@@ -108,7 +108,7 @@ describe('FormBuilder', () => {
                 }];
 
                 FormBuilder.prototype.isValidForm = () => false;
-                wrapper = mount(<FormBuilder form={form} onSubmit={onSubmitMock} hasToSubmit={false}/>);
+                wrapper = mount(<FormBuilder fields={form} onSubmit={onSubmitMock} hasToSubmit={false}/>);
 
                 const buttonElement = wrapper.find('button');
 
@@ -131,7 +131,7 @@ describe('FormBuilder', () => {
                 FormBuilder.prototype.isValidForm = () => false;
                 wrapper = mount(
                     <FormBuilder
-                        form={form}
+                        fields={form}
                         onSubmit={onSubmitMock}
                         hasToSubmit={false}
                         showFormErrorMessage={false}

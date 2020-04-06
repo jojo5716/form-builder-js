@@ -72,7 +72,7 @@ class FormBuilder extends React.Component {
     onSubmit() {
         if (this.isValidForm()) {
             this.setState({ hasToShowFormError: false });
-            this.props.onSubmit({ ...this.state.form });
+            this.props.onSubmit({ ...this.state.fields });
         } else if (this.props.showFormErrorMessage) {
             this.setState({ hasToShowFormError: true });
         }

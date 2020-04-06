@@ -14,7 +14,6 @@ const fields = [
         {
             id: 'name',
             name: 'name',
-            value: 'Jhon',
             type: 'text',
             className: 'form-control',
             required: true,
