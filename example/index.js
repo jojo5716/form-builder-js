@@ -75,7 +75,7 @@ function render(fieldsProps) {
             fieldGroupContainer={fieldGroupContainer}
             labelContainer={labelContainer}
             formErrorContainer={formErrorContainer}
-            onSubmit={onCustomSubmit}
+            onSuccess={onCustomSubmit}
             hasToSubmit={true}
             showSubmitButton={false}
             hasToShowLabel={true}

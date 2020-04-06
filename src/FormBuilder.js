@@ -15,7 +15,7 @@ class FormBuilder extends React.Component {
             fields: buildFormState(props.fields),
             hasToShowFormError: false,
         };
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSuccess = this.onSuccess.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);
         this.nodes = [];
@@ -69,10 +69,10 @@ class FormBuilder extends React.Component {
         return fieldsValidityValues.every(value => value);
     }
 
-    onSubmit() {
+    onSuccess() {
         if (this.isValidForm()) {
             this.setState({ hasToShowFormError: false });
-            this.props.onSubmit({ ...this.state.fields });
+            this.props.onSuccess({ ...this.state.fields });
         } else if (this.props.showFormErrorMessage) {
             this.setState({ hasToShowFormError: true });
         }
@@ -91,7 +91,7 @@ class FormBuilder extends React.Component {
             Component = Button;
             attributes = {
                 text: this.props.submitButtonText,
-                onClick: this.onSubmit,
+                onClick: this.onSuccess,
             };
         }
 
@@ -112,7 +112,7 @@ class FormBuilder extends React.Component {
         const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
-            <Container onSubmit={this.onSubmit}>
+            <Container onSubmit={this.onSuccess}>
                 {this.state.hasToShowFormError ? this.renderFormErrorMessage() : null}
                 <FormView {...this.props}>
                     {elementsRendered}
@@ -137,7 +137,7 @@ FormBuilder.propTypes = {
     fieldGroupContainer: PropTypes.any,
     fieldContainer: PropTypes.any,
     formErrorContainer: PropTypes.any,
-    onSubmit: PropTypes.func,
+    onSuccess: PropTypes.func,
     submitButtonText: PropTypes.string,
     customFormErrorMessage: PropTypes.string,
     method: PropTypes.string,
@@ -156,8 +156,7 @@ FormBuilder.defaultProps = {
     hasToSubmit: true,
     showSubmitButton: true,
     showFormErrorMessage: true,
-    onSubmit: () => {
-    },
+    onSuccess: () => {},
     submitButtonText: 'Submit',
     method: 'GET',
     customFormErrorMessage: 'Invalid fields',

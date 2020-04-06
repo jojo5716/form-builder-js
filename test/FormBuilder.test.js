@@ -77,7 +77,7 @@ describe('FormBuilder', () => {
         });
 
         describe('onClick submit button', () => {
-            it('onSubmit prop is called and hasToShowFormError state is change to false if fields is valid', () => {
+            it('onSuccess prop is called and hasToShowFormError state is change to false if fields is valid', () => {
                 const onSubmitMock = jest.fn();
                 const customFields = [{
                     name: 'name',
@@ -120,7 +120,7 @@ describe('FormBuilder', () => {
 
                 expect(wrapper.state().hasToShowFormError).toBe(true);
             });
-            it('onSubmit do anything if showFormErrorMessage is false and fields is invalid', () => {
+            it('onSuccess do anything if showFormErrorMessage is false and fields is invalid', () => {
                 const onSubmitMock = jest.fn();
                 const form = [{
                     name: 'name',
