@@ -1,7 +1,11 @@
 # Component form builder #
 [![Build Status](https://travis-ci.com/jojo5716/form-builder-js.svg?branch=master)](https://travis-ci.com/jojo5716/form-builder-js)
+[![npm version](https://badge.fury.io/js/js-form-builder.svg)](https://badge.fury.io/js/js-form-builder)
+[![GitHub issues](https://img.shields.io/github/issues/jojo5716/form-builder-js)](https://github.com/jojo5716/form-builder-js/issues)
+[![Downloads](https://img.shields.io/npm/dm/js-form-builder.svg?style=flat)](https://www.npmjs.com/package/js-form-builder)
 
 ## Requirements ##
+
 
 * Node version >= 6.2
 
