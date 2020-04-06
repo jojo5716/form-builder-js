@@ -24,7 +24,7 @@ const Container = ({ children, onSubmit }) => (
 * Render field into a custom html block.
 */
 const fieldContainer = ({ children, label }) => (
-    <div className="form-control">
+    <div className="input-group">
         {label}
         {children}
     </div>
@@ -91,17 +91,17 @@ const btnUpdateForm = document.getElementById('btnUpdateForm');
 
 btnUpdateForm.addEventListener('click', () => {
     const currentForm = [...form];
-    currentForm.push({
-        id: 'url',
+    currentForm.push([{
         name: 'url',
         type: 'url',
-        className: 'class_name',
+        className: 'form-control',
         required: true,
         placeholder: 'URL',
+        label: 'URL: ',
         onChange: (event) => {
             console.log(`URL: ${event.target.value}`);
         },
-    });
+    }]);
 
     render(currentForm);
 });

@@ -56,7 +56,7 @@ class FormBuilder extends React.Component {
             key={index}
             setReference={el => this.nodes.push(el)}
             setFieldValueState={setFieldValueState}
-            fieldContainer={this.props.fieldContainer}
+            parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
         /> : null;

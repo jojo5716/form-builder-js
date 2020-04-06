@@ -66,7 +66,7 @@ class Input extends React.Component {
     }
 
     render() {
-        const Container = this.props.fieldContainer || EMPTY_CONTAINER;
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
 
         return (
             <Container>
@@ -87,6 +87,7 @@ Input.propTypes = {
     setFieldValueState: PropTypes.func,
     setReference: PropTypes.func,
     reference: PropTypes.any,
+    parentFieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
     onChange: PropTypes.func,
     fieldContainer: PropTypes.any,
@@ -98,6 +99,7 @@ Input.defaultProps = {
     type: 'text',
     errorMessage: 'This field is required',
     fieldContainer: null,
+    parentFieldContainer: null,
     labelContainer: null,
     setErrorOnChange: true,
     hasToShowLabel: true,
