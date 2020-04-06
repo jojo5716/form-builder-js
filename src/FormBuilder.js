@@ -12,7 +12,7 @@ class FormBuilder extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            form: buildFormState(props.form),
+            fields: buildFormState(props.fields),
             hasToShowFormError: false,
         };
         this.onSubmit = this.onSubmit.bind(this);
@@ -45,8 +45,8 @@ class FormBuilder extends React.Component {
     renderInput(inputData, index) {
         const Component = MAP_COMPONENT_INPUTS[inputData.type] || MAP_COMPONENT_INPUTS.default;
         const setFieldValueState = elementValue => this.setState({
-            form: {
-                ...this.state.form,
+            fields: {
+                ...this.state.fields,
                 [inputData.name]: elementValue,
             },
         });
@@ -59,6 +59,7 @@ class FormBuilder extends React.Component {
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
+            value={this.state.fields[inputData.name] || ''}
         /> : null;
     }
 
@@ -107,7 +108,7 @@ class FormBuilder extends React.Component {
     }
 
     renderForm() {
-        const elementsRendered = this.props.form.map(this.renderElement);
+        const elementsRendered = this.props.fields.map(this.renderElement);
         const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
@@ -122,7 +123,7 @@ class FormBuilder extends React.Component {
     }
 
     render() {
-        return isObjectArray(this.props.form) ? this.renderForm() : null;
+        return isObjectArray(this.props.fields) ? this.renderForm() : null;
     }
 }
 
@@ -130,7 +131,8 @@ export default FormBuilder;
 
 
 FormBuilder.propTypes = {
-    form: PropTypes.array,
+    form: PropTypes.object,
+    fields: PropTypes.array,
     container: PropTypes.any,
     fieldGroupContainer: PropTypes.any,
     fieldContainer: PropTypes.any,
@@ -145,7 +147,8 @@ FormBuilder.propTypes = {
 };
 
 FormBuilder.defaultProps = {
-    form: [],
+    form: {},
+    fields: [],
     container: null,
     fieldGroupContainer: null,
     fieldContainer: null,
@@ -157,5 +160,5 @@ FormBuilder.defaultProps = {
     },
     submitButtonText: 'Submit',
     method: 'GET',
-    customFormErrorMessage: 'Invalid form',
+    customFormErrorMessage: 'Invalid fields',
 };

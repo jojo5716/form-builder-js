@@ -7,10 +7,10 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import form from './fixtures';
+import fields from './fixtures';
 
 /**
-* Render all form into a custom html block.
+* Render all fields into a custom html block.
 */
 const Container = ({ children, onSubmit }) => (
     <div className="container-form">
@@ -41,7 +41,7 @@ const fieldGroupContainer = ({ children, label }) => (
 );
 
 /**
-* Render form error message into a custom html block.
+* Render fields error message into a custom html block.
 */
 const formErrorContainer = ({ children }) => (
     <div className="error">
@@ -60,16 +60,16 @@ const labelContainer = ({ children }) => (
 
 /**
 * Called on submit button.
-* Return all form data as json
+* Return all fields data as json
 */
 function onCustomSubmit(formData) {
     console.log(formData);
 }
 
-function render(formProps) {
+function render(fieldsProps) {
     ReactDOM.render(
         <FormBuilder
-            form={formProps}
+            fields={fieldsProps}
             container={Container}
             fieldContainer={fieldContainer}
             fieldGroupContainer={fieldGroupContainer}
@@ -85,16 +85,16 @@ function render(formProps) {
     );
 }
 
-render(form);
+render(fields);
 
 const btnUpdateForm = document.getElementById('btnUpdateForm');
 
 btnUpdateForm.addEventListener('click', () => {
-    const currentForm = [...form];
+    const currentForm = [...fields];
     currentForm.push([{
         name: 'url',
         type: 'url',
-        className: 'form-control',
+        className: 'fields-control',
         required: true,
         placeholder: 'URL',
         label: 'URL: ',

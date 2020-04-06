@@ -27,7 +27,7 @@ describe('FormBuilder', () => {
             wrapper.find('form').length.should.be.eq(1);
         });
 
-        it('Dont render anything if form prop is not an array', () => {
+        it('Dont render anything if fields prop is not an array', () => {
             wrapper = mount(<FormBuilder form={{ ...data }}/>);
 
             wrapper.find('form').length.should.be.eq(0);
@@ -47,7 +47,7 @@ describe('FormBuilder', () => {
             );
             wrapper = mount(<FormBuilder form={data} container={Container}/>);
 
-            wrapper.find('.container-form').length.should.be.eq(1);
+            wrapper.find('.container-fields').length.should.be.eq(1);
         });
 
         it('Default container', () => {
@@ -77,7 +77,7 @@ describe('FormBuilder', () => {
         });
 
         describe('onClick submit button', () => {
-            it('onSubmit prop is called and hasToShowFormError state is change to false if form is valid', () => {
+            it('onSubmit prop is called and hasToShowFormError state is change to false if fields is valid', () => {
                 const onSubmitMock = jest.fn();
                 const form = [{
                     name: 'name',
@@ -99,7 +99,7 @@ describe('FormBuilder', () => {
 
             });
 
-            it('show form error message if form is not valid', () => {
+            it('show fields error message if fields is not valid', () => {
                 const onSubmitMock = jest.fn();
                 const form = [{
                     name: 'name',
@@ -120,7 +120,7 @@ describe('FormBuilder', () => {
 
                 expect(wrapper.state().hasToShowFormError).toBe(true);
             });
-            it('onSubmit do anything if showFormErrorMessage is false and form is invalid', () => {
+            it('onSubmit do anything if showFormErrorMessage is false and fields is invalid', () => {
                 const onSubmitMock = jest.fn();
                 const form = [{
                     name: 'name',

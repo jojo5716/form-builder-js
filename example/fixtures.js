@@ -9,11 +9,12 @@ const customEmailContainer = ({ children }) => (
     </div>
 );
 
-const form = [
+const fields = [
     [
         {
             id: 'name',
             name: 'name',
+            value: 'Jhon',
             type: 'text',
             className: 'form-control',
             required: true,
@@ -74,4 +75,4 @@ const form = [
     ],
 ];
 
-export default form;
+export default fields;

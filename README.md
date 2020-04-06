@@ -42,23 +42,13 @@ const form = [
     },
 ];
 /**
-* Render all form into a custom html block.
+* Render form into a custom html block.
 */
 const Container = ({ children, onSubmit }) => (
     <div className="container-form">
         {children}
 
         <button onClick={onSubmit}>Custom submit form</button>
-    </div>
-);
-
-/**
-* Render field into a custom html block.
-*/
-const fieldContainer = ({ children, label }) => (
-    <div className="form-control">
-        {label}
-        {children}
     </div>
 );
 
@@ -73,7 +63,27 @@ const fieldGroupContainer = ({ children, label }) => (
 );
 
 /**
-* Render form error message into a custom html block.
+* Render field into a custom html block.
+*/
+const fieldContainer = ({ children, label }) => (
+    <div className="form-control">
+        {label}
+        {children}
+    </div>
+);
+
+
+/**
+* Render label field into a custom html block.
+*/
+const labelContainer = ({ children }) => (
+    <label className="label">
+        {children}
+    </label>
+);
+
+/**
+* Render fields error message into a custom html block.
 */
 const formErrorContainer = ({ children }) => (
     <div className="error">
@@ -83,7 +93,7 @@ const formErrorContainer = ({ children }) => (
 
 /**
 * Called on submit button.
-* Return all form data as json
+* Return all fields data as json
 */
 function onCustomSubmit(formData) {
     console.log(formData);
@@ -96,6 +106,7 @@ ReactDOM.render(
         container={Container}
         fieldContainer={fieldContainer}
         fieldGroupContainer={fieldGroupContainer}
+        labelContainer={labelContainer}
         formErrorContainer={formErrorContainer}
         onSubmit={onCustomSubmit}
         hasToSubmit={true}
