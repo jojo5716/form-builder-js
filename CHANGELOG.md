@@ -1,3 +1,22 @@
+#### 1.0.2 (2020-04-06)
+
+##### New Features
+
+*  Adding custom field container on each field data ([b30f93a4](https://github.com/jojo5716/form-builder-js/commit/b30f93a404bc28a7686186994ab263e17a6437fb))
+*  Adding label ([ee676472](https://github.com/jojo5716/form-builder-js/commit/ee6764729e135185b2a2cf5625a7df3d4fa14ecf))
+
+##### Bug Fixes
+
+*  Fix test ([8e95f338](https://github.com/jojo5716/form-builder-js/commit/8e95f338ec57619e2cceeca4b29d4443a37eb661))
+*  Fixing test ([34b0e58e](https://github.com/jojo5716/form-builder-js/commit/34b0e58e972a7dca41de886dc2472f6733e650b3))
+*  default value on inputs ([d26a3515](https://github.com/jojo5716/form-builder-js/commit/d26a3515bec948dd6dc738f595409bb354c0c6fc))
+*  Default label text ([cc8d275c](https://github.com/jojo5716/form-builder-js/commit/cc8d275c76eb6660671ebd775f61ccdc2b18815f))
+
+##### Other Changes
+
+*  Updating README.md ([2b9dec34](https://github.com/jojo5716/form-builder-js/commit/2b9dec344c3438f6501b298b3f4b884704277209))
+* //github.com/jojo5716/form-builder-js ([778ef435](https://github.com/jojo5716/form-builder-js/commit/778ef435a4824ba5385befff79a98937e145bc9c))
+
 #### 1.0.1 (2020-04-05)
 
 ##### Other Changes
