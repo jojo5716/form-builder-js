@@ -4,13 +4,14 @@ module.exports = {
     buildFormState,
     isObjectArray,
     convertStringToCamelCase,
+    removeInternalProps,
 };
 
 function getFieldNamesFromForm(formData, formState) {
     if (isObjectArray(formData)) {
         formData.forEach(group => getFieldNamesFromForm(group, formState));
     } else {
-        formState[formData.name] = formData.value || ''; // eslint-disable-line no-param-reassign
+        formState[ formData.name ] = formData.value || ''; // eslint-disable-line no-param-reassign
     }
 
     return formState;
@@ -43,4 +44,13 @@ function convertStringToCamelCase(str) {
 
         })
         .join(' ');
+}
+
+function removeInternalProps(props, attributesToDelete = []) {
+    const propsCloned = { ...props };
+    attributesToDelete.forEach((attribute) => {
+        delete propsCloned[ attribute ];
+    });
+
+    return propsCloned;
 }

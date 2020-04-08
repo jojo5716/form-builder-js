@@ -27,11 +27,12 @@ class BasicInput extends Element {
 
     render() {
         const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
+        const inputProps = this.calculateElementProps();
 
         return (
             <Container>
                 {this.renderLabel()}
-                <input ref={this.setElementReference} {...this.props} onChange={this.onChange}/>
+                <input ref={this.setElementReference} {...inputProps} onChange={this.onChange}/>
                 {this.renderErrorMessage()}
             </Container>
         );
