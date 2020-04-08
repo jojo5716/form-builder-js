@@ -1,10 +1,7 @@
-import React from 'react';
 
-import Input from './views/elements/Input';
-
-
-export const MAP_COMPONENT_INPUTS = {
-    default: Input,
-};
 
 export const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
+export const EMPTY_LABEL_CONTAINER = ({ children }) => <label>{children}</label>;
+
+export const EMPTY_CALLBACK = () => {
+};

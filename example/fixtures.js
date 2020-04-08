@@ -13,6 +13,7 @@ const fields = [
     [
         {
             id: 'name',
+            element: 'input',
             name: 'name',
             type: 'text',
             className: 'form-control',
@@ -24,6 +25,7 @@ const fields = [
         },
         {
             id: 'last_name',
+            element: 'input',
             name: 'lastName',
             minLength: 3,
             type: 'text',
@@ -38,6 +40,7 @@ const fields = [
     [
         {
             id: 'mobile',
+            element: 'input',
             name: 'mobile',
             type: 'number',
             className: 'form-control',
@@ -49,6 +52,7 @@ const fields = [
         },
         {
             id: 'email',
+            element: 'input',
             name: 'email',
             type: 'email',
             className: 'form-control',
@@ -61,6 +65,7 @@ const fields = [
         },
         {
             id: 'birthday',
+            element: 'input',
             name: 'birthday',
             type: 'date',
             className: 'form-control',
@@ -69,6 +74,34 @@ const fields = [
             label: 'Birthday label',
             onChange: (event) => {
                 console.log(`Birthday: ${event.target.value}`);
+            },
+        },
+    ],
+    [
+        {
+            name: 'gender',
+            element: 'input',
+            value: 'female',
+            type: 'radio',
+            className: 'form-control',
+            required: true,
+            label: 'Female',
+            fieldContainer: null,
+            onChange: (event) => {
+                console.log(`Gender female: ${event.target.value}`);
+            },
+        },
+        {
+            name: 'gender',
+            element: 'input',
+            value: 'male',
+            type: 'radio',
+            className: 'form-control',
+            required: true,
+            label: 'Male',
+            fieldContainer: null,
+            onChange: (event) => {
+                console.log(`Gender female: ${event.target.value}`);
             },
         },
     ],

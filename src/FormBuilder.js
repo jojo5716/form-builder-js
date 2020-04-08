@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormView from './views/index.jsx';
-import Input from './views/elements/Input';
+import BasicInput from './views/elements/inputs/BasicInput';
 import Button from './views/elements/Button';
-import { MAP_COMPONENT_INPUTS, EMPTY_CONTAINER } from './constants';
+import { MAP_ELEMENTS } from './elements-mapping';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from './constants';
 import { buildFormState, isObjectArray } from './helpers';
 
 
@@ -43,7 +44,8 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const Component = MAP_COMPONENT_INPUTS[inputData.type] || MAP_COMPONENT_INPUTS.default;
+        const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
+        const Component = inputTypes[inputData.type] || inputTypes.default;
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
@@ -82,7 +84,7 @@ class FormBuilder extends React.Component {
         let Component;
         let attributes;
         if (this.props.hasToSubmit) {
-            Component = Input;
+            Component = BasicInput;
             attributes = {
                 type: 'submit',
                 value: this.props.submitButtonText,
@@ -156,7 +158,7 @@ FormBuilder.defaultProps = {
     hasToSubmit: true,
     showSubmitButton: true,
     showFormErrorMessage: true,
-    onSuccess: () => {},
+    onSuccess: EMPTY_CALLBACK,
     submitButtonText: 'Submit',
     method: 'GET',
     customFormErrorMessage: 'Invalid fields',

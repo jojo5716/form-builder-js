@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { convertStringToCamelCase } from '../../helpers';
-
-const EMPTY_CONTAINER = ({ children }) => <React.Fragment>{children}</React.Fragment>;
-const EMPTY_LABEL_CONTAINER = ({ children }) => <label>{children}</label>;
+import { EMPTY_CALLBACK, EMPTY_LABEL_CONTAINER } from '../../constants';
 
 
-class Input extends React.Component {
+class Element extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             hasToShowErrorMessage: false,
         };
 
-        this.onChange = this.onChange.bind(this);
         this.showErrorMessage = this.showErrorMessage.bind(this);
         this.hideErrorMessage = this.hideErrorMessage.bind(this);
         this.setElementReference = this.setElementReference.bind(this);
@@ -33,55 +30,50 @@ class Input extends React.Component {
         this.setState({ hasToShowErrorMessage: false });
     }
 
-    onChange(event) {
-        if (!this.props.setErrorOnChange || (this.props.setErrorOnChange && this.isFieldValid())) {
-            this.props.setFieldValueState(event.target.value);
-            this.props.onChange(event);
-            this.hideErrorMessage();
-        } else {
-            this.showErrorMessage();
-        }
-    }
-
     setElementReference(element) {
         this.ref = element;
         this.props.setReference(element);
     }
 
     renderErrorMessage() {
-        return (
-            <span>{this.props.errorMessage}</span>
-        );
+        let html;
+        if (this.state.hasToShowErrorMessage) {
+            html = (
+                <span>{this.props.errorMessage}</span>
+            );
+        }
+        return html;
     }
 
     renderLabel() {
-        const Container = this.props.labelContainer || EMPTY_LABEL_CONTAINER;
-        const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
+        let html;
+        if (this.props.hasToShowLabel) {
+            const Container = this.props.labelContainer || EMPTY_LABEL_CONTAINER;
+            const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
+            html = (
+                <Container>
+                    {labelText}
+                </Container>
+            );
+        } else {
+            html = null;
+        }
 
-        return (
-            <Container>
-                {labelText}
-            </Container>
-        );
+        return html;
     }
 
+    /*
+    * Override this method on each field type
+    * */
     render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-
-        return (
-            <Container>
-                {this.props.hasToShowLabel ? this.renderLabel() : null}
-                <input ref={this.setElementReference} {...this.props} onChange={this.onChange}/>
-                {this.state.hasToShowErrorMessage ? this.renderErrorMessage() : null}
-            </Container>
-        );
+        return null;
     }
 }
 
-export default Input;
+export default Element;
 
 
-Input.propTypes = {
+Element.propTypes = {
     type: PropTypes.string,
     errorMessage: PropTypes.string,
     setFieldValueState: PropTypes.func,
@@ -95,7 +87,7 @@ Input.propTypes = {
     hasToShowLabel: PropTypes.bool,
 };
 
-Input.defaultProps = {
+Element.defaultProps = {
     type: 'text',
     errorMessage: 'This field is required',
     fieldContainer: null,
@@ -103,11 +95,8 @@ Input.defaultProps = {
     labelContainer: null,
     setErrorOnChange: true,
     hasToShowLabel: true,
-    setFieldValueState: () => {
-    },
-    setReference: () => {
-    },
-    onChange: () => {
-    },
+    setFieldValueState: EMPTY_CALLBACK,
+    setReference: EMPTY_CALLBACK,
+    onChange: EMPTY_CALLBACK,
     reference: React.createRef(),
 };

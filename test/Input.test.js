@@ -8,7 +8,7 @@ import { mount, shallow } from 'enzyme';
 import chai from 'chai';
 
 
-import Input from '../src/views/elements/Input';
+import Element from '../src/views/elements/Element';
 
 chai.should();
 
@@ -22,7 +22,7 @@ describe('Input element', () => {
             name: 'name',
             required: true,
         };
-        wrapper = mount(<Input {...data}/>);
+        wrapper = mount(<Element {...data}/>);
     });
 
     describe('Input', () => {
@@ -33,19 +33,19 @@ describe('Input element', () => {
         it('Render custom container', () => {
             const customContainer = ({ children }) => <h1>{children}</h1>;
 
-            wrapper = mount(<Input {...data} fieldContainer={customContainer}/>);
+            wrapper = mount(<Element {...data} fieldContainer={customContainer}/>);
 
             wrapper.find('h1').length.should.be.eq(1);
         });
 
         it('Render default container', () => {
-            wrapper = mount(<Input {...data} />);
+            wrapper = mount(<Element {...data} />);
 
             wrapper.find('EMPTY_CONTAINER').length.should.be.eq(1);
         });
 
         it('Render field error', () => {
-            wrapper = mount(<Input {...data} />);
+            wrapper = mount(<Element {...data} />);
 
             wrapper.instance().setState({
                 hasToShowErrorMessage: true,
@@ -62,7 +62,7 @@ describe('Input element', () => {
                 // Input.prototype.isFieldValid = () => true;
 
                 wrapper = shallow(
-                    <Input
+                    <Element
                         {...data}
                         onChange={onChangeMock}
                         setFieldValueState={setFieldValueStateMock}
@@ -85,7 +85,7 @@ describe('Input element', () => {
             });
 
             it('set hasToShowErrorMessage state true if field is not valid ', () => {
-                wrapper = mount(<Input {...data}/>);
+                wrapper = mount(<Element {...data}/>);
 
                 const event = { target: { value: 'Jhon' } };
 
