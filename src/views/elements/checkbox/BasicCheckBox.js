@@ -1,26 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Element from '../../Element';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../../constants';
-
+import Element from '../Element';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
 
 /**
  *
- * This class represent a basic input type radio
+ * This class represent a basic input type checkbox
  * */
-class BasicRadio extends Element {
+class BasicCheckBox extends Element {
     constructor(props) {
         super(props);
 
-        this.onClick = this.onClick.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    onClick(event) {
-        if (event.target.checked) {
-            this.props.setFieldValueState(event.target.value);
-            this.props.onChange(event);
+    onChange(event) {
+        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
+            this.showErrorMessage();
+        } else {
+            this.hideErrorMessage();
         }
+        this.props.setFieldValueState(event.target.checked);
+        this.props.onChange(event);
     }
 
     render() {
@@ -33,8 +35,8 @@ class BasicRadio extends Element {
                 <input
                     ref={this.setElementReference}
                     {...inputProps}
-                    onClick={this.onClick}
-                    checked={this.props.fieldValueState === this.props.value}
+                    checked={!!this.props.fieldValueState}
+                    onChange={this.onChange}
                 />
                 {this.renderErrorMessage()}
             </Container>
@@ -42,25 +44,29 @@ class BasicRadio extends Element {
     }
 }
 
-export default BasicRadio;
+export default BasicCheckBox;
 
 
-BasicRadio.propTypes = {
-    value: PropTypes.string.isRequired,
+BasicCheckBox.propTypes = {
     errorMessage: PropTypes.string,
     fieldValueState: PropTypes.string,
     fieldContainer: PropTypes.any,
+    labelContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
+    hasToShowLabel: PropTypes.bool,
     parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
 };
 
-BasicRadio.defaultProps = {
+BasicCheckBox.defaultProps = {
+    fieldValueState: '',
     errorMessage: 'This field is required',
     fieldContainer: null,
+    labelContainer: null,
     setErrorOnChange: true,
+    hasToShowLabel: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,

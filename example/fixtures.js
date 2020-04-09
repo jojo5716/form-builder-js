@@ -83,6 +83,7 @@ const statusPost = [
     {
         name: 'status',
         element: 'input',
+        required: true,
         value: 'private',
         type: 'radio',
         className: 'form-control',
@@ -106,15 +107,70 @@ const statusPost = [
         },
     },
 ];
+const categoryPost = [
+    {
+        name: 'category',
+        element: 'select',
+        className: 'form-control',
+        label: 'Category',
+        value: 'category2',
+        options: [
+            {
+                value: 'category1',
+                content: 'Category 1',
+            }, {
+                value: 'category2',
+                content: 'Category 2',
+            },
+        ],
+        onChange: (event) => {
+            console.log(`Category: ${event.target.value}`);
+        },
+    },
+];
+const tags = [
+    {
+        id: 'tags',
+        element: 'input',
+        type: 'checkbox',
+        name: 'tag1',
+        value: 'tag1',
+        className: 'form-control',
+        label: 'Tag 1',
+        onChange: (event) => {
+            console.log(`Tag: ${event.target.value}`);
+        },
+    },
+    {
+        id: 'tags',
+        element: 'input',
+        type: 'checkbox',
+        name: 'tag2',
+        checked: true,
+        required: true,
+        value: 'tag2',
+        className: 'form-control',
+        label: 'Tag 2',
+        onChange: (event) => {
+            console.log(`Tag: ${event.target.value}`);
+        },
+    },
+];
 
 export const fields = [
     [...authorFields],
     [...contactFields],
     {
-        title: 'Post fields',
-        content: 'Post content',
+        title: 'Post status',
+        content: 'Select an status',
         fields: [...statusPost],
     },
+    {
+        title: 'Post category',
+        content: 'Select a category',
+        fields: [...categoryPost],
+    },
+    [...tags],
 ];
 
 export const form = {

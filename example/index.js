@@ -25,9 +25,13 @@ const Container = ({ children }) => (
  */
 const groupContainer = ({ children, title, content }) => (
     <div className="group-container">
-        <h1>{title}</h1>
-        <p>{content}</p>
-        {children}
+        <fieldset>
+            <legend>{title}</legend>
+            <p>{content}</p>
+
+            {children}
+
+        </fieldset>
     </div>
 );
 
@@ -90,7 +94,7 @@ function render(formProps, fieldsProps) {
             labelContainer={labelContainer}
             formErrorContainer={formErrorContainer}
             onSuccess={onCustomSubmit}
-            hasToSubmit={true}
+            hasToSubmit={false}
             showSubmitButton={true}
             hasToShowLabel={true}
             showFormErrorMessage={true}
