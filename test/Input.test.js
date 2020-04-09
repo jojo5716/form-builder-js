@@ -21,6 +21,7 @@ describe('Input element', () => {
             type: 'text',
             elementType: 'input',
             name: 'name',
+            label: 'NAME',
             minLength: 5,
             required: true,
         };
@@ -46,6 +47,22 @@ describe('Input element', () => {
             wrapper.find('EMPTY_CONTAINER').length.should.be.eq(1);
         });
 
+        it('Render label', () => {
+            wrapper = mount(<BasicInput {...data} />);
+
+            wrapper.find('label').length.should.be.eq(1);
+        });
+
+        it('Render label container', () => {
+            const labelContainer = ({ children }) => <div className='label-container-test'>{children}</div>;
+            wrapper = mount(<BasicInput {...data} labelContainer={labelContainer}/>);
+
+            wrapper.find('.label-container-test').length.should.be.eq(1);
+            wrapper.find('.label-container-test').text().should.be.eq('Name');
+            wrapper.find('.label-container-test label').length.should.be.eq(0);
+
+        });
+
         it('Render field error', () => {
             wrapper = mount(<BasicInput {...data} />);
 
@@ -55,6 +72,13 @@ describe('Input element', () => {
 
             wrapper.update();
             wrapper.find('span').length.should.be.eq(1);
+        });
+
+        it('Hide field error', async () => {
+            wrapper.instance().hideErrorMessage();
+
+            wrapper.update();
+            wrapper.find('span').length.should.be.eq(0);
         });
 
         describe('onChange', () => {

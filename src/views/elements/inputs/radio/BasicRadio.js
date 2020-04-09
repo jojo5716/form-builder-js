@@ -19,9 +19,6 @@ class BasicRadio extends Element {
 
     onClick(event) {
         if (event.target.checked) {
-            if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
-                this.showErrorMessage();
-            }
             this.props.setFieldValueState(event.target.value);
             this.props.onChange(event);
         }

@@ -8,11 +8,7 @@ import {
 import fields from '../example/fixtures';
 
 
-describe.only('Helpers', () => {
-    beforeEach(() => {
-
-    });
-
+describe('Helpers', () => {
     describe('Index', () => {
         it('buildFormState return fields initial state', () => {
             const expectedState = {
@@ -21,7 +17,7 @@ describe.only('Helpers', () => {
                 gender: 'male',
                 lastName: '',
                 mobile: '',
-                name: 'Jhon',
+                name: 'JhonDoe',
             };
 
             const fieldsState = buildFormState(fields);

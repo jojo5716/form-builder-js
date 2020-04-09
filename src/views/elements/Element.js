@@ -11,6 +11,10 @@ const PROPS_TO_DELETE = [
     'parentFieldContainer',
     'labelContainer',
     'hasToShowLabel',
+    'fieldValueState',
+    'setErrorOnChange',
+    'elementType',
+    'errorMessage',
 ];
 
 class Element extends React.Component {
