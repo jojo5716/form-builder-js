@@ -15,7 +15,7 @@ const fields = [
             id: 'name',
             element: 'input',
             name: 'name',
-            value: 'name',
+            value: 'Jhon',
             type: 'text',
             className: 'form-control',
             required: true,
@@ -71,7 +71,7 @@ const fields = [
             type: 'date',
             className: 'form-control',
             placeholder: 'Birthday',
-            label: 'Birthday label',
+            label: 'BIrthday label',
             onChange: (event) => {
                 console.log(`Birthday: ${event.target.value}`);
             },
