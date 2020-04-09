@@ -1,3 +1,35 @@
+### 1.2.0 (2020-04-09)
+
+##### Chores
+
+*  Getting native html validity message ([c22201c6](https://github.com/jojo5716/form-builder-js/commit/c22201c60602f14e418448becb5dc3054401f694))
+*  Setting form props ([70214f4f](https://github.com/jojo5716/form-builder-js/commit/70214f4f1f5c333294c30248dec8827ae7f54eea))
+*  Split radio button in new component ([5a8ddd6e](https://github.com/jojo5716/form-builder-js/commit/5a8ddd6e71d5df644686c110042f3813337a7591))
+
+##### New Features
+
+*  Adding group container ([58a8e773](https://github.com/jojo5716/form-builder-js/commit/58a8e77375d3f292bca6fffa11de9ae93ca1db5d))
+
+##### Bug Fixes
+
+*  Linter ([b679423b](https://github.com/jojo5716/form-builder-js/commit/b679423b8c207c836cb1a71dd439eade13cf6830))
+*  Propagating setErrorOnChange prop to handle error message of each field ([1546448e](https://github.com/jojo5716/form-builder-js/commit/1546448e404f023a76f6a1500114de36877cb1e3))
+*  Fix displaying error field message ([a9390578](https://github.com/jojo5716/form-builder-js/commit/a939057895d388df8f3a464142c11364a1466d2f))
+
+##### Other Changes
+
+*  Update README.md ([21ca9b8a](https://github.com/jojo5716/form-builder-js/commit/21ca9b8ad6bd1599b3a4e6fc59332181d04badb6))
+
+##### Refactors
+
+*  Removing unnecesary props on InputBasic ([d9d592ad](https://github.com/jojo5716/form-builder-js/commit/d9d592ade3f97ff42762d8200aea0195eb8817e0))
+*  Refactoring fields elements structure ([a81de134](https://github.com/jojo5716/form-builder-js/commit/a81de1346caea198bb5e6b36ddf7f5a9d4babc12))
+
+##### Tests
+
+*  Adding element test ([269b8d96](https://github.com/jojo5716/form-builder-js/commit/269b8d9675fd829a66ab7ead9edfebf3644397d5))
+*  Adding test for helpers ([b8f2ba8b](https://github.com/jojo5716/form-builder-js/commit/b8f2ba8b9e3a973a925b0f819da9668ea1928a39))
+
 ### 1.1.0 (2020-04-06)
 
 #### 1.0.2 (2020-04-06)
