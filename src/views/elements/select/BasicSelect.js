@@ -39,23 +39,23 @@ class BasicSelect extends Element {
         );
     }
 
-    render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
-
-        return (
-            <Container>
-                {this.renderLabel()}
-                <select
-                    ref={this.setElementReference}
-                    {...inputProps}
-                    onChange={this.onChange}
-                    value={this.props.value}>
-                    {this.props.options.map(this.renderOption)}
-                </select>
-                {this.renderErrorMessage()}
-            </Container>
+    renderElement() {
+        const elementProps = {
+            onChange: this.onChange,
+            value: this.props.value,
+        };
+        const optionsRendered = this.props.options.map(this.renderOption);
+        const elementComponent = props => (
+            <select {...props} {...elementProps} ref={this.setElementReference}>
+                {optionsRendered}
+            </select>
         );
+
+        return super.renderElement(elementComponent, PROPS_TO_DELETE);
+    }
+
+    render() {
+        return this.renderElement();
     }
 }
 

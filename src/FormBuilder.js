@@ -21,12 +21,12 @@ class FormBuilder extends React.Component {
         this.renderElement = this.renderElement.bind(this);
         this.renderGroup = this.renderGroup.bind(this);
         this.renderGroupElements = this.renderGroupElements.bind(this);
-        this.nodes = [];
+        this.nodes = {};
     }
 
 
     renderGroupElements(inputData, containerPropName, index) {
-        const Container = this.props[containerPropName] || EMPTY_CONTAINER;
+        const Container = this.props[ containerPropName ] || EMPTY_CONTAINER;
 
         return (
             <Container key={`index-parent-field-${index}-${inputData.length}`}>
@@ -63,30 +63,34 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
-        const Component = inputTypes[inputData.type] || inputTypes.default;
+        const inputTypes = MAP_ELEMENTS[ inputData.element ] || MAP_ELEMENTS.default;
+        const Component = inputTypes[ inputData.type ] || inputTypes.default;
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
-                [inputData.name]: elementValue,
+                [ inputData.name ]: elementValue,
             },
         });
 
         return Component ? <Component
             {...inputData}
             key={index}
-            setReference={el => this.nodes.push(el)}
+            setReference={(node) => {
+                if (node) {
+                    this.nodes[ node.name ] = node;
+                }
+            }}
             setFieldValueState={setFieldValueState}
             setErrorOnChange={this.props.setErrorOnChange}
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
-            fieldValueState={this.state.fields[inputData.name] || ''}
+            fieldValueState={this.state.fields[ inputData.name ]}
         /> : null;
     }
 
     isValidForm() {
-        const fieldsValidityValues = this.nodes.map(node => node.validity.valid);
+        const fieldsValidityValues = Object.values(this.nodes).map(node => node && node.validity.valid);
 
         return fieldsValidityValues.every(value => value);
     }
@@ -145,6 +149,7 @@ class FormBuilder extends React.Component {
     }
 
     render() {
+
         return isObjectArray(this.props.fields) ? this.renderForm() : null;
     }
 }

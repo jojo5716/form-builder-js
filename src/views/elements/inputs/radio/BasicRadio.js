@@ -23,22 +23,18 @@ class BasicRadio extends Element {
         }
     }
 
-    render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps();
+    renderElement() {
+        const elementProps = {
+            onClick: this.onClick,
+            checked: this.props.fieldValueState === this.props.value,
+        };
+        const elementComponent = props => <input {...props} {...elementProps} ref={this.setElementReference}/>;
 
-        return (
-            <Container>
-                {this.renderLabel()}
-                <input
-                    ref={this.setElementReference}
-                    {...inputProps}
-                    onClick={this.onClick}
-                    checked={this.props.fieldValueState === this.props.value}
-                />
-                {this.renderErrorMessage()}
-            </Container>
-        );
+        return super.renderElement(elementComponent);
+    }
+
+    render() {
+        return this.renderElement();
     }
 }
 

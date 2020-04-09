@@ -25,22 +25,18 @@ class BasicInput extends Element {
         this.props.onChange(event);
     }
 
-    render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps();
+    renderElement() {
+        const elementProps = {
+            value: this.props.fieldValueState,
+            onChange: this.onChange,
+        };
+        const elementComponent = props => <input {...props} {...elementProps} ref={this.setElementReference}/>;
 
-        return (
-            <Container>
-                {this.renderLabel()}
-                <input
-                    ref={this.setElementReference}
-                    {...inputProps}
-                    value={this.props.fieldValueState}
-                    onChange={this.onChange}
-                />
-                {this.renderErrorMessage()}
-            </Container>
-        );
+        return super.renderElement(elementComponent);
+    }
+
+    render() {
+        return this.renderElement();
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../Element';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
+import { EMPTY_CALLBACK } from '../../../constants';
 
 /**
  *
@@ -25,22 +25,18 @@ class BasicCheckBox extends Element {
         this.props.onChange(event);
     }
 
-    render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps();
+    renderElement() {
+        const elementProps = {
+            checked: !!this.props.fieldValueState,
+            onChange: this.onChange,
+        };
+        const elementComponent = props => <input {...props} {...elementProps} ref={this.setElementReference}/>;
 
-        return (
-            <Container>
-                {this.renderLabel()}
-                <input
-                    ref={this.setElementReference}
-                    {...inputProps}
-                    checked={!!this.props.fieldValueState}
-                    onChange={this.onChange}
-                />
-                {this.renderErrorMessage()}
-            </Container>
-        );
+        return super.renderElement(elementComponent);
+    }
+
+    render() {
+        return this.renderElement();
     }
 }
 
@@ -49,7 +45,7 @@ export default BasicCheckBox;
 
 BasicCheckBox.propTypes = {
     errorMessage: PropTypes.string,
-    fieldValueState: PropTypes.string,
+    fieldValueState: PropTypes.bool,
     fieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
@@ -61,7 +57,7 @@ BasicCheckBox.propTypes = {
 };
 
 BasicCheckBox.defaultProps = {
-    fieldValueState: '',
+    fieldValueState: false,
     errorMessage: 'This field is required',
     fieldContainer: null,
     labelContainer: null,
