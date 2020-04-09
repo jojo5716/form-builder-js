@@ -87,7 +87,7 @@ class FormBuilder extends React.Component {
             Component = BasicInput;
             attributes = {
                 type: 'submit',
-                value: this.props.submitButtonText,
+                fieldValueState: this.props.submitButtonText,
             };
         } else {
             Component = Button;

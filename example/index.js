@@ -10,19 +10,19 @@ import './style.less';
 import fields from './fixtures';
 
 /**
-* Render all fields into a custom html block.
-*/
+ * Render all fields into a custom html block.
+ */
 const Container = ({ children, onSubmit }) => (
     <div className="container-form">
         {children}
 
-        <button onClick={onSubmit}>Custom submit form</button>
+        {/* <button onClick={onSubmit}>Custom submit form</button> */}
     </div>
 );
 
 /**
-* Render field into a custom html block.
-*/
+ * Render field into a custom html block.
+ */
 const fieldContainer = ({ children, label }) => (
     <div className="input-group">
         {label}
@@ -31,8 +31,8 @@ const fieldContainer = ({ children, label }) => (
 );
 
 /**
-* Render fields group into a custom html block.
-*/
+ * Render fields group into a custom html block.
+ */
 const fieldGroupContainer = ({ children, label }) => (
     <div className="form-group">
         {label}
@@ -41,8 +41,8 @@ const fieldGroupContainer = ({ children, label }) => (
 );
 
 /**
-* Render fields error message into a custom html block.
-*/
+ * Render fields error message into a custom html block.
+ */
 const formErrorContainer = ({ children }) => (
     <div className="error">
         {children}
@@ -50,8 +50,8 @@ const formErrorContainer = ({ children }) => (
 );
 
 /**
-* Render label field into a custom html block.
-*/
+ * Render label field into a custom html block.
+ */
 const labelContainer = ({ children }) => (
     <label className="label">
         {children}
@@ -59,9 +59,9 @@ const labelContainer = ({ children }) => (
 );
 
 /**
-* Called on submit button.
-* Return all fields data as json
-*/
+ * Called on submit button.
+ * Return all fields data as json
+ */
 function onCustomSubmit(formData) {
     console.log(formData);
 }
@@ -69,7 +69,7 @@ function onCustomSubmit(formData) {
 const formProps = {
     action: 'http://www.google.es/',
     method: 'GET',
-    enctype: 'application/x-www-form-urlencoded',
+    encType: 'application/x-www-form-urlencoded',
     className: 'form__user-profile',
 };
 
@@ -85,7 +85,7 @@ function render(fieldsProps) {
             formErrorContainer={formErrorContainer}
             onSuccess={onCustomSubmit}
             hasToSubmit={true}
-            showSubmitButton={false}
+            showSubmitButton={true}
             hasToShowLabel={true}
             showFormErrorMessage={true}
             setErrorOnChange={true}

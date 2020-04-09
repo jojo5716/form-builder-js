@@ -27,6 +27,7 @@ class Element extends React.Component {
         this.showErrorMessage = this.showErrorMessage.bind(this);
         this.hideErrorMessage = this.hideErrorMessage.bind(this);
         this.setElementReference = this.setElementReference.bind(this);
+        this.getValidationMessage = this.getValidationMessage.bind(this);
         this.ref = null;
     }
 
@@ -38,6 +39,10 @@ class Element extends React.Component {
 
     isFieldValid() {
         return this.ref.validity.valid;
+    }
+
+    getValidationMessage() {
+        return this.ref.validationMessage || this.props.errorMessage || '';
     }
 
     showErrorMessage() {
@@ -57,7 +62,7 @@ class Element extends React.Component {
         let html;
         if (this.state.hasToShowErrorMessage) {
             html = (
-                <span>{this.props.errorMessage}</span>
+                <span>{this.getValidationMessage()}</span>
             );
         }
         return html;
