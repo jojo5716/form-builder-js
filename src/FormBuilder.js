@@ -13,27 +13,46 @@ class FormBuilder extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fields: buildFormState(props.fields),
+            fields: buildFormState(props),
             hasToShowFormError: false,
         };
         this.onSuccess = this.onSuccess.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);
+        this.renderGroup = this.renderGroup.bind(this);
+        this.renderGroupElements = this.renderGroupElements.bind(this);
         this.nodes = [];
+    }
+
+
+    renderGroupElements(inputData, containerPropName, index) {
+        const Container = this.props[containerPropName] || EMPTY_CONTAINER;
+
+        return (
+            <Container key={`index-parent-field-${index}-${inputData.length}`}>
+                {
+                    inputData.map((element, inputIndex) => (
+                        this.renderElement(element, `index-${element.name}-${inputIndex}`)))
+                }
+            </Container>
+        );
+    }
+
+    renderGroup(groupData, index) {
+        return this.renderGroupElements(groupData.fields, 'groupContainer', index);
     }
 
     renderElement(inputData, index) {
         let html;
 
         if (isObjectArray(inputData)) {
-            const Container = this.props.fieldGroupContainer || EMPTY_CONTAINER;
+            html = this.renderGroupElements(inputData, 'fieldGroupContainer', index);
+        } else if (typeof inputData.fields !== 'undefined') {
+            const Container = this.props.groupContainer || inputData.container || EMPTY_CONTAINER;
 
             html = (
-                <Container key={`index-parent-field-${index}-${inputData.length}`}>
-                    {
-                        inputData.map((element, inputIndex) => (
-                            this.renderElement(element, `index-${element.name}-${inputIndex}`)))
-                    }
+                <Container {...inputData} key={`group-container-${index}`}>
+                    {this.renderGroupElements(inputData.fields, 'fieldGroupContainer', index)}
                 </Container>
             );
         } else {
@@ -137,6 +156,7 @@ FormBuilder.propTypes = {
     form: PropTypes.object,
     fields: PropTypes.array,
     container: PropTypes.any,
+    groupContainer: PropTypes.any,
     fieldGroupContainer: PropTypes.any,
     fieldContainer: PropTypes.any,
     formErrorContainer: PropTypes.any,
@@ -153,6 +173,7 @@ FormBuilder.defaultProps = {
     form: {},
     fields: [],
     container: null,
+    groupContainer: null,
     fieldGroupContainer: null,
     fieldContainer: null,
     formErrorContainer: null,

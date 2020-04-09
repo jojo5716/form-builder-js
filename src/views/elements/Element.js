@@ -70,9 +70,9 @@ class Element extends React.Component {
 
     renderLabel() {
         let html;
-        if (this.props.hasToShowLabel) {
+        const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
+        if (this.props.hasToShowLabel && labelText) {
             const Container = this.props.labelContainer || EMPTY_LABEL_CONTAINER;
-            const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
             html = (
                 <Container>
                     {labelText}

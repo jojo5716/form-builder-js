@@ -8,6 +8,7 @@
     "start": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js",
     "test:ci": "NODE_ENV=test jest test",
     "test": "NODE_ENV=test jest test --notify --watch",
+    "test:only": "NODE_ENV=test jest test --runInBand --testNamePattern=$TEST_NAME",
     "clean": "rm -rf dist && mkdir dist",
     "predbuild": "npm run clean",
     "build": "webpack --config webpack.prod.js",

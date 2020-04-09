@@ -7,19 +7,19 @@ import React from 'react';
 import { mount } from 'enzyme';
 import chai from 'chai';
 
-import formFixtures from '../example/fixtures';
+import { fields } from '../example/fixtures';
 import FormBuilder from '../src';
 
 chai.should();
 
 describe('FormBuilder', () => {
 
-    let fields;
+    let fieldFixtures;
     let wrapper;
 
     beforeEach(() => {
-        fields = [...formFixtures];
-        wrapper = mount(<FormBuilder fields={fields}/>);
+        fieldFixtures = [...fields];
+        wrapper = mount(<FormBuilder fields={fieldFixtures}/>);
     });
 
     describe('Render element', () => {
@@ -28,7 +28,7 @@ describe('FormBuilder', () => {
         });
 
         it('Dont render anything if fields prop is not an array', () => {
-            wrapper = mount(<FormBuilder fields={{ ...fields }}/>);
+            wrapper = mount(<FormBuilder fields={{ ...fieldFixtures }}/>);
 
             wrapper.find('form').length.should.be.eq(0);
         });
@@ -45,19 +45,18 @@ describe('FormBuilder', () => {
                     <button onClick={onSubmit}>Custom submit form</button>
                 </div>
             );
-            wrapper = mount(<FormBuilder fields={fields} container={Container}/>);
+            wrapper = mount(<FormBuilder fields={fieldFixtures} container={Container}/>);
 
             wrapper.find('.container-form').length.should.be.eq(1);
         });
 
         it('Default container', () => {
-            wrapper = mount(<FormBuilder fields={fields} container={null}/>);
-
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(11);
+            wrapper = mount(<FormBuilder fields={fieldFixtures} container={null}/>);
+            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(12);
         });
 
         it('Submit button', () => {
-            wrapper = mount(<FormBuilder fields={fields} showSubmitButton={false}/>);
+            wrapper = mount(<FormBuilder fields={fieldFixtures} showSubmitButton={false}/>);
 
             wrapper.find('input[type="submit"]').length.should.be.eq(0);
         });
@@ -68,7 +67,7 @@ describe('FormBuilder', () => {
             });
 
             it('Invalid type dont will be rendered', () => {
-                const newForm = [...fields, { type: 'invalid-type' }];
+                const newForm = [...fieldFixtures, { type: 'invalid-type' }];
                 wrapper = mount(<FormBuilder fields={newForm} showSubmitButton={false}/>);
 
                 wrapper.find('input').length.should.be.eq(8);

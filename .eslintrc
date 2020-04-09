@@ -27,7 +27,7 @@
     "padded-blocks": "off",
     "no-use-before-define": ["error", "nofunc"],
     // Code quality
-    "complexity": ["error", 5],
+    "complexity": ["error", 10],
     "max-params": ["error", 3],
     "max-statements": ["error", 10],
     "indent": ["error", 4],

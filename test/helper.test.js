@@ -5,7 +5,7 @@ import {
     convertStringToCamelCase,
     removeInternalProps,
 } from '../src/helpers';
-import fields from '../example/fixtures';
+import { fields } from '../example/fixtures';
 
 
 describe('Helpers', () => {
@@ -14,13 +14,13 @@ describe('Helpers', () => {
             const expectedState = {
                 birthday: '',
                 email: '',
-                gender: 'male',
                 lastName: '',
                 mobile: '',
                 name: 'JhonDoe',
+                status: 'public',
             };
 
-            const fieldsState = buildFormState(fields);
+            const fieldsState = buildFormState({ fields });
 
             expect(fieldsState).toEqual(expectedState);
         });

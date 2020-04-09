@@ -7,7 +7,7 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import fields from './fixtures';
+import { form, fields } from './fixtures';
 
 /**
  * Render all fields into a custom html block.
@@ -17,6 +17,17 @@ const Container = ({ children }) => (
         {children}
 
         {/* <button onClick={onSubmit}>Custom submit form</button> */}
+    </div>
+);
+
+/**
+ * Render group into a custom html block.
+ */
+const groupContainer = ({ children, title, content }) => (
+    <div className="group-container">
+        <h1>{title}</h1>
+        <p>{content}</p>
+        {children}
     </div>
 );
 
@@ -33,8 +44,9 @@ const fieldContainer = ({ children, label }) => (
 /**
  * Render fields group into a custom html block.
  */
-const fieldGroupContainer = ({ children, label }) => (
+const fieldGroupContainer = ({ children, label, groupName }) => (
     <div className="form-group">
+        <p>{groupName}</p>
         {label}
         {children}
     </div>
@@ -66,19 +78,13 @@ function onCustomSubmit(formData) {
     console.log(formData);
 }
 
-const formProps = {
-    action: 'http://www.google.es/',
-    method: 'GET',
-    encType: 'application/x-www-form-urlencoded',
-    className: 'form__user-profile',
-};
-
-function render(fieldsProps) {
+function render(formProps, fieldsProps) {
     ReactDOM.render(
         <FormBuilder
             form={formProps}
             fields={fieldsProps}
             container={Container}
+            groupContainer={groupContainer}
             fieldContainer={fieldContainer}
             fieldGroupContainer={fieldGroupContainer}
             labelContainer={labelContainer}
@@ -94,7 +100,7 @@ function render(fieldsProps) {
     );
 }
 
-render(fields);
+render(form, fields);
 
 const btnUpdateForm = document.getElementById('btnUpdateForm');
 
@@ -112,5 +118,5 @@ btnUpdateForm.addEventListener('click', () => {
         },
     }]);
 
-    render(currentForm);
+    render(form, currentForm);
 });
