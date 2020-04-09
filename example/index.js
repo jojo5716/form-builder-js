@@ -66,9 +66,17 @@ function onCustomSubmit(formData) {
     console.log(formData);
 }
 
+const formProps = {
+    action: 'http://www.google.es/',
+    method: 'GET',
+    enctype: 'application/x-www-form-urlencoded',
+    className: 'form__user-profile',
+};
+
 function render(fieldsProps) {
     ReactDOM.render(
         <FormBuilder
+            form={formProps}
             fields={fieldsProps}
             container={Container}
             fieldContainer={fieldContainer}
