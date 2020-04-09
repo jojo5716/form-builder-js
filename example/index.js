@@ -12,7 +12,7 @@ import fields from './fixtures';
 /**
  * Render all fields into a custom html block.
  */
-const Container = ({ children, onSubmit }) => (
+const Container = ({ children }) => (
     <div className="container-form">
         {children}
 
