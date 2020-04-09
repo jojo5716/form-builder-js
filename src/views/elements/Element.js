@@ -108,7 +108,7 @@ Element.defaultProps = {
     setErrorOnChange: true,
     hasToShowLabel: true,
     setFieldValueState: EMPTY_CALLBACK,
-    setReference: EMPTY_CALLBACK,
     onChange: EMPTY_CALLBACK,
+    setReference: EMPTY_CALLBACK,
     reference: React.createRef(),
 };

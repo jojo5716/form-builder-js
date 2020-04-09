@@ -34,7 +34,7 @@ describe('FormBuilder', () => {
         });
 
         it('Inputs', () => {
-            wrapper.find('input').length.should.be.eq(6);
+            wrapper.find('input').length.should.be.eq(8);
         });
 
         it('Custom container', () => {
@@ -53,7 +53,7 @@ describe('FormBuilder', () => {
         it('Default container', () => {
             wrapper = mount(<FormBuilder fields={fields} container={null}/>);
 
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(8);
+            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(11);
         });
 
         it('Submit button', () => {
@@ -71,7 +71,7 @@ describe('FormBuilder', () => {
                 const newForm = [...fields, { type: 'invalid-type' }];
                 wrapper = mount(<FormBuilder fields={newForm} showSubmitButton={false}/>);
 
-                wrapper.find('input').length.should.be.eq(6);
+                wrapper.find('input').length.should.be.eq(8);
             });
 
         });
@@ -120,6 +120,7 @@ describe('FormBuilder', () => {
 
                 expect(wrapper.state().hasToShowFormError).toBe(true);
             });
+
             it('onSuccess do anything if showFormErrorMessage is false and fields is invalid', () => {
                 const onSubmitMock = jest.fn();
                 const form = [{

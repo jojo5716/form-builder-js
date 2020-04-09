@@ -80,6 +80,7 @@ function render(fieldsProps) {
             showSubmitButton={false}
             hasToShowLabel={true}
             showFormErrorMessage={true}
+            setErrorOnChange={true}
         />,
         document.getElementById('content'),
     );

@@ -16,13 +16,18 @@ class BasicInput extends Element {
     }
 
     onChange(event) {
-        if (!this.props.setErrorOnChange || (this.props.setErrorOnChange && this.isFieldValid())) {
-            this.props.setFieldValueState(event.target.value);
-            this.props.onChange(event);
-            this.hideErrorMessage();
-        } else {
+        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
             this.showErrorMessage();
         }
+        this.props.setFieldValueState(event.target.value);
+        this.props.onChange(event);
+        // if (!this.props.setErrorOnChange || (this.props.setErrorOnChange && this.isFieldValid())) {
+        //     this.props.setFieldValueState(event.target.value);
+        //     this.props.onChange(event);
+        //     this.hideErrorMessage();
+        // } else {
+        //     this.showErrorMessage();
+        // }
     }
 
     render() {
@@ -43,10 +48,23 @@ export default BasicInput;
 
 
 BasicInput.propTypes = {
+    errorMessage: PropTypes.string,
+    fieldContainer: PropTypes.any,
+    setErrorOnChange: PropTypes.bool,
+    parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
+    setReference: PropTypes.func,
+    setFieldValueState: PropTypes.func,
+
 
 };
 
 BasicInput.defaultProps = {
+    errorMessage: 'This field is required',
+    fieldContainer: null,
+    setErrorOnChange: true,
+    parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
+    setReference: EMPTY_CALLBACK,
+    setFieldValueState: EMPTY_CALLBACK,
 };
