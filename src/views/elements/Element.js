@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { convertStringToCamelCase, removeInternalProps } from '../../helpers';
 import { EMPTY_CALLBACK, EMPTY_LABEL_CONTAINER } from '../../constants';
 
+const PROPS_TO_DELETE = [
+    'setReference',
+    'fieldContainer',
+    'setFieldValueState',
+    'parentFieldContainer',
+    'labelContainer',
+    'hasToShowLabel',
+];
 
 class Element extends React.Component {
     constructor(props) {
@@ -16,18 +24,12 @@ class Element extends React.Component {
         this.hideErrorMessage = this.hideErrorMessage.bind(this);
         this.setElementReference = this.setElementReference.bind(this);
         this.ref = null;
-        this.propsToDelete = [
-            'setReference',
-            'fieldContainer',
-            'setFieldValueState',
-            'parentFieldContainer',
-            'labelContainer',
-            'hasToShowLabel',
-        ];
     }
 
-    calculateElementProps() {
-        return removeInternalProps(this.props, this.propsToDelete);
+    calculateElementProps(AdditionalPropsToDelete = []) {
+        const allPropsToDelete = [...PROPS_TO_DELETE, ...AdditionalPropsToDelete];
+
+        return removeInternalProps(this.props, allPropsToDelete);
     }
 
     isFieldValid() {

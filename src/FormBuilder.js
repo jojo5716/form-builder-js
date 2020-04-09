@@ -61,7 +61,7 @@ class FormBuilder extends React.Component {
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
-            value={this.state.fields[inputData.name] || ''}
+            fieldValueState={this.state.fields[inputData.name] || ''}
         /> : null;
     }
 

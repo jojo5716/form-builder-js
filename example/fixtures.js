@@ -15,6 +15,7 @@ const fields = [
             id: 'name',
             element: 'input',
             name: 'name',
+            value: 'name',
             type: 'text',
             className: 'form-control',
             required: true,
@@ -69,7 +70,6 @@ const fields = [
             name: 'birthday',
             type: 'date',
             className: 'form-control',
-            required: true,
             placeholder: 'Birthday',
             label: 'Birthday label',
             onChange: (event) => {
@@ -82,9 +82,10 @@ const fields = [
             name: 'gender',
             element: 'input',
             value: 'female',
+            checked: false,
             type: 'radio',
             className: 'form-control',
-            required: true,
+            // required: true,
             label: 'Female',
             fieldContainer: null,
             onChange: (event) => {
@@ -95,13 +96,14 @@ const fields = [
             name: 'gender',
             element: 'input',
             value: 'male',
+            checked: true,
             type: 'radio',
             className: 'form-control',
-            required: true,
+            // required: true,
             label: 'Male',
             fieldContainer: null,
             onChange: (event) => {
-                console.log(`Gender female: ${event.target.value}`);
+                console.log(`Gender male: ${event.target.value}`);
             },
         },
     ],

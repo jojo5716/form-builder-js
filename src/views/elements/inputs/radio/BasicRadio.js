@@ -1,31 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Element from '../Element';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
+import Element from '../../Element';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../../constants';
+
+const PROPS_TO_DELETE = [];
 
 /**
  *
- * This class represent a basic input type text
+ * This class represent a basic input type radio
  * */
-class BasicInput extends Element {
+class BasicRadio extends Element {
     constructor(props) {
         super(props);
 
-        this.onChange = this.onChange.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
-    onChange(event) {
-        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
-            this.showErrorMessage();
+    onClick(event) {
+        if (event.target.checked) {
+            if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
+                this.showErrorMessage();
+            }
+            this.props.setFieldValueState(event.target.value);
+            this.props.onChange(event);
         }
-        this.props.setFieldValueState(event.target.value);
-        this.props.onChange(event);
     }
 
     render() {
         const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps();
+        const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
 
         return (
             <Container>
@@ -33,8 +37,8 @@ class BasicInput extends Element {
                 <input
                     ref={this.setElementReference}
                     {...inputProps}
-                    value={this.props.fieldValueState}
-                    onChange={this.onChange}
+                    onClick={this.onClick}
+                    checked={this.props.fieldValueState === this.props.value}
                 />
                 {this.renderErrorMessage()}
             </Container>
@@ -42,10 +46,11 @@ class BasicInput extends Element {
     }
 }
 
-export default BasicInput;
+export default BasicRadio;
 
 
-BasicInput.propTypes = {
+BasicRadio.propTypes = {
+    value: PropTypes.string.isRequired,
     errorMessage: PropTypes.string,
     fieldValueState: PropTypes.string,
     fieldContainer: PropTypes.any,
@@ -56,8 +61,7 @@ BasicInput.propTypes = {
     setFieldValueState: PropTypes.func,
 };
 
-BasicInput.defaultProps = {
-    fieldValueState: '',
+BasicRadio.defaultProps = {
     errorMessage: 'This field is required',
     fieldContainer: null,
     setErrorOnChange: true,
