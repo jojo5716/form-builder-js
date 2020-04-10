@@ -5,12 +5,10 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-import chai from 'chai';
 
 import { fields, form } from '../example/fixtures';
 import FormBuilder from '../src';
 
-chai.should();
 
 describe('FormBuilder', () => {
 
@@ -24,17 +22,17 @@ describe('FormBuilder', () => {
 
     describe('Render element', () => {
         it('Form', () => {
-            wrapper.find('form').length.should.be.eq(1);
+            expect(wrapper.find('form').length).toEqual(1);
         });
 
         it('Dont render anything if fields prop is not an array', () => {
             wrapper = mount(<FormBuilder fields={{}}/>);
 
-            wrapper.find('form').length.should.be.eq(0);
+            expect(wrapper.find('form').length).toEqual(0);
         });
 
         it('Inputs', () => {
-            wrapper.find('input').length.should.be.eq(10);
+            expect(wrapper.find('input').length).toEqual(10);
         });
 
         it('Custom container', () => {
@@ -47,30 +45,30 @@ describe('FormBuilder', () => {
             );
             wrapper = mount(<FormBuilder fields={fieldFixtures} container={Container}/>);
 
-            wrapper.find('.container-form').length.should.be.eq(1);
+            expect(wrapper.find('.container-form').length).toEqual(1);
         });
 
         it('Default container', () => {
             wrapper = mount(<FormBuilder fields={fieldFixtures} container={null}/>);
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(20);
+            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(20);
         });
 
         it('Submit button', () => {
             wrapper = mount(<FormBuilder fields={fieldFixtures} showSubmitButton={false}/>);
 
-            wrapper.find('input[type="submit"]').length.should.be.eq(0);
+            expect(wrapper.find('input[type="submit"]').length).toEqual(0);
         });
 
         describe('Input', () => {
             it('Text', () => {
-                wrapper.find('input[type="text"]').length.should.be.eq(2);
+                expect(wrapper.find('input[type="text"]').length).toEqual(2);
             });
 
             it('Invalid type dont will be rendered', () => {
                 const newForm = [...fieldFixtures, { type: 'invalid-type' }];
                 wrapper = mount(<FormBuilder fields={newForm} showSubmitButton={false}/>);
 
-                wrapper.find('input').length.should.be.eq(10);
+                expect(wrapper.find('input').length).toEqual(10);
             });
 
         });
@@ -90,7 +88,7 @@ describe('FormBuilder', () => {
 
                 buttonElement.simulate('click');
 
-                buttonElement.length.should.be.eq(1);
+                expect(buttonElement.length).toEqual(1);
 
                 expect(onSuccessMock.mock.calls.length).toBe(1);
 
@@ -113,7 +111,7 @@ describe('FormBuilder', () => {
 
                 buttonElement.simulate('click');
 
-                buttonElement.length.should.be.eq(1);
+                expect(buttonElement.length).toEqual(1);
 
                 expect(onSubmitMock.mock.calls.length).toBe(0);
 
@@ -142,7 +140,7 @@ describe('FormBuilder', () => {
 
                 buttonElement.simulate('click');
 
-                buttonElement.length.should.be.eq(1);
+                expect(buttonElement.length).toEqual(1);
 
                 expect(wrapper.state().hasToShowFormError).toBe(false);
             });
