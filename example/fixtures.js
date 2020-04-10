@@ -114,7 +114,12 @@ const categoryPost = [
         className: 'form-control',
         label: 'Category',
         value: 'category2',
+        required: true,
         options: [
+            {
+                value: '',
+                content: '-',
+            },
             {
                 value: 'category1',
                 content: 'Category 1',

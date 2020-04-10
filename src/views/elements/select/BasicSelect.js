@@ -6,6 +6,7 @@ import { EMPTY_CALLBACK } from '../../../constants';
 
 const PROPS_TO_DELETE = [
     'options',
+    'emptyOptionText',
 ];
 
 /**
@@ -20,11 +21,8 @@ class BasicSelect extends Element {
     }
 
     onChange(event) {
-        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
-            this.showErrorMessage();
-        } else {
-            this.hideErrorMessage();
-        }
+        super.showOrHideErrorMessage();
+
         this.props.setFieldValueState(event.target.value);
         this.props.onChange(event);
     }
@@ -39,14 +37,19 @@ class BasicSelect extends Element {
         );
     }
 
+    renderEmptyOption() {
+        return <option>{this.props.emptyOptionText}</option>;
+    }
+
     renderElement() {
         const elementProps = {
             onChange: this.onChange,
-            value: this.props.value,
+            value: this.props.fieldValueState,
         };
         const optionsRendered = this.props.options.map(this.renderOption);
         const elementComponent = props => (
             <select {...props} {...elementProps} ref={this.setElementReference}>
+                {this.props.required ? null : this.renderEmptyOption()}
                 {optionsRendered}
             </select>
         );
@@ -64,6 +67,7 @@ export default BasicSelect;
 
 BasicSelect.propTypes = {
     errorMessage: PropTypes.string,
+    emptyOptionText: PropTypes.string,
     fieldValueState: PropTypes.string,
     fieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
@@ -77,6 +81,7 @@ BasicSelect.propTypes = {
 
 BasicSelect.defaultProps = {
     fieldValueState: '',
+    emptyOptionText: '-',
     errorMessage: 'This field is required',
     fieldContainer: null,
     labelContainer: null,

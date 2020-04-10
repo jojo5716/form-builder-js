@@ -37,6 +37,14 @@ class Element extends React.Component {
         return removeInternalProps(this.props, allPropsToDelete);
     }
 
+    showOrHideErrorMessage() {
+        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
+            this.showErrorMessage();
+        } else {
+            this.hideErrorMessage();
+        }
+    }
+
     isFieldValid() {
         return this.ref.validity.valid;
     }

@@ -3,7 +3,7 @@ import BasicInput from './views/elements/inputs/BasicInput';
 import BasicRadio from './views/elements/inputs/radio/BasicRadio';
 
 // Checkbox elements
-import BasicCheckBox from './views/elements/checkbox/BasicCheckBox';
+import BasicCheckBox from './views/elements/inputs/checkbox/BasicCheckBox';
 
 // Select elements
 import BasicSelect from './views/elements/select/BasicSelect';

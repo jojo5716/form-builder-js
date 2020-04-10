@@ -16,11 +16,8 @@ class BasicInput extends Element {
     }
 
     onChange(event) {
-        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
-            this.showErrorMessage();
-        } else {
-            this.hideErrorMessage();
-        }
+        super.showOrHideErrorMessage();
+
         this.props.setFieldValueState(event.target.value);
         this.props.onChange(event);
     }

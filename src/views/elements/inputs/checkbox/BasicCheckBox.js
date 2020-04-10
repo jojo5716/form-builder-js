@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Element from '../Element';
-import { EMPTY_CALLBACK } from '../../../constants';
+import Element from '../../Element';
+import { EMPTY_CALLBACK } from '../../../../constants';
 
 /**
  *
@@ -16,11 +16,8 @@ class BasicCheckBox extends Element {
     }
 
     onChange(event) {
-        if (!(this.isFieldValid()) && this.props.setErrorOnChange) {
-            this.showErrorMessage();
-        } else {
-            this.hideErrorMessage();
-        }
+        super.showOrHideErrorMessage();
+
         this.props.setFieldValueState(event.target.checked);
         this.props.onChange(event);
     }
