@@ -14,8 +14,8 @@ Requires webpack-dev-server to be running
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style type="text/css">
-
-        input:required:invalid, input:focus:invalid {
+        input:required:invalid,
+        input:focus:invalid {
             background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
             background-position: right top;
             background-repeat: no-repeat;
@@ -34,7 +34,7 @@ Requires webpack-dev-server to be running
             font-size: 13px;
             line-height: 20px;
             margin: 0 20px 10px;
-            width: 50%;
+            background-color: #a4dff3;
         }
 
         label {
@@ -43,7 +43,8 @@ Requires webpack-dev-server to be running
             min-width: 180px;
         }
 
-        input[type=text] {
+        input[type="text"],
+        textarea {
             background: #fff;
             border: 1px solid #999;
             float: left;
@@ -62,25 +63,75 @@ Requires webpack-dev-server to be running
             margin: 5px 0 0;
         }
 
-
         /* Error Styling */
 
         .error label {
             color: #cc0033;
         }
 
-        .error input[type=text] {
+        .error input[type="text"] {
             background-color: #fce4e4;
             border: 1px solid #cc0033;
             outline: none;
+        }
+
+        .error textarea {
+            background-color: #fce4e4;
+            border: 1px solid #cc0033;
+            outline: none;
+        }
+
+        /* Split the screen in half */
+        .split {
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        /* Control the left side */
+        .left {
+            left: 0;
+            width: 40%;
+
+        }
+
+        /* Control the right side */
+        .right {
+            right: 0;
+            width: 60%;
+
+        }
+
+        /* If you want the content centered horizontally and vertically */
+        .centered {
+            position: absolute;
+
+            text-align: center;
+        }
+
+        /* Style the image inside the centered container, if needed */
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
         }
     </style>
 
 </head>
 <body>
-<div id="content"></div>
+<div id="app">
+    <div class="split left">
+        <pre id="fields_example"></pre>
+    </div>
 
-<button id="btnUpdateForm">Add url field</button>
+    <div class="split right">
+        <div class="centered">
+            <div id="root"></div>
+        </div>
+    </div>
+</div>
 
 <script src="__dist__/index.js"></script>
 </body>

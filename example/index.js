@@ -79,49 +79,36 @@ const labelContainer = ({ children }) => (
  * Called on submit button.
  * Return all fields data as json
  */
-function onCustomSubmit(formData) {
+function onSuccess(formData) {
     console.log(formData);
 }
 
-function render(formProps, fieldsProps) {
-    ReactDOM.render(
-        <FormBuilder
-            form={formProps}
-            fields={fieldsProps}
-            container={Container}
-            groupContainer={groupContainer}
-            fieldContainer={fieldContainer}
-            fieldGroupContainer={fieldGroupContainer}
-            labelContainer={labelContainer}
-            formErrorContainer={formErrorContainer}
-            onSuccess={onCustomSubmit}
-            hasToSubmit={false}
-            showSubmitButton={true}
-            hasToShowLabel={true}
-            showFormErrorMessage={true}
-            setErrorOnChange={true}
-        />,
-        document.getElementById('content'),
-    );
+/**
+ * Called when submit form with errors
+ * Return all fields elements with errors
+ */
+function onError(fieldsWithError) {
+    console.log(fieldsWithError);
 }
 
-render(form, fields);
-
-const btnUpdateForm = document.getElementById('btnUpdateForm');
-
-btnUpdateForm.addEventListener('click', () => {
-    const currentForm = [...fields];
-    currentForm.push([{
-        name: 'url',
-        type: 'url',
-        className: 'fields-control',
-        required: true,
-        placeholder: 'URL',
-        label: 'URL: ',
-        onChange: (event) => {
-            console.log(`URL: ${event.target.value}`);
-        },
-    }]);
-
-    render(form, currentForm);
-});
+ReactDOM.render(
+    <FormBuilder
+        form={form}
+        fields={fields}
+        container={Container}
+        groupContainer={groupContainer}
+        fieldContainer={fieldContainer}
+        fieldGroupContainer={fieldGroupContainer}
+        labelContainer={labelContainer}
+        formErrorContainer={formErrorContainer}
+        onSuccess={onSuccess}
+        onError={onError}
+        hasToSubmit={false}
+        showSubmitButton={true}
+        hasToShowLabel={true}
+        showFormErrorMessage={true}
+        setErrorOnChange={true}
+    />,
+    document.getElementById('root'),
+);
+document.getElementById('fields_example').textContent = JSON.stringify(fields, undefined, 2);

@@ -16,7 +16,7 @@ class FormBuilder extends React.Component {
             fields: buildFormState(props),
             hasToShowFormError: false,
         };
-        this.onSuccess = this.onSuccess.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);
         this.renderGroup = this.renderGroup.bind(this);
@@ -95,12 +95,24 @@ class FormBuilder extends React.Component {
         return fieldsValidityValues.every(value => value);
     }
 
-    onSuccess() {
+    getFieldsErrorMessage() {
+        const errors = {};
+        Object.values(this.nodes).forEach((node) => {
+            if (node && !(node.validity.valid)) {
+                errors[node.name] = node.validationMessage || '';
+            }
+        });
+
+        return errors;
+    }
+
+    onSubmit() {
         if (this.isValidForm()) {
             this.setState({ hasToShowFormError: false });
             this.props.onSuccess({ ...this.state.fields });
         } else if (this.props.showFormErrorMessage) {
             this.setState({ hasToShowFormError: true });
+            this.props.onError(this.getFieldsErrorMessage());
         }
     }
 
@@ -117,7 +129,7 @@ class FormBuilder extends React.Component {
             Component = Button;
             attributes = {
                 text: this.props.submitButtonText,
-                onClick: this.onSuccess,
+                onClick: this.onSubmit,
             };
         }
 
@@ -138,7 +150,7 @@ class FormBuilder extends React.Component {
         const Container = this.props.container || EMPTY_CONTAINER;
 
         return (
-            <Container onSubmit={this.onSuccess}>
+            <Container onSubmit={this.onSubmit}>
                 {this.state.hasToShowFormError ? this.renderFormErrorMessage() : null}
                 <FormView {...this.props}>
                     {elementsRendered}
@@ -166,6 +178,7 @@ FormBuilder.propTypes = {
     fieldContainer: PropTypes.any,
     formErrorContainer: PropTypes.any,
     onSuccess: PropTypes.func,
+    onError: PropTypes.func,
     submitButtonText: PropTypes.string,
     customFormErrorMessage: PropTypes.string,
     method: PropTypes.string,
@@ -186,6 +199,7 @@ FormBuilder.defaultProps = {
     showSubmitButton: true,
     showFormErrorMessage: true,
     onSuccess: EMPTY_CALLBACK,
+    onError: EMPTY_CALLBACK,
     submitButtonText: 'Submit',
     method: 'GET',
     customFormErrorMessage: 'Invalid fields',
