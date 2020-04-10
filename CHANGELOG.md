@@ -1,3 +1,9 @@
+#### 1.4.1 (2020-04-10)
+
+##### Other Changes
+
+* //github.com/jojo5716/form-builder-js ([dc1224b6](https://github.com/jojo5716/form-builder-js/commit/dc1224b6085db02cb7c2c81efa2c4d0ea3184b5b))
+
 ### 1.4.0 (2020-04-10)
 
 ##### New Features
