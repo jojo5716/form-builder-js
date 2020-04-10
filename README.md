@@ -14,32 +14,54 @@
 
 [https://form-builder-js.surge.sh/](https://form-builder-js.surge.sh/)
 
+## See how workds ##
+
+[https://codesandbox.io/s/js-form-builder-df4iw?file=/src/index.js](https://codesandbox.io/s/js-form-builder-df4iw?file=/src/index.js)
+
+
 
 ## Props ##
-|       Prop name      | Required |  Default value |                                                                         Description                                                                        |
-|:--------------------:|:--------:|:--------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        fields        |     -    |       []       |                                                               List of all fields for the form                                                              |
-|         form         |     -    |       {}       |                                                Form configuration to submit fields (Action, Method, etc...)                                                |
-|       container      |     -    |      null      |                                                               Wrapper container for all form                                                               |
-|  fieldGroupContainer |     -    |      null      |                                      Wrapper to group of fields Each block of field will renderen into this container                                      |
-|    fieldContainer    |     -    |      null      |                                                                   Wrapper for each field.                                                                  |
-|  formErrorContainer  |     -    |      null      |                                                               Wrapper for form error message                                                               |
-|      hasToSubmit     |     -    |      true      | If submit button should submit form. If this prop is false on submit button just will return a json with all fields values. (Only if all fields are valid) |
-|   showSubmitButton   |     -    |      true      |                                                          If form has to render a button to submit.                                                         |
-| showFormErrorMessage |     -    |      true      |                                                   If form has to render a error message on click submit.                                                   |
-|       onSuccess      |     -    | Empty function |                                                       Called on click submit and all fields are valid                                                      |
-|                      |          |                |                                                                                                                                                            |
-|                      |          |                |                                                                                                                                                            |
-|                      |          |                |                                                                                                                                                            |
-
+|       Prop name      | Required |  Default value | Prop value type |                                                                         Description                                                                        |
+|:--------------------:|:--------:|:--------------:|:----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [fields (See doc)]() |     -    |       []       |    Array   |                                                               List of all fields for the form                                                              |
+|         form         |     -    |       {}       |   Object   |                                                Form configuration to submit fields (Action, Method, enctype)                                               |
+|       container      |     -    |      null      |     Jsx    |                                                               Wrapper container for all form                                                               |
+|  fieldGroupContainer |     -    |      null      |     Jsx    |                                      Wrapper to group of fields Each block of field will renderen into this container                                      |
+|    fieldContainer    |     -    |      null      |     Jsx    |                                                                   Wrapper for each field.                                                                  |
+|  formErrorContainer  |     -    |      null      |     Jsx    |                                                               Wrapper for form error message                                                               |
+|      hasToSubmit     |     -    |      true      |   Boolean  | If submit button should submit form. If this prop is false on submit button just will return a json with all fields values. (Only if all fields are valid) |
+|   showSubmitButton   |     -    |      true      |   Boolean  |                                                          If form has to render a button to submit.                                                         |
+| showFormErrorMessage |     -    |      true      |   Boolean  |                                                   If form has to render a error message on click submit.                                                   |
+|       onSuccess      |     -    | Empty function |  Function  |                                                       Called on click submit and all fields are valid                                                      |
+|        onError       |     -    | Empty function |  Function  |                                     Called on submit form with errors. Returns object with field name and error message                                    |
+|                      |          |                |            |                                                                                                                                                            |
+|                      |          |                |            |                                                                                                                                                            |
 
 ## Fields Props ##
-* Each field supports its html properties in addition to some additional ones such as:
- 
- |    Prop name   | Required | Default value |             Description             |
-|:--------------:|:--------:|:-------------:|:-----------------------------------:|
-|    onChange    |     -    | Empty funcion |  Return field value on change value |
-| fieldContainer |     -    |      null     | Wrapp field into a custom container |
+The Fields property allows us to render a block of fields within a form.
+
+Fields can be grouped in different ways
+
+## 1.- As an array of objects where each object represents an html5 field for form.
+```javascript
+const fields = [
+
+    {
+        id: 'name',
+        element: 'input',
+        name: 'name',
+        value: 'JhonDoe',
+        minLength: 4,
+        type: 'text',
+        className: 'form-control',
+        required: true,
+        placeholder: 'Name',
+        onChange: (event) => {
+            console.log(`Name: ${event.target.value}`);
+        },
+    },
+]
+```
 
 ## Usage ##
 ```javascript

@@ -1,7 +1,23 @@
 # Documentation for fields props  
-The Fields property allows us to render a block of fields into a form.  
+Each field accepts as prop all the native attributes of html5 (minLength, maxLength, required, name, placeholder, etc ...) and also accepts some additional props:
+#### HTML element attributes
+[See input html attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+
+[See select html attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
+
+[See textarea html attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+
+#### Additional props for each field
+|    Prop name   | Required | Default value | Prop value type |                                                                                          Description                                                                                          |
+|:--------------:|:--------:|:-------------:|:---------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|    onChange    |     -    | Empty funcion |     Function    |                                                                               Return field value on change value                                                                              |
+| fieldContainer |     -    |      null     |       Jsx       | It is allowed to specify this prop at the component root level and render each field in a container or override this prop at the field level and customize the container of a specific field. |
+|     element    |     -    |     input     |      String     |                                                                     Valid HTML form element name (input, select, textarea)                                                                    |
+|      type      |     -    |      text     |      String     |                                          ONLY for input elements. Type of input to render(text, password, radio, checkbox, color, url, email, etc...)                                         |
+
+
   
-Fields can be grouped in different ways.  
+# Fields can be grouped in different ways.  
   
 
  1. As an array of objects where each object represents an html5 field
