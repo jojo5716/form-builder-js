@@ -1,3 +1,20 @@
+### 1.4.0 (2020-04-10)
+
+##### New Features
+
+*  Returning fields errors when submitting with errors ([a025481c](https://github.com/jojo5716/form-builder-js/commit/a025481ce0f833e841d68df569285894ae8be980))
+
+##### Other Changes
+
+* //github.com/jojo5716/form-builder-js ([1ae60c4e](https://github.com/jojo5716/form-builder-js/commit/1ae60c4eb485639bf34f6758ff33d788b30879c3))
+*  Updating docs ([cd13d478](https://github.com/jojo5716/form-builder-js/commit/cd13d478c4ee5b6f3a2529d6fab124b3fa36448b))
+*  Updating docs ([a74c272e](https://github.com/jojo5716/form-builder-js/commit/a74c272e962d92d9e2afb7e2edcb68c21a7d1df3))
+*  Updating docs ([16820455](https://github.com/jojo5716/form-builder-js/commit/168204555633d71e8f1b5337ea7939dacd390b89))
+*  Updating docs ([ca9d9eed](https://github.com/jojo5716/form-builder-js/commit/ca9d9eedfccfef5848e367ef48bb3a05eca52939))
+*  Updating docs ([929123a5](https://github.com/jojo5716/form-builder-js/commit/929123a5b70b6d90feeba809afb85e8648cf4c74))
+*  Updating docs ([3155f571](https://github.com/jojo5716/form-builder-js/commit/3155f57121680f626bb51e55a1e567088437a419))
+*  Add docs folder ([b6e4026e](https://github.com/jojo5716/form-builder-js/commit/b6e4026eb16d88fc5f6fc41d28dfd01e51de9b7b))
+
 ### 1.3.0 (2020-04-10)
 
 ##### Chores
