@@ -14,7 +14,7 @@
 
 [https://form-builder-js.surge.sh/](https://form-builder-js.surge.sh/)
 
-## See how workds ##
+## See how works ##
 
 [https://codesandbox.io/s/js-form-builder-df4iw?file=/src/index.js](https://codesandbox.io/s/js-form-builder-df4iw?file=/src/index.js)
 
@@ -49,7 +49,12 @@ const displayOnChangeFieldValue = (event) => {
     console.log(event.target.value);
 };
 
-const form = [
+const form = {
+    action: '.',
+    method: 'POST',
+};
+
+const fields = [
     {
         id: 'name',
         name: 'name',
@@ -128,6 +133,7 @@ function onCustomSubmit(formData) {
 ReactDOM.render(
  <FormBuilder
         form={form}
+        fields={fields}
         container={Container}
         fieldContainer={fieldContainer}
         fieldGroupContainer={fieldGroupContainer}
