@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../../Element';
-import { EMPTY_CALLBACK } from '../../../../constants';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../../constants';
 
 /**
  *
@@ -22,18 +22,20 @@ class BasicCheckBox extends Element {
         this.props.onChange(event);
     }
 
-    renderElement() {
+    render() {
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
+        const inputProps = this.calculateElementProps();
         const elementProps = {
             checked: !!this.props.fieldValueState,
             onChange: this.onChange,
         };
-        const elementComponent = props => <input {...props} {...elementProps} ref={this.setElementReference}/>;
-
-        return super.renderElement(elementComponent);
-    }
-
-    render() {
-        return this.renderElement();
+        return (
+            <Container>
+                {this.renderLabel()}
+                <input {...inputProps} {...elementProps} ref={this.setElementReference}/>
+                {this.renderErrorMessage()}
+            </Container>
+        );
     }
 }
 

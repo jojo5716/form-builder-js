@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { convertStringToCamelCase, removeInternalProps } from '../../helpers';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_LABEL_CONTAINER } from '../../constants';
+import { EMPTY_CALLBACK, EMPTY_LABEL_CONTAINER } from '../../constants';
 
 const PROPS_TO_DELETE = [
     'setReference',
@@ -91,19 +91,6 @@ class Element extends React.Component {
         }
 
         return html;
-    }
-
-    renderElement(ElementComponent, additionalPropsToDelete = {}) {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
-        const inputProps = this.calculateElementProps(additionalPropsToDelete);
-
-        return (
-            <Container>
-                {this.renderLabel()}
-                <ElementComponent {...inputProps}/>
-                {this.renderErrorMessage()}
-            </Container>
-        );
     }
 
     /*

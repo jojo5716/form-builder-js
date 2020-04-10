@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../../Element';
-import { EMPTY_CALLBACK } from '../../../../constants';
-
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../../constants';
 
 /**
  *
@@ -23,18 +22,21 @@ class BasicRadio extends Element {
         }
     }
 
-    renderElement() {
-        const elementProps = {
-            onClick: this.onClick,
-            checked: this.props.fieldValueState === this.props.value,
-        };
-        const elementComponent = props => <input {...props} {...elementProps} ref={this.setElementReference}/>;
-
-        return super.renderElement(elementComponent);
-    }
-
     render() {
-        return this.renderElement();
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
+        const inputProps = this.calculateElementProps();
+        const elementProps = {
+            checked: this.props.fieldValueState === this.props.value,
+            onClick: this.onClick,
+        };
+
+        return (
+            <Container>
+                {this.renderLabel()}
+                <input {...inputProps} {...elementProps} ref={this.setElementReference}/>
+                {this.renderErrorMessage()}
+            </Container>
+        );
     }
 }
 

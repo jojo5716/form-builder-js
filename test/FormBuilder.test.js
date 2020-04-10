@@ -52,7 +52,7 @@ describe('FormBuilder', () => {
 
         it('Default container', () => {
             wrapper = mount(<FormBuilder fields={fieldFixtures} container={null}/>);
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(18);
+            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(20);
         });
 
         it('Submit button', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../Element';
-import { EMPTY_CALLBACK } from '../../../constants';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
 
 const PROPS_TO_DELETE = [
     'options',
@@ -41,24 +41,25 @@ class BasicSelect extends Element {
         return <option>{this.props.emptyOptionText}</option>;
     }
 
-    renderElement() {
+    render() {
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
+        const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
         const elementProps = {
-            onChange: this.onChange,
             value: this.props.fieldValueState,
+            onChange: this.onChange,
         };
         const optionsRendered = this.props.options.map(this.renderOption);
-        const elementComponent = props => (
-            <select {...props} {...elementProps} ref={this.setElementReference}>
-                {this.props.required ? null : this.renderEmptyOption()}
-                {optionsRendered}
-            </select>
+
+        return (
+            <Container>
+                {this.renderLabel()}
+                <select {...inputProps} {...elementProps} ref={this.setElementReference}>
+                    {this.props.required ? null : this.renderEmptyOption()}
+                    {optionsRendered}
+                </select>
+                {this.renderErrorMessage()}
+            </Container>
         );
-
-        return super.renderElement(elementComponent, PROPS_TO_DELETE);
-    }
-
-    render() {
-        return this.renderElement();
     }
 }
 

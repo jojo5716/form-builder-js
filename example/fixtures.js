@@ -161,6 +161,20 @@ const tags = [
         },
     },
 ];
+const comment = {
+    id: 'comment',
+    element: 'textarea',
+    name: 'comment',
+    // value: 'JhonDoe',
+    // minLength: 4,
+    // type: 'text',
+    className: 'form-control',
+    required: true,
+    placeholder: 'Your comment',
+    onChange: (event) => {
+        console.log(`Comment: ${event.target.value}`);
+    },
+};
 
 export const fields = [
     [...authorFields],
@@ -176,6 +190,7 @@ export const fields = [
         fields: [...categoryPost],
     },
     [...tags],
+    [comment],
 ];
 
 export const form = {

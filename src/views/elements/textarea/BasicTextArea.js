@@ -6,9 +6,9 @@ import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
 
 /**
  *
- * This class represent a basic input type text
+ * This class represent a basic textarea
  * */
-class BasicInput extends Element {
+class BasicTextArea extends Element {
     constructor(props) {
         super(props);
 
@@ -32,17 +32,19 @@ class BasicInput extends Element {
         return (
             <Container>
                 {this.renderLabel()}
-                <input {...inputProps} {...elementProps} ref={this.setElementReference}/>
+                <textarea {...inputProps} {...elementProps} ref={this.setElementReference}>
+                    {this.props.fieldValueState}
+                </textarea>
                 {this.renderErrorMessage()}
             </Container>
         );
     }
 }
 
-export default BasicInput;
+export default BasicTextArea;
 
 
-BasicInput.propTypes = {
+BasicTextArea.propTypes = {
     errorMessage: PropTypes.string,
     fieldValueState: PropTypes.string,
     fieldContainer: PropTypes.any,
@@ -55,7 +57,7 @@ BasicInput.propTypes = {
     setFieldValueState: PropTypes.func,
 };
 
-BasicInput.defaultProps = {
+BasicTextArea.defaultProps = {
     fieldValueState: '',
     errorMessage: 'This field is required',
     fieldContainer: null,

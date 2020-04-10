@@ -14,6 +14,7 @@ describe('Helpers', () => {
             const expectedState = {
                 birthday: '',
                 category: 'category2',
+                comment: '',
                 email: '',
                 lastName: '',
                 mobile: '',
