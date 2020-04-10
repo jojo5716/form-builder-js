@@ -48,6 +48,7 @@ const fields = [
     }
 ];  
 ```
+
 # Examples
 ## Basic fields
 ```javascript
@@ -146,8 +147,8 @@ ReactDOM.render(
 	<input type="submit" value="Submit">
 </form>
 ```
-## Render field into custom container
 
+## Render field into custom container
 ```javascript
 /**  
  * Render field into a custom html block. */
@@ -185,8 +186,8 @@ ReactDOM.render(
 	</form>
 ```
 
-## Other container to customize elements
-###  * Form container
+# Other container to customize elements
+##  Form container
 ```javascript
   
 /**  
@@ -213,7 +214,7 @@ ReactDOM.render(
 	</form>
 	</div>
 ```
-###  Group content container
+##  Group content container
 ```javascript
 /**  
  * Render group into a custom html block. */
@@ -240,7 +241,6 @@ ReactDOM.render(
   document.getElementById('root'), 
 )
 ```
-
 #### Results
 
 ```html
@@ -273,7 +273,7 @@ ReactDOM.render(
 )
 ```
 
-###  Form error message container
+##  Form error message container
 ```javascript
 /**  
  * Render fields error message into a custom html block. */
