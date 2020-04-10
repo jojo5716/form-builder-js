@@ -7,7 +7,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import chai from 'chai';
 
-import { fields } from '../example/fixtures';
+import { fields, form } from '../example/fixtures';
 import FormBuilder from '../src';
 
 chai.should();
@@ -19,7 +19,7 @@ describe('FormBuilder', () => {
 
     beforeEach(() => {
         fieldFixtures = [...fields];
-        wrapper = mount(<FormBuilder fields={fieldFixtures}/>);
+        wrapper = mount(<FormBuilder fields={fieldFixtures} form={form}/>);
     });
 
     describe('Render element', () => {
@@ -28,13 +28,13 @@ describe('FormBuilder', () => {
         });
 
         it('Dont render anything if fields prop is not an array', () => {
-            wrapper = mount(<FormBuilder fields={{ ...fieldFixtures }}/>);
+            wrapper = mount(<FormBuilder fields={{}}/>);
 
             wrapper.find('form').length.should.be.eq(0);
         });
 
         it('Inputs', () => {
-            wrapper.find('input').length.should.be.eq(8);
+            wrapper.find('input').length.should.be.eq(10);
         });
 
         it('Custom container', () => {
@@ -52,7 +52,7 @@ describe('FormBuilder', () => {
 
         it('Default container', () => {
             wrapper = mount(<FormBuilder fields={fieldFixtures} container={null}/>);
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(12);
+            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(18);
         });
 
         it('Submit button', () => {
@@ -70,7 +70,7 @@ describe('FormBuilder', () => {
                 const newForm = [...fieldFixtures, { type: 'invalid-type' }];
                 wrapper = mount(<FormBuilder fields={newForm} showSubmitButton={false}/>);
 
-                wrapper.find('input').length.should.be.eq(8);
+                wrapper.find('input').length.should.be.eq(10);
             });
 
         });
@@ -100,14 +100,14 @@ describe('FormBuilder', () => {
 
             it('show fields error message if fields is not valid', () => {
                 const onSubmitMock = jest.fn();
-                const form = [{
+                const fieldsProps = [{
                     name: 'name',
                     type: 'text',
                     value: '',
                 }];
 
                 FormBuilder.prototype.isValidForm = () => false;
-                wrapper = mount(<FormBuilder fields={form} onSubmit={onSubmitMock} hasToSubmit={false}/>);
+                wrapper = mount(<FormBuilder fields={fieldsProps} onSubmit={onSubmitMock} hasToSubmit={false}/>);
 
                 const buttonElement = wrapper.find('button');
 
@@ -122,7 +122,7 @@ describe('FormBuilder', () => {
 
             it('onSuccess do anything if showFormErrorMessage is false and fields is invalid', () => {
                 const onSubmitMock = jest.fn();
-                const form = [{
+                const fieldsProps = [{
                     name: 'name',
                     type: 'text',
                     value: '',
@@ -131,7 +131,7 @@ describe('FormBuilder', () => {
                 FormBuilder.prototype.isValidForm = () => false;
                 wrapper = mount(
                     <FormBuilder
-                        fields={form}
+                        fields={fieldsProps}
                         onSubmit={onSubmitMock}
                         hasToSubmit={false}
                         showFormErrorMessage={false}

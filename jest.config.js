@@ -1,6 +1,8 @@
 module.exports = {
     setupTestFrameworkScriptFile: '<rootDir>test/setup.js',
     collectCoverage: true,
+    testEnvironment: 'jsdom',
+    testURL: 'http://localhost/',
     coverageDirectory: 'coverage/',
     coverageReporters: ['lcov', 'text'],
     collectCoverageFrom: ['src/**/*.(js|jsx)'],
@@ -17,7 +19,7 @@ module.exports = {
         '^.+\\.(js|jsx)$': 'babel-jest',
     },
     verbose: true,
-    transformIgnorePatterns: ['/node_modules/', 'src/polyfills/'],
+    transformIgnorePatterns: ['/node_modules/'],
     moduleNameMapper: {
         '.svg': '<rootDir>/test/__mocks__/fileMock.js',
     },

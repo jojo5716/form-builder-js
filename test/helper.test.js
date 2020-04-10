@@ -13,11 +13,14 @@ describe('Helpers', () => {
         it('buildFormState return fields initial state', () => {
             const expectedState = {
                 birthday: '',
+                category: 'category2',
                 email: '',
                 lastName: '',
                 mobile: '',
                 name: 'JhonDoe',
                 status: 'public',
+                tag1: false,
+                tag2: true,
             };
 
             const fieldsState = buildFormState({ fields });
@@ -42,15 +45,16 @@ describe('Helpers', () => {
         it('convertStringToCamelCase returns first character of string in upper case', () => {
             expect(convertStringToCamelCase('jhon')).toEqual('Jhon');
             expect(convertStringToCamelCase('JHON')).toEqual('Jhon');
-            expect(convertStringToCamelCase('JHON-doe')).toEqual('Jhondoe');
-            expect(convertStringToCamelCase('JHON- doe')).toEqual('Jhon doe');
+            expect(convertStringToCamelCase('JHON-doe')).toEqual('Jhon-doe');
+            expect(convertStringToCamelCase('JHON- doe')).toEqual('Jhon- doe');
         });
 
         it('removeInternalProps remove specific props from object', () => {
             const props = {
                 name: 'name',
                 value: 'Jhon',
-                setFieldContainer: () => {}, // Prop to delete
+                setFieldContainer: () => {
+                }, // Prop to delete
             };
             const attributesToDelete = ['setFieldContainer'];
             const expectedProps = {

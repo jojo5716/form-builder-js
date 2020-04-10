@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../../Element';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../../constants';
+import { EMPTY_CALLBACK } from '../../../../constants';
 
 
 /**

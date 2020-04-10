@@ -4,13 +4,10 @@
 /* eslint-disable max-statements */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import chai from 'chai';
-
+import { mount } from 'enzyme';
 
 import BasicInput from '../src/views/elements/inputs/BasicInput';
 
-chai.should();
 
 describe('Input element', () => {
     let data;
@@ -30,7 +27,7 @@ describe('Input element', () => {
 
     describe('BasicInput', () => {
         it('Render input element', () => {
-            wrapper.find('input[type="text"]').length.should.be.eq(1);
+            expect(wrapper.find('input[type="text"]').length).toEqual(1);
         });
 
         it('Render custom container', () => {
@@ -38,28 +35,28 @@ describe('Input element', () => {
 
             wrapper = mount(<BasicInput {...data} fieldContainer={customContainer}/>);
 
-            wrapper.find('h1').length.should.be.eq(1);
+            expect(wrapper.find('h1').length).toEqual(1);
         });
 
         it('Render default container', () => {
             wrapper = mount(<BasicInput {...data} />);
 
-            wrapper.find('EMPTY_CONTAINER').length.should.be.eq(1);
+            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(1);
         });
 
         it('Render label', () => {
             wrapper = mount(<BasicInput {...data} />);
 
-            wrapper.find('label').length.should.be.eq(1);
+            expect(wrapper.find('label').length).toEqual(1);
         });
 
         it('Render label container', () => {
             const labelContainer = ({ children }) => <div className='label-container-test'>{children}</div>;
             wrapper = mount(<BasicInput {...data} labelContainer={labelContainer}/>);
 
-            wrapper.find('.label-container-test').length.should.be.eq(1);
-            wrapper.find('.label-container-test').text().should.be.eq('Name');
-            wrapper.find('.label-container-test label').length.should.be.eq(0);
+            expect(wrapper.find('.label-container-test').length).toEqual(1);
+            expect(wrapper.find('.label-container-test').text()).toEqual('Name');
+            expect(wrapper.find('.label-container-test label').length).toEqual(0);
 
         });
 
@@ -71,23 +68,22 @@ describe('Input element', () => {
             });
 
             wrapper.update();
-            wrapper.find('span').length.should.be.eq(1);
+            expect(wrapper.find('span').length).toEqual(1);
         });
 
         it('Hide field error', async () => {
             wrapper.instance().hideErrorMessage();
 
             wrapper.update();
-            wrapper.find('span').length.should.be.eq(0);
+            expect(wrapper.find('span').length).toEqual(0);
         });
 
         describe('onChange', () => {
-            it('call setFieldValueState and onChange prop callbacks if field is valid ', async () => {
+            it('call setFieldValueState and onChange prop callbacks if field is valid ', () => {
                 const setFieldValueStateMock = jest.fn();
                 const onChangeMock = jest.fn();
-                // Input.prototype.isFieldValid = () => true;
 
-                wrapper = shallow(
+                wrapper = mount(
                     <BasicInput
                         {...data}
                         onChange={onChangeMock}
@@ -102,8 +98,6 @@ describe('Input element', () => {
                 wrapper.find('input[type="text"]').simulate('change', event);
 
                 expect(setFieldValueStateMock).toHaveBeenCalledWith('Jhon Doe');
-
-                expect(onChangeMock).toHaveBeenCalledWith(event);
 
                 wrapper.update();
 

@@ -49,7 +49,7 @@ function removeSpecialCharacterFromString(str) {
 }
 
 function convertStringToCamelCase(str) {
-    return str.replace(/([a-z])([A-Z])/g, '$1 $2')
+    return str.replace(/([a-z])([A-Z])/g, '$1$2')
         .split('')
         .map((word, index) => {
             const wordTransformed = removeSpecialCharacterFromString(word);
