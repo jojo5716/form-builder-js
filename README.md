@@ -23,7 +23,7 @@
 ## Props ##
 |       Prop name      | Required |  Default value | Prop value type |                                                                         Description                                                                        |
 |:--------------------:|:--------:|:--------------:|:----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| [fields (See doc)]() |     -    |       []       |    Array   |                                                               List of all fields for the form                                                              |
+| [fields (See doc)](https://github.com/jojo5716/form-builder-js/blob/master/docs/fields.md) |     -    |       []       |    Array   |                                                               List of all fields for the form                                                              |
 |         form         |     -    |       {}       |   Object   |                                                Form configuration to submit fields (Action, Method, enctype)                                               |
 |       container      |     -    |      null      |     Jsx    |                                                               Wrapper container for all form                                                               |
 |  fieldGroupContainer |     -    |      null      |     Jsx    |                                      Wrapper to group of fields Each block of field will renderen into this container                                      |
