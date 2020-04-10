@@ -37,32 +37,6 @@
 |                      |          |                |            |                                                                                                                                                            |
 |                      |          |                |            |                                                                                                                                                            |
 
-## Fields Props ##
-The Fields property allows us to render a block of fields within a form.
-
-Fields can be grouped in different ways
-
-## 1.- As an array of objects where each object represents an html5 field for form.
-```javascript
-const fields = [
-
-    {
-        id: 'name',
-        element: 'input',
-        name: 'name',
-        value: 'JhonDoe',
-        minLength: 4,
-        type: 'text',
-        className: 'form-control',
-        required: true,
-        placeholder: 'Name',
-        onChange: (event) => {
-            console.log(`Name: ${event.target.value}`);
-        },
-    },
-]
-```
-
 ## Usage ##
 ```javascript
 import React from 'react';
