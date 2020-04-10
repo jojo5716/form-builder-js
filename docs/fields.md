@@ -13,7 +13,9 @@ const fields = [ { ...field1 }, { ...field2 },]
     and each item will be the html field.
     
 ```javascript  
-const fields = [ [{...field1}, {...field2}], // First block container with 2 fields (Fields 1 and Field 2) [{...field3}, {...field4}], // Second block container with 2 fields (Fields 3 and Field 4)] 
+const fields = [ 
+    [{...field1}, {...field2}], // First block container with 2 fields (Fields 1 and Field 2) 
+    [{...field3}, {...field4}], // Second block container with 2 fields (Fields 3 and Field 4)] 
 ```
  3. Array of objects where each object has a Fields attribute that
     represents the html fields of the form. The difference between the
@@ -22,7 +24,13 @@ const fields = [ [{...field1}, {...field2}], // First block container with 2 fie
     content.
 
  ```javascript  
-const fields = [ { title: 'Container title', content: 'Container title', fields: [{ ...field1, ...field2 }], }];  
+const fields = [ 
+    { 
+        title: 'Container title', 
+        content: 'Container title', 
+        fields: [{ ...field1, ...field2 }], 
+    }
+];  
 ```
 # Examples
 ## Basic fields
