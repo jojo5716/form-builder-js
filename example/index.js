@@ -28,7 +28,6 @@ const groupContainer = ({ children, title, content }) => (
         <fieldset>
             <legend>{title}</legend>
             <p>{content}</p>
-
             {children}
 
         </fieldset>
@@ -49,9 +48,8 @@ const fieldContainer = ({ children, label, errorMessage }) => (
 /**
  * Render fields group into a custom html block.
  */
-const fieldGroupContainer = ({ children, label, groupName }) => (
+const fieldGroupContainer = ({ children, label }) => (
     <div className="form-group">
-        <p>{groupName}</p>
         {label}
         {children}
     </div>
