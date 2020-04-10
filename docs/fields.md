@@ -97,31 +97,31 @@ ReactDOM.render(
 const fields = [  
     [  
         {  
-	         id: 'name',  
-			 element: 'input',  
-			 type: 'text',  
-			 name: 'name',  
-			 value: 'JhonDoe',  
-			 minLength: 4,  
-			 className: 'form-control',  
-			 required: true,  
-			 placeholder: 'Name',  
-			 onChange: (event) => {  
-				 console.log(`Name: ${event.target.value}`);  
-			  },  
-	    },  
-		{  
+	     id: 'name',  
+	     element: 'input',  
+	     type: 'text',  
+	     name: 'name',  
+	     value: 'JhonDoe',  
+	     minLength: 4,  
+	     className: 'form-control',  
+	     required: true,  
+	     placeholder: 'Name',  
+	     onChange: (event) => {  
+	 	 console.log(`Name: ${event.target.value}`);  		  
+	     },  
+	},  
+	{  
             element: 'input',  
-			type: 'email',  
-			name: 'email',  
-			className: 'form-control',  
-			pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',  
-			required: true,  
-			placeholder: 'Write your email',  
-			onChange: (event) => {  
-				console.log(`Email: ${event.target.value}`);  
-			},  
-		},  
+	    type: 'email',  
+	    name: 'email',  
+	    className: 'form-control',  
+	    pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',  
+	    required: true,  
+	    placeholder: 'Write your email',  
+	    onChange: (event) => {  
+		console.log(`Email: ${event.target.value}`);  
+	    },  
+	},  
     ],  
 ];
 
@@ -138,13 +138,13 @@ ReactDOM.render(
 
 ```html
 <form>
-	<div class="form-group">
-		<label>Name</label>
-		<input id="name" element="input" type="text" name="name" minlength="4" class="form-control" required="" placeholder="Name" value="JhonDoe"/>
-		<label>Email</label>
-		<input element="input" type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" required="" placeholder="Write your email" value=""/>
-	</div>
-	<input type="submit" value="Submit">
+    <div class="form-group">
+	<label>Name</label>
+	<input id="name" element="input" type="text" name="name" minlength="4" class="form-control" required="" laceholder="Name" value="JhonDoe"/>
+	<label>Email</label>
+	<input element="input" type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" required="" placeholder="Write your email" value=""/>
+    </div>
+    <input type="submit" value="Submit">
 </form>
 ```
 
