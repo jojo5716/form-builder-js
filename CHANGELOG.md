@@ -1,3 +1,27 @@
+### 1.3.0 (2020-04-10)
+
+##### Chores
+
+*  creating checkbox element view ([13a4ea52](https://github.com/jojo5716/form-builder-js/commit/13a4ea524dc5d2001419dbcbe1cb895c6b7886db))
+
+##### New Features
+
+*  Returning label and error message as prop into Container ([e54bf53d](https://github.com/jojo5716/form-builder-js/commit/e54bf53d0f4a24f56db43238edfa32b97e2e5b49))
+*  Adding basic textarea component ([e953ccca](https://github.com/jojo5716/form-builder-js/commit/e953ccca303a38b65f638dc928e8c0fe06ab827b))
+
+##### Bug Fixes
+
+*  lint and test ([01a14e80](https://github.com/jojo5716/form-builder-js/commit/01a14e80950f93694b152026866abdcddf481101))
+
+##### Other Changes
+
+*  Remove chai dev dependencie ([861f1229](https://github.com/jojo5716/form-builder-js/commit/861f12294811012b2714435229949d9e21b0e692))
+
+##### Refactors
+
+*  Refactoring show error message ([da23a3e6](https://github.com/jojo5716/form-builder-js/commit/da23a3e6421125d8ba426a853308b2d6468ac8b7))
+*  Refactoring render element from super ([8c50e4fa](https://github.com/jojo5716/form-builder-js/commit/8c50e4fab06756c55e58a628b2fc43e0f5d33b48))
+
 ### 1.2.0 (2020-04-09)
 
 ##### Chores
