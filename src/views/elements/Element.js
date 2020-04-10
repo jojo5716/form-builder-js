@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { convertStringToCamelCase, removeInternalProps } from '../../helpers';
-import { EMPTY_CALLBACK, EMPTY_LABEL_CONTAINER } from '../../constants';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_LABEL_CONTAINER } from '../../constants';
 
 const PROPS_TO_DELETE = [
     'setReference',
@@ -69,8 +69,10 @@ class Element extends React.Component {
     renderErrorMessage() {
         let html;
         if (this.state.hasToShowErrorMessage) {
+            const Container = this.props.fieldErrorContainer || EMPTY_CONTAINER;
+
             html = (
-                <span>{this.getValidationMessage()}</span>
+                <Container>{this.getValidationMessage()}</Container>
             );
         }
         return html;
@@ -114,6 +116,7 @@ Element.propTypes = {
     labelContainer: PropTypes.any,
     onChange: PropTypes.func,
     fieldContainer: PropTypes.any,
+    fieldErrorContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
     hasToShowLabel: PropTypes.bool,
 };
@@ -122,6 +125,7 @@ Element.defaultProps = {
     type: 'text',
     errorMessage: 'This field is required',
     fieldContainer: null,
+    fieldErrorContainer: null,
     parentFieldContainer: null,
     labelContainer: null,
     setErrorOnChange: true,

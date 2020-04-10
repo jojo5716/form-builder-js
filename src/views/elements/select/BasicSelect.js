@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../Element';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER } from '../../../constants';
+import { EMPTY_CALLBACK, EMPTY_FIELD_CONTAINER } from '../../../constants';
 
 const PROPS_TO_DELETE = [
     'options',
@@ -42,22 +42,23 @@ class BasicSelect extends Element {
     }
 
     render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_CONTAINER;
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
+        const label = this.renderLabel();
+        const errorMessage = this.renderErrorMessage();
         const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
         const elementProps = {
+            ...inputProps,
             value: this.props.fieldValueState,
             onChange: this.onChange,
         };
         const optionsRendered = this.props.options.map(this.renderOption);
 
         return (
-            <Container>
-                {this.renderLabel()}
-                <select {...inputProps} {...elementProps} ref={this.setElementReference}>
+            <Container label={label} errorMessage={errorMessage}>
+                <select {...elementProps} ref={this.setElementReference}>
                     {this.props.required ? null : this.renderEmptyOption()}
                     {optionsRendered}
                 </select>
-                {this.renderErrorMessage()}
             </Container>
         );
     }

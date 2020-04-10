@@ -1,11 +1,13 @@
 import React from 'react';
 
-const customEmailContainer = ({ children }) => (
+const customEmailContainer = ({ children, label, errorMessage }) => (
     <div className="input-group mb-3">
+        {label}
         {children}
         <div className="input-group-append">
             <span className="input-group-text" id="basic-addon2">@example.com</span>
         </div>
+        <div className="error-message">{errorMessage}</div>
     </div>
 );
 

@@ -41,7 +41,8 @@ describe('Input element', () => {
         it('Render default container', () => {
             wrapper = mount(<BasicInput {...data} />);
 
-            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(1);
+            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(0);
+            expect(wrapper.find('EMPTY_FIELD_CONTAINER').length).toEqual(1);
         });
 
         it('Render label', () => {
@@ -68,7 +69,8 @@ describe('Input element', () => {
             });
 
             wrapper.update();
-            expect(wrapper.find('span').length).toEqual(1);
+
+            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(1);
         });
 
         it('Hide field error', async () => {

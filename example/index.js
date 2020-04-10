@@ -38,10 +38,11 @@ const groupContainer = ({ children, title, content }) => (
 /**
  * Render field into a custom html block.
  */
-const fieldContainer = ({ children, label }) => (
-    <div className="input-group">
+const fieldContainer = ({ children, label, errorMessage }) => (
+    <div className={`input-group ${errorMessage ? 'error' : ''}`}>
         {label}
         {children}
+        <div className="error-message">{errorMessage}</div>
     </div>
 );
 
