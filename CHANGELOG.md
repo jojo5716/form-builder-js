@@ -1,3 +1,9 @@
+#### 1.4.2 (2020-04-11)
+
+##### Chores
+
+*  Displaying empty option when select field has not default value and is required ([776cf86e](https://github.com/jojo5716/form-builder-js/commit/776cf86ef3ba30be506ca36a203a0a026a37330e))
+
 #### 1.4.1 (2020-04-10)
 
 ##### Other Changes
