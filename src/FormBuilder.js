@@ -27,7 +27,7 @@ class FormBuilder extends React.Component {
 
 
     renderGroupElements(inputData, containerPropName, index) {
-        const Container = this.props[ containerPropName ] || EMPTY_CONTAINER;
+        const Container = this.props[containerPropName] || EMPTY_CONTAINER;
 
         return (
             <Container key={`index-parent-field-${index}-${inputData.length}`}>
@@ -64,12 +64,12 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const inputTypes = MAP_ELEMENTS[ inputData.element ] || MAP_ELEMENTS.default;
-        const Component = inputTypes[ inputData.type ] || inputTypes.default;
+        const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
+        const Component = inputTypes[inputData.type] || inputTypes.default;
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
-                [ inputData.name ]: elementValue,
+                [inputData.name]: elementValue,
             },
         });
 
@@ -78,7 +78,7 @@ class FormBuilder extends React.Component {
             key={index}
             setReference={(node) => {
                 if (node) {
-                    this.nodes[ node.name ] = node;
+                    this.nodes[node.name] = node;
                 }
             }}
             setFieldValueState={setFieldValueState}
@@ -86,13 +86,13 @@ class FormBuilder extends React.Component {
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
-            fieldValueState={this.state.fields[ inputData.name ]}
+            fieldValueState={this.state.fields[inputData.name]}
             hasToShowErrorMessage={this.state.hasToShowFieldErrors}
         /> : null;
     }
 
     isValidForm() {
-        const fieldsValidityValues = Object.values(this.nodes).map((node) => node && node.validity.valid);
+        const fieldsValidityValues = Object.values(this.nodes).map(node => node && node.validity.valid);
 
         return fieldsValidityValues.every(value => value);
     }
@@ -101,7 +101,7 @@ class FormBuilder extends React.Component {
         const errors = {};
         Object.values(this.nodes).forEach((node) => {
             if (node && !(node.validity.valid)) {
-                errors[ node.name ] = node.validationMessage || '';
+                errors[node.name] = node.validationMessage || '';
             }
         });
 
