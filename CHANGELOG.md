@@ -1,3 +1,9 @@
+#### 1.4.3 (2020-04-11)
+
+##### Bug Fixes
+
+*  package.json main ([b6a7877a](https://github.com/jojo5716/form-builder-js/commit/b6a7877a1c26463536754bf047aadadb3d75436a))
+
 #### 1.4.2 (2020-04-11)
 
 ##### Chores
