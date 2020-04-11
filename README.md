@@ -32,6 +32,7 @@
 |      hasToSubmit     |     -    |      true      |   Boolean  | If submit button should submit form. If this prop is false on submit button just will return a json with all fields values. (Only if all fields are valid) |
 |   showSubmitButton   |     -    |      true      |   Boolean  |                                                          If form has to render a button to submit.                                                         |
 | showFormErrorMessage |     -    |      true      |   Boolean  |                                                   If form has to render a error message on click submit.                                                   |
+| showFieldsErrorsOnFailSubmit |     -    |      true      |   Boolean  |                                                   If form has to show each field with error on fail submit.                                                   |
 |       onSuccess      |     -    | Empty function |  Function  |                                                       Called on click submit and all fields are valid                                                      |
 |        onError       |     -    | Empty function |  Function  |                                     Called on submit form with errors. Returns object with field name and error message                                    |
 |                      |          |                |            |                                                                                                                                                            |
@@ -144,6 +145,7 @@ ReactDOM.render(
         showSubmitButton={false}
         hasToShowLabel={true}
         showFormErrorMessage={true}
+        showFieldsErrorsOnFailSubmit={true}
     />,
     document.getElementById('form'),
 );

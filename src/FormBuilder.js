@@ -15,6 +15,7 @@ class FormBuilder extends React.Component {
         this.state = {
             fields: buildFormState(props),
             hasToShowFormError: false,
+            hasToShowFieldErrors: false,
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
@@ -26,7 +27,7 @@ class FormBuilder extends React.Component {
 
 
     renderGroupElements(inputData, containerPropName, index) {
-        const Container = this.props[containerPropName] || EMPTY_CONTAINER;
+        const Container = this.props[ containerPropName ] || EMPTY_CONTAINER;
 
         return (
             <Container key={`index-parent-field-${index}-${inputData.length}`}>
@@ -63,12 +64,12 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
-        const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
-        const Component = inputTypes[inputData.type] || inputTypes.default;
+        const inputTypes = MAP_ELEMENTS[ inputData.element ] || MAP_ELEMENTS.default;
+        const Component = inputTypes[ inputData.type ] || inputTypes.default;
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
-                [inputData.name]: elementValue,
+                [ inputData.name ]: elementValue,
             },
         });
 
@@ -77,7 +78,7 @@ class FormBuilder extends React.Component {
             key={index}
             setReference={(node) => {
                 if (node) {
-                    this.nodes[node.name] = node;
+                    this.nodes[ node.name ] = node;
                 }
             }}
             setFieldValueState={setFieldValueState}
@@ -85,12 +86,13 @@ class FormBuilder extends React.Component {
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
-            fieldValueState={this.state.fields[inputData.name]}
+            fieldValueState={this.state.fields[ inputData.name ]}
+            hasToShowErrorMessage={this.state.hasToShowFieldErrors}
         /> : null;
     }
 
     isValidForm() {
-        const fieldsValidityValues = Object.values(this.nodes).map(node => node && node.validity.valid);
+        const fieldsValidityValues = Object.values(this.nodes).map((node) => node && node.validity.valid);
 
         return fieldsValidityValues.every(value => value);
     }
@@ -99,7 +101,7 @@ class FormBuilder extends React.Component {
         const errors = {};
         Object.values(this.nodes).forEach((node) => {
             if (node && !(node.validity.valid)) {
-                errors[node.name] = node.validationMessage || '';
+                errors[ node.name ] = node.validationMessage || '';
             }
         });
 
@@ -111,7 +113,10 @@ class FormBuilder extends React.Component {
             this.setState({ hasToShowFormError: false });
             this.props.onSuccess({ ...this.state.fields });
         } else if (this.props.showFormErrorMessage) {
-            this.setState({ hasToShowFormError: true });
+            this.setState({
+                hasToShowFormError: true,
+                hasToShowFieldErrors: this.props.showFieldsErrorsOnFailSubmit,
+            });
             this.props.onError(this.getFieldsErrorMessage());
         }
     }
@@ -185,6 +190,7 @@ FormBuilder.propTypes = {
     hasToSubmit: PropTypes.bool,
     showSubmitButton: PropTypes.bool,
     showFormErrorMessage: PropTypes.bool,
+    showFieldsErrorsOnFailSubmit: PropTypes.bool,
 };
 
 FormBuilder.defaultProps = {
@@ -198,6 +204,7 @@ FormBuilder.defaultProps = {
     hasToSubmit: true,
     showSubmitButton: true,
     showFormErrorMessage: true,
+    showFieldsErrorsOnFailSubmit: true,
     onSuccess: EMPTY_CALLBACK,
     onError: EMPTY_CALLBACK,
     submitButtonText: 'Submit',

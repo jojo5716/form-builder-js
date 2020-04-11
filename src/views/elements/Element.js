@@ -15,13 +15,14 @@ const PROPS_TO_DELETE = [
     'setErrorOnChange',
     'elementType',
     'errorMessage',
+    'hasToShowFieldErrors',
 ];
 
 class Element extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hasToShowErrorMessage: false,
+            hasToShowErrorMessage: props.hasToShowErrorMessage,
         };
 
         this.showErrorMessage = this.showErrorMessage.bind(this);
@@ -29,6 +30,14 @@ class Element extends React.Component {
         this.setElementReference = this.setElementReference.bind(this);
         this.getValidationMessage = this.getValidationMessage.bind(this);
         this.ref = null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.hasToShowErrorMessage !== this.props.hasToShowErrorMessage) {
+            this.setState({
+                hasToShowErrorMessage: this.props.hasToShowErrorMessage,
+            });
+        }
     }
 
     calculateElementProps(AdditionalPropsToDelete = []) {
@@ -119,6 +128,7 @@ Element.propTypes = {
     fieldErrorContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
     hasToShowLabel: PropTypes.bool,
+    hasToShowFieldErrors: PropTypes.bool,
 };
 
 Element.defaultProps = {
@@ -130,6 +140,7 @@ Element.defaultProps = {
     labelContainer: null,
     setErrorOnChange: true,
     hasToShowLabel: true,
+    hasToShowFieldErrors: false,
     setFieldValueState: EMPTY_CALLBACK,
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,

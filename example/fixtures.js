@@ -198,4 +198,5 @@ export const fields = [
 export const form = {
     action: 'https://www.google.es',
     method: 'GET',
+    id: 'form'
 };

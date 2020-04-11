@@ -106,6 +106,7 @@ ReactDOM.render(
         hasToShowLabel={true}
         showFormErrorMessage={true}
         setErrorOnChange={true}
+        showFieldsErrorsOnFailSubmit={true}
     />,
     document.getElementById('root'),
 );

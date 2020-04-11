@@ -62,6 +62,7 @@ BasicInput.defaultProps = {
     fieldContainer: null,
     labelContainer: null,
     setErrorOnChange: true,
+    hasToShowFieldErrors: false,
     hasToShowLabel: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
