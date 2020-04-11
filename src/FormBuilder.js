@@ -25,7 +25,6 @@ class FormBuilder extends React.Component {
         this.nodes = {};
     }
 
-
     renderGroupElements(inputData, containerPropName, index) {
         const Container = this.props[containerPropName] || EMPTY_CONTAINER;
 

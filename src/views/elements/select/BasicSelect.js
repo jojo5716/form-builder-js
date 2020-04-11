@@ -71,7 +71,7 @@ export default BasicSelect;
 BasicSelect.propTypes = {
     errorMessage: PropTypes.string,
     emptyOptionText: PropTypes.string,
-    fieldValueState: PropTypes.string,
+    fieldValueState: PropTypes.any,
     fieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
@@ -83,7 +83,6 @@ BasicSelect.propTypes = {
 };
 
 BasicSelect.defaultProps = {
-    fieldValueState: '',
     emptyOptionText: '-',
     errorMessage: 'This field is required',
     fieldContainer: null,

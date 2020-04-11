@@ -16,6 +16,8 @@ const PROPS_TO_DELETE = [
     'elementType',
     'errorMessage',
     'hasToShowFieldErrors',
+    'hasToShowErrorMessage',
+    'extraData',
 ];
 
 class Element extends React.Component {
@@ -33,7 +35,7 @@ class Element extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.hasToShowErrorMessage !== this.props.hasToShowErrorMessage) {
+        if (prevState.hasToShowErrorMessage !== this.props.hasToShowErrorMessage && !(this.isFieldValid())) {
             this.setState({
                 hasToShowErrorMessage: this.props.hasToShowErrorMessage,
             });

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Element from '../Element';
 import { EMPTY_CALLBACK, EMPTY_FIELD_CONTAINER } from '../../../constants';
 
+
 /**
  *
  * This class represent a basic input type text
@@ -33,7 +34,7 @@ class BasicInput extends Element {
             onChange: this.onChange,
         };
         return (
-            <Container label={label} errorMessage={errorMessage}>
+            <Container label={label} errorMessage={errorMessage} {...inputProps} {...this.props.extraData}>
                 <input {...elementProps} ref={this.setElementReference}/>
             </Container>
         );
@@ -45,7 +46,7 @@ export default BasicInput;
 
 BasicInput.propTypes = {
     errorMessage: PropTypes.string,
-    fieldValueState: PropTypes.string,
+    fieldValueState: PropTypes.any,
     fieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
@@ -54,10 +55,10 @@ BasicInput.propTypes = {
     onChange: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
+    extraData: PropTypes.object,
 };
 
 BasicInput.defaultProps = {
-    fieldValueState: '',
     errorMessage: 'This field is required',
     fieldContainer: null,
     labelContainer: null,
@@ -68,4 +69,5 @@ BasicInput.defaultProps = {
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
+    extraData: {},
 };
