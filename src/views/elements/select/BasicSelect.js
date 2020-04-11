@@ -46,6 +46,7 @@ class BasicSelect extends Element {
         const label = this.renderLabel();
         const errorMessage = this.renderErrorMessage();
         const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
+        const hasToShowEmptyOption = this.props.required && !(this.props.value);
         const elementProps = {
             ...inputProps,
             value: this.props.fieldValueState,
@@ -56,7 +57,7 @@ class BasicSelect extends Element {
         return (
             <Container label={label} errorMessage={errorMessage}>
                 <select {...elementProps} ref={this.setElementReference}>
-                    {this.props.required ? null : this.renderEmptyOption()}
+                    {hasToShowEmptyOption ? this.renderEmptyOption() : null}
                     {optionsRendered}
                 </select>
             </Container>
