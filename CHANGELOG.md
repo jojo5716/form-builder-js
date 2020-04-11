@@ -1,3 +1,13 @@
+### 1.5.0 (2020-04-11)
+
+##### New Features
+
+*  Displaying all fields errors on fail submit ([cc297186](https://github.com/jojo5716/form-builder-js/commit/cc29718608c42e2e4a76f3bfccd291d0650a9744))
+
+##### Bug Fixes
+
+*  linter ([95859325](https://github.com/jojo5716/form-builder-js/commit/95859325493e61b865a72335cc0c8645b14c2972))
+
 #### 1.4.3 (2020-04-11)
 
 ##### Bug Fixes
