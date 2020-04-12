@@ -152,14 +152,15 @@ class FormBuilder extends React.Component {
     renderForm() {
         const elementsRendered = this.props.fields.map(this.renderElement);
         const Container = this.props.container || EMPTY_CONTAINER;
+        const FormContainer = this.props.createFormElement ? FormView : EMPTY_CONTAINER;
 
         return (
             <Container onSubmit={this.onSubmit}>
                 {this.state.hasToShowFormError ? this.renderFormErrorMessage() : null}
-                <FormView {...this.props}>
+                <FormContainer {...this.props}>
                     {elementsRendered}
                     {this.props.showSubmitButton ? this.renderSubmitButton() : null}
-                </FormView>
+                </FormContainer>
             </Container>
         );
     }
@@ -190,6 +191,7 @@ FormBuilder.propTypes = {
     showSubmitButton: PropTypes.bool,
     showFormErrorMessage: PropTypes.bool,
     showFieldsErrorsOnFailSubmit: PropTypes.bool,
+    createFormElement: PropTypes.bool,
 };
 
 FormBuilder.defaultProps = {
@@ -204,6 +206,7 @@ FormBuilder.defaultProps = {
     showSubmitButton: true,
     showFormErrorMessage: true,
     showFieldsErrorsOnFailSubmit: true,
+    createFormElement: true,
     onSuccess: EMPTY_CALLBACK,
     onError: EMPTY_CALLBACK,
     submitButtonText: 'Submit',
