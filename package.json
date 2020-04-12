@@ -2,8 +2,8 @@
   "name": "js-form-builder",
   "version": "1.5.0",
   "description": "React component to generate a form from javascript object.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js",
     "test:ci": "NODE_ENV=test jest test",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
+    "lodash.isequal": "^4.5.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {

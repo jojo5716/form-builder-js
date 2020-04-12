@@ -8,6 +8,8 @@ import { MAP_ELEMENTS } from './elements-mapping';
 import { EMPTY_CALLBACK, EMPTY_CONTAINER } from './constants';
 import { buildFormState, isObjectArray } from './helpers';
 
+const isEqual = require('lodash.isequal');
+
 
 class FormBuilder extends React.Component {
     constructor(props) {
@@ -23,6 +25,14 @@ class FormBuilder extends React.Component {
         this.renderGroup = this.renderGroup.bind(this);
         this.renderGroupElements = this.renderGroupElements.bind(this);
         this.nodes = {};
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!(isEqual(this.props, prevProps))) {
+            this.setState({
+                fields: buildFormState(this.props),
+            });
+        }
     }
 
     renderGroupElements(inputData, containerPropName, index) {
