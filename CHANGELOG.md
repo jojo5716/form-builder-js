@@ -1,3 +1,19 @@
+#### 1.5.1 (2020-04-12)
+
+##### Chores
+
+*  Updating field states when receive new props ([c428e9e3](https://github.com/jojo5716/form-builder-js/commit/c428e9e34a81692ec619c818a4f3ae65dfe1c4ad))
+
+##### New Features
+
+*  Adding prop to avoid create form element ([6b593ac7](https://github.com/jojo5716/form-builder-js/commit/6b593ac7f8429da1c17e130f9551d06031bb8619))
+
+##### Bug Fixes
+
+*  render label container when BasicInput is rendered as root ([c8698676](https://github.com/jojo5716/form-builder-js/commit/c8698676de8ecf91f45dfa48bd32808fee2883a6))
+*  Fix problem on render message error only on fields with errors ([de267087](https://github.com/jojo5716/form-builder-js/commit/de267087006ab81b23212b9c3f69b25912bfee64))
+*  travis ci cache ([e102eb1d](https://github.com/jojo5716/form-builder-js/commit/e102eb1d3271934a3d801ae92a4f61cec30c081b))
+
 ### 1.5.0 (2020-04-11)
 
 ##### New Features
