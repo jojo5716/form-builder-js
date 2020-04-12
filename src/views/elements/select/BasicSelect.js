@@ -80,6 +80,7 @@ BasicSelect.propTypes = {
     onChange: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
+    options: PropTypes.array,
 };
 
 BasicSelect.defaultProps = {
@@ -93,4 +94,5 @@ BasicSelect.defaultProps = {
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
+    options: [],
 };
