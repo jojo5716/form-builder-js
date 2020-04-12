@@ -48,7 +48,7 @@ describe('Input element', () => {
         it('Render label', () => {
             wrapper = mount(<BasicInput {...data} />);
 
-            expect(wrapper.find('label').length).toEqual(1);
+            expect(wrapper.find('EMPTY_FIELD_CONTAINER').length).toEqual(1);
         });
 
         it('Render label container', () => {
@@ -58,7 +58,6 @@ describe('Input element', () => {
             expect(wrapper.find('.label-container-test').length).toEqual(1);
             expect(wrapper.find('.label-container-test').text()).toEqual('Name');
             expect(wrapper.find('.label-container-test label').length).toEqual(0);
-
         });
 
         it('Render field error', () => {

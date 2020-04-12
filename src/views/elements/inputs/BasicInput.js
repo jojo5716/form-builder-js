@@ -34,7 +34,7 @@ class BasicInput extends Element {
             onChange: this.onChange,
         };
         return (
-            <Container label={label} errorMessage={errorMessage} {...inputProps} {...this.props.extraData}>
+            <Container errorMessage={errorMessage} {...inputProps} {...this.props.extraData} label={label}>
                 <input {...elementProps} ref={this.setElementReference}/>
             </Container>
         );
