@@ -1,3 +1,13 @@
+### 1.6.0 (2020-04-13)
+
+##### New Features
+
+*  Adding onChangeField on parent componet ([832d2554](https://github.com/jojo5716/form-builder-js/commit/832d2554f4f58d4c791160fac58d242b306b1a29))
+
+##### Bug Fixes
+
+*  Setting as empty array options props on select fields ([e446801c](https://github.com/jojo5716/form-builder-js/commit/e446801c17c90184b67138b554f8f2ddf7514867))
+
 #### 1.5.1 (2020-04-12)
 
 ##### Chores
