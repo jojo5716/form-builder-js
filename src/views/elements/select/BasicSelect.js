@@ -22,8 +22,10 @@ class BasicSelect extends Element {
 
     onChange(event) {
         super.showOrHideErrorMessage();
+        const currentValue = event.target.value;
 
-        this.props.setFieldValueState(event.target.value);
+        this.props.setFieldValueState(currentValue);
+        this.props.onChangeField(this.props.name, currentValue);
         this.props.onChange(event);
     }
 
@@ -55,7 +57,7 @@ class BasicSelect extends Element {
         const optionsRendered = this.props.options.map(this.renderOption);
 
         return (
-            <Container label={label} errorMessage={errorMessage}>
+            <Container label={label} {...inputProps} {...this.props.extraData} errorMessage={errorMessage}>
                 <select {...elementProps} ref={this.setElementReference}>
                     {hasToShowEmptyOption ? this.renderEmptyOption() : null}
                     {optionsRendered}
@@ -78,9 +80,11 @@ BasicSelect.propTypes = {
     hasToShowLabel: PropTypes.bool,
     parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
+    onChangeField: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
     options: PropTypes.array,
+    extraData: PropTypes.object,
 };
 
 BasicSelect.defaultProps = {
@@ -92,7 +96,9 @@ BasicSelect.defaultProps = {
     hasToShowLabel: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
     options: [],
+    extraData: {},
 };

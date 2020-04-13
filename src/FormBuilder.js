@@ -97,6 +97,7 @@ class FormBuilder extends React.Component {
             hasToShowLabel={this.props.hasToShowLabel}
             fieldValueState={this.state.fields[inputData.name]}
             hasToShowErrorMessage={this.state.hasToShowFieldErrors}
+            onChangeField={this.props.onChange}
         /> : null;
     }
 
@@ -193,6 +194,7 @@ FormBuilder.propTypes = {
     fieldContainer: PropTypes.any,
     formErrorContainer: PropTypes.any,
     onSuccess: PropTypes.func,
+    onChange: PropTypes.func,
     onError: PropTypes.func,
     submitButtonText: PropTypes.string,
     customFormErrorMessage: PropTypes.string,
@@ -219,6 +221,7 @@ FormBuilder.defaultProps = {
     createFormElement: true,
     onSuccess: EMPTY_CALLBACK,
     onError: EMPTY_CALLBACK,
+    onChange: EMPTY_CALLBACK,
     submitButtonText: 'Submit',
     method: 'GET',
     customFormErrorMessage: 'Invalid fields',

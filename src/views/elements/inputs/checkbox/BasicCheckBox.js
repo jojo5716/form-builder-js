@@ -17,8 +17,10 @@ class BasicCheckBox extends Element {
 
     onChange(event) {
         super.showOrHideErrorMessage();
+        const currentValue = event.target.checked;
 
-        this.props.setFieldValueState(event.target.checked);
+        this.props.setFieldValueState(currentValue);
+        this.props.onChangeField(this.props.name, currentValue);
         this.props.onChange(event);
     }
 
@@ -52,6 +54,7 @@ BasicCheckBox.propTypes = {
     hasToShowLabel: PropTypes.bool,
     parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
+    onChangeField: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
 };
@@ -65,6 +68,7 @@ BasicCheckBox.defaultProps = {
     hasToShowLabel: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
 };

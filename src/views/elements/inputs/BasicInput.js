@@ -18,8 +18,10 @@ class BasicInput extends Element {
 
     onChange(event) {
         super.showOrHideErrorMessage();
+        const currentValue = event.target.value;
 
-        this.props.setFieldValueState(event.target.value);
+        this.props.setFieldValueState(currentValue);
+        this.props.onChangeField(this.props.name, currentValue);
         this.props.onChange(event);
     }
 
@@ -55,6 +57,7 @@ BasicInput.propTypes = {
     onChange: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
+    onChangeField: PropTypes.func,
     extraData: PropTypes.object,
 };
 
@@ -69,5 +72,6 @@ BasicInput.defaultProps = {
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     extraData: {},
 };

@@ -18,6 +18,8 @@ const PROPS_TO_DELETE = [
     'hasToShowFieldErrors',
     'hasToShowErrorMessage',
     'extraData',
+    'onChangeField',
+    'helpText',
 ];
 
 class Element extends React.Component {

@@ -17,8 +17,10 @@ class BasicTextArea extends Element {
 
     onChange(event) {
         super.showOrHideErrorMessage();
+        const currentValue = event.target.value;
 
-        this.props.setFieldValueState(event.target.value);
+        this.props.setFieldValueState(currentValue);
+        this.props.onChangeField(this.props.name, currentValue);
         this.props.onChange(event);
     }
 
@@ -33,7 +35,7 @@ class BasicTextArea extends Element {
             onChange: this.onChange,
         };
         return (
-            <Container label={label} errorMessage={errorMessage}>
+            <Container label={label} {...this.props.extraData} errorMessage={errorMessage}>
                 <textarea {...elementProps} ref={this.setElementReference}>
                     {this.props.fieldValueState}
                 </textarea>
@@ -54,8 +56,10 @@ BasicTextArea.propTypes = {
     hasToShowLabel: PropTypes.bool,
     parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
+    onChangeField: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
+    extraData: PropTypes.object,
 };
 
 BasicTextArea.defaultProps = {
@@ -67,6 +71,9 @@ BasicTextArea.defaultProps = {
     hasToShowLabel: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
+    extraData: {},
+
 };
