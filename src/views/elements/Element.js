@@ -24,7 +24,6 @@ const PROPS_TO_DELETE = [
 
 class Element extends React.Component {
     constructor(props) {
-        console.log('1');
         super(props);
         this.state = {
             hasToShowErrorMessage: props.hasToShowErrorMessage,
@@ -47,7 +46,8 @@ class Element extends React.Component {
     }
 
     calculateElementProps(AdditionalPropsToDelete = []) {
-        const allPropsToDelete = [...PROPS_TO_DELETE, ...AdditionalPropsToDelete];
+        const additionalPropsToDelete = this.additionalPropsToDelete || [];
+        const allPropsToDelete = [...PROPS_TO_DELETE, ...additionalPropsToDelete];
 
         return removeInternalProps(this.props, allPropsToDelete);
     }

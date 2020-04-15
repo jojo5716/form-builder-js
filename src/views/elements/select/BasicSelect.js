@@ -1,69 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Element from '../Element';
-import { EMPTY_CALLBACK, EMPTY_FIELD_CONTAINER } from '../../../constants';
+import BasicInput from '../inputs/BasicInput';
+import { EMPTY_CALLBACK } from '../../../constants';
+
 
 const PROPS_TO_DELETE = [
-    'options',
     'emptyOptionText',
 ];
+
+const Option = (option, index) => {
+    return (
+        <option
+            key={`option-${index}-${option.value}`}
+            value={option.value}>
+            {option.content}
+        </option>
+    );
+};
+
+const EmptyOption = ({ emptyOptionText }) => <option value=''>{emptyOptionText}</option>;
 
 /**
  *
  * This class represent a basic select
  * */
-class BasicSelect extends Element {
+class BasicSelect extends BasicInput {
     constructor(props) {
         super(props);
+        this.additionalPropsToDelete = PROPS_TO_DELETE;
+        // this.elementComponent = ({ componentProps, hasToShowEmptyOption, options }) => (
+        this.elementComponent = (componentProps) => {
+            const hasToShowEmptyOption = componentProps.required && !(componentProps.value);
 
-        this.onChange = this.onChange.bind(this);
-    }
-
-    onChangeFieldValue(event) {
-        super.showOrHideErrorMessage();
-        const currentValue = event.target.value;
-
-        this.props.setFieldValueState(currentValue);
-        this.props.onChangeField(this.props.name, currentValue);
-        this.props.onChange(event);
-    }
-
-    renderOption(option, index) {
-        return (
-            <option
-                key={`option-${index}-${option.value}`}
-                value={option.value}>
-                {option.content}
-            </option>
-        );
-    }
-
-    renderEmptyOption() {
-        return <option>{this.props.emptyOptionText}</option>;
+            return (
+                <select {...componentProps}>
+                    {hasToShowEmptyOption ? <EmptyOption emptyOptionText={componentProps.emptyOptionText}/> : null}
+                    {componentProps.options.map((option, index) => <Option key={index} {...option}/>)}
+                </select>
+            );
+        };
     }
 
     render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
-        const label = this.renderLabel();
-        const errorMessage = this.renderErrorMessage();
-        const inputProps = this.calculateElementProps(PROPS_TO_DELETE);
-        const hasToShowEmptyOption = this.props.required && !(this.props.value);
-        const elementProps = {
-            ...inputProps,
-            value: this.props.fieldValueState,
-            onChange: this.onChange,
-        };
-        const optionsRendered = this.props.options.map(this.renderOption);
-
-        return (
-            <Container label={label} {...inputProps} {...this.props.extraData} errorMessage={errorMessage}>
-                <select {...elementProps} ref={this.setElementReference}>
-                    {hasToShowEmptyOption ? this.renderEmptyOption() : null}
-                    {optionsRendered}
-                </select>
-            </Container>
-        );
+        return super.render();
     }
 }
 
