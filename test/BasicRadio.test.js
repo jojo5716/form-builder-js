@@ -37,24 +37,6 @@ describe('BasicRadio', () => {
                 <BasicRadio
                     {...data}
                     onChange={onChangeMock}
-                    setFieldValueState={setFieldValueStateMock}
-                />,
-            );
-            wrapper.find('input[type="radio"]').simulate('click', clickEvent);
-
-            expect(onChangeMock).toHaveBeenCalled();
-            expect(setFieldValueStateMock).toHaveBeenCalled();
-        });
-
-        it('Calling onChange and setFieldValueState props on click radio button', () => {
-            const onChangeMock = jest.fn();
-            const setFieldValueStateMock = jest.fn();
-            const clickEvent = { target: { value: 'female', checked: true } };
-
-            wrapper = mount(
-                <BasicRadio
-                    {...data}
-                    onChange={onChangeMock}
                     setFieldValueState={setFieldValueStateMock}/>,
             );
             wrapper.find('input[type="radio"]').simulate('click', clickEvent);

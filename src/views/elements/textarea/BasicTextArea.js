@@ -16,7 +16,6 @@ class BasicTextArea extends BasicInput {
                 {componentProps.fieldValueState}
             </textarea>
         );
-
     }
 }
 

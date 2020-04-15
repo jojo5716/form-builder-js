@@ -32,6 +32,7 @@ BasicRadio.propTypes = {
     setErrorOnChange: PropTypes.bool,
     parentFieldContainer: PropTypes.any,
     onChange: PropTypes.func,
+    onChangeField: PropTypes.func,
     setReference: PropTypes.func,
     setFieldValueState: PropTypes.func,
 };
@@ -42,6 +43,7 @@ BasicRadio.defaultProps = {
     setErrorOnChange: true,
     parentFieldContainer: null,
     onChange: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
     setFieldValueState: EMPTY_CALLBACK,
 };

@@ -27,7 +27,6 @@ class BasicSelect extends BasicInput {
     constructor(props) {
         super(props);
         this.additionalPropsToDelete = PROPS_TO_DELETE;
-        // this.elementComponent = ({ componentProps, hasToShowEmptyOption, options }) => (
         this.elementComponent = (componentProps) => {
             const hasToShowEmptyOption = componentProps.required && !(componentProps.value);
 

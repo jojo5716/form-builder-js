@@ -22,38 +22,6 @@ class BasicCheckBox extends BasicInput {
     render() {
         return this.renderField(this.elementComponent, VALUE_ATTR_NAME, ONCHANGE_CALLBACK_NAME);
     }
-
-    // constructor(props) {
-    //     super(props);
-    //
-    //     this.onChange = this.onChange.bind(this);
-    // }
-    //
-    // onChangeFieldValue(event) {
-    //     super.showOrHideErrorMessage();
-    //     const currentValue = event.target.checked;
-    //
-    //     this.props.setFieldValueState(currentValue);
-    //     this.props.onChangeField(this.props.name, currentValue);
-    //     this.props.onChange(event);
-    // }
-    //
-    // render() {
-    //     const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
-    //     const label = this.renderLabel();
-    //     const errorMessage = this.renderErrorMessage();
-    //     const inputProps = this.calculateElementProps();
-    //     const elementProps = {
-    //         ...inputProps,
-    //         checked: !!this.props.fieldValueState,
-    //         onChange: this.onChange,
-    //     };
-    //     return (
-    //         <Container label={label} errorMessage={errorMessage}>
-    //             <input {...elementProps} ref={this.setElementReference}/>
-    //         </Container>
-    //     );
-    // }
 }
 
 export default BasicCheckBox;

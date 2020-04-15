@@ -164,6 +164,7 @@ Element.propTypes = {
     parentFieldContainer: PropTypes.any,
     labelContainer: PropTypes.any,
     onChange: PropTypes.func,
+    onChangeField: PropTypes.func,
     fieldContainer: PropTypes.any,
     fieldErrorContainer: PropTypes.any,
     setErrorOnChange: PropTypes.bool,
@@ -184,5 +185,6 @@ Element.defaultProps = {
     setFieldValueState: EMPTY_CALLBACK,
     onChange: EMPTY_CALLBACK,
     setReference: EMPTY_CALLBACK,
+    onChangeField: EMPTY_CALLBACK,
     reference: React.createRef(),
 };
