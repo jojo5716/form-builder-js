@@ -20,7 +20,7 @@ class BasicSelect extends Element {
         this.onChange = this.onChange.bind(this);
     }
 
-    onChange(event) {
+    onChangeFieldValue(event) {
         super.showOrHideErrorMessage();
         const currentValue = event.target.value;
 

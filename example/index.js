@@ -7,8 +7,54 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import { form, fields } from './fixtures';
+// import { form, fields } from './fixtures';
+import { form } from './fixtures';
 
+const statusPost = [
+    {
+        name: 'status',
+        element: 'input',
+        required: true,
+        value: 'private',
+        type: 'radio',
+        className: 'form-control',
+        label: 'Private',
+        fieldContainer: null,
+        onChange: (event) => {
+            console.log(`Status (Private): ${event.target.value}`);
+        },
+    },
+    {
+        name: 'status',
+        element: 'input',
+        value: 'public',
+        type: 'radio',
+        checked: true,
+        className: 'form-control',
+        label: 'Public',
+        fieldContainer: null,
+        onChange: (event) => {
+            console.log(`Status (Public): ${event.target.value}`);
+        },
+    },
+];
+const fields = [
+    {
+        id: 'name',
+        element: 'input',
+        name: 'name',
+        value: 'JhonDoe',
+        minLength: 4,
+        type: 'text',
+        className: 'form-control',
+        required: true,
+        placeholder: 'Name',
+        onChange: (event) => {
+            console.log(`Name: ${event.target.value}`);
+        },
+    },
+    statusPost,
+];
 /**
  * Render all fields into a custom html block.
  */

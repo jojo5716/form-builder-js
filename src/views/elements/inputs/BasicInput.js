@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Element from '../Element';
-import { EMPTY_CALLBACK, EMPTY_FIELD_CONTAINER } from '../../../constants';
+import { EMPTY_CALLBACK } from '../../../constants';
 
+
+const VALUE_ATTR_NAME = 'value';
+const ONCHANGE_CALLBACK_NAME = 'onChange';
 
 /**
  *
@@ -13,33 +16,15 @@ class BasicInput extends Element {
     constructor(props) {
         super(props);
 
-        this.onChange = this.onChange.bind(this);
+        this.elementComponent = componentProps => <input {...componentProps}/>;
     }
 
-    onChange(event) {
-        super.showOrHideErrorMessage();
-        const currentValue = event.target.value;
-
-        this.props.setFieldValueState(currentValue);
-        this.props.onChangeField(this.props.name, currentValue);
-        this.props.onChange(event);
+    getFieldValue(event) {
+        return event.target[VALUE_ATTR_NAME];
     }
 
     render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
-        const label = this.renderLabel();
-        const errorMessage = this.renderErrorMessage();
-        const inputProps = this.calculateElementProps();
-        const elementProps = {
-            ...inputProps,
-            value: this.props.fieldValueState,
-            onChange: this.onChange,
-        };
-        return (
-            <Container errorMessage={errorMessage} {...inputProps} {...this.props.extraData} label={label}>
-                <input {...elementProps} ref={this.setElementReference}/>
-            </Container>
-        );
+        return this.renderField(this.elementComponent, VALUE_ATTR_NAME, ONCHANGE_CALLBACK_NAME);
     }
 }
 

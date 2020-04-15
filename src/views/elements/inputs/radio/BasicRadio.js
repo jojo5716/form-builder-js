@@ -1,42 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Element from '../../Element';
-import { EMPTY_CALLBACK, EMPTY_FIELD_CONTAINER } from '../../../../constants';
+import Element from '../../inputs/BasicInput';
+import { EMPTY_CALLBACK } from '../../../../constants';
+
+const VALUE_ATTR_NAME = 'checked';
+const ONCHANGE_CALLBACK_NAME = 'onClick';
 
 /**
  *
  * This class represent a basic input type radio
  * */
 class BasicRadio extends Element {
-    constructor(props) {
-        super(props);
 
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(event) {
-        if (event.target.checked) {
-            this.props.setFieldValueState(event.target.value);
-            this.props.onChange(event);
-        }
+    getFieldValueState() {
+        return this.props.fieldValueState === this.props.value;
     }
 
     render() {
-        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
-        const label = this.renderLabel();
-        const errorMessage = this.renderErrorMessage();
-        const inputProps = this.calculateElementProps();
-        const elementProps = {
-            ...inputProps,
-            checked: this.props.fieldValueState === this.props.value,
-            onClick: this.onClick,
-        };
-        return (
-            <Container label={label} errorMessage={errorMessage}>
-                <input {...elementProps} ref={this.setElementReference}/>
-            </Container>
-        );
+        return this.renderField(this.elementComponent, VALUE_ATTR_NAME, ONCHANGE_CALLBACK_NAME);
     }
 }
 

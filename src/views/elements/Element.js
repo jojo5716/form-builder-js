@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { convertStringToCamelCase, removeInternalProps } from '../../helpers';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_LABEL_CONTAINER } from '../../constants';
+import { EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_FIELD_CONTAINER, EMPTY_LABEL_CONTAINER } from '../../constants';
 
 const PROPS_TO_DELETE = [
     'setReference',
@@ -24,6 +24,7 @@ const PROPS_TO_DELETE = [
 
 class Element extends React.Component {
     constructor(props) {
+        console.log('1');
         super(props);
         this.state = {
             hasToShowErrorMessage: props.hasToShowErrorMessage,
@@ -33,6 +34,7 @@ class Element extends React.Component {
         this.hideErrorMessage = this.hideErrorMessage.bind(this);
         this.setElementReference = this.setElementReference.bind(this);
         this.getValidationMessage = this.getValidationMessage.bind(this);
+        this.onChangeFieldValue = this.onChangeFieldValue.bind(this);
         this.ref = null;
     }
 
@@ -91,6 +93,15 @@ class Element extends React.Component {
         return html;
     }
 
+    onChangeFieldValue(event) {
+        this.showOrHideErrorMessage();
+        const currentValue = this.getFieldValue(event);
+
+        this.props.setFieldValueState(currentValue);
+        this.props.onChangeField(this.props.name, currentValue);
+        this.props.onChange(event);
+    }
+
     renderLabel() {
         let html;
         const labelText = convertStringToCamelCase(this.props.label || this.props.name || '');
@@ -108,11 +119,34 @@ class Element extends React.Component {
         return html;
     }
 
+    getFieldValueState() {
+        return this.props.fieldValueState;
+    }
+
+    render() {
+        return null;
+    }
+
     /*
     * Override this method on each field type
     * */
-    render() {
-        return null;
+    renderField(element, valueAttrName, onChangeCallbackName) {
+        const Container = this.props.fieldContainer || this.props.parentFieldContainer || EMPTY_FIELD_CONTAINER;
+        const label = this.renderLabel();
+        const errorMessage = this.renderErrorMessage();
+        const inputProps = this.calculateElementProps();
+        const elementProps = {
+            ...inputProps,
+            [ valueAttrName ]: this.getFieldValueState(),
+            [ onChangeCallbackName ]: this.onChangeFieldValue,
+            ref: this.setElementReference,
+        };
+        const elementRendered = element(elementProps);
+        return (
+            <Container errorMessage={errorMessage} {...inputProps} {...this.props.extraData} label={label}>
+                {elementRendered}
+            </Container>
+        );
     }
 }
 
