@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { convertStringToCamelCase, removeInternalProps } from '../../helpers';
-import { EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_FIELD_CONTAINER, EMPTY_LABEL_CONTAINER } from '../../constants';
+import {
+    EMPTY_CALLBACK, EMPTY_CONTAINER, EMPTY_FIELD_CONTAINER, EMPTY_LABEL_CONTAINER,
+} from '../../constants';
 
 const PROPS_TO_DELETE = [
     'setReference',
@@ -137,8 +139,8 @@ class Element extends React.Component {
         const inputProps = this.calculateElementProps();
         const elementProps = {
             ...inputProps,
-            [ valueAttrName ]: this.getFieldValueState(),
-            [ onChangeCallbackName ]: this.onChangeFieldValue,
+            [valueAttrName]: this.getFieldValueState(),
+            [onChangeCallbackName]: this.onChangeFieldValue,
             ref: this.setElementReference,
         };
         const elementRendered = element(elementProps);

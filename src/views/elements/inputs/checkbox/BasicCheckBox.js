@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-import BasicInput from '../../inputs/BasicInput';
+import BasicInput from '../BasicInput';
 import { EMPTY_CALLBACK } from '../../../../constants';
 
 const VALUE_ATTR_NAME = 'checked';
@@ -17,7 +16,7 @@ class BasicCheckBox extends BasicInput {
     }
 
     getFieldValue(event) {
-        return event.target[ VALUE_ATTR_NAME ];
+        return event.target[VALUE_ATTR_NAME];
     }
 
     render() {

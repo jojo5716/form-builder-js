@@ -9,15 +9,13 @@ const PROPS_TO_DELETE = [
     'emptyOptionText',
 ];
 
-const Option = (option, index) => {
-    return (
-        <option
-            key={`option-${index}-${option.value}`}
-            value={option.value}>
-            {option.content}
-        </option>
-    );
-};
+const Option = (option, index) => (
+    <option
+        key={`option-${index}-${option.value}`}
+        value={option.value}>
+        {option.content}
+    </option>
+);
 
 const EmptyOption = ({ emptyOptionText }) => <option value=''>{emptyOptionText}</option>;
 
