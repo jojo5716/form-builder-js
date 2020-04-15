@@ -192,7 +192,7 @@ export const fields = [
         fields: [...categoryPost],
     },
     [...tags],
-    // [comment],
+    [comment],
 ];
 
 export const form = {

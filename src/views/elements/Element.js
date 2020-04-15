@@ -45,7 +45,7 @@ class Element extends React.Component {
         }
     }
 
-    calculateElementProps(AdditionalPropsToDelete = []) {
+    calculateElementProps() {
         const additionalPropsToDelete = this.additionalPropsToDelete || [];
         const allPropsToDelete = [...PROPS_TO_DELETE, ...additionalPropsToDelete];
 
