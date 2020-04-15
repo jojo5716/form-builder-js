@@ -38,6 +38,34 @@ const statusPost = [
         },
     },
 ];
+const tags = [
+    {
+        id: 'tags',
+        element: 'input',
+        type: 'checkbox',
+        name: 'tag1',
+        value: 'tag1',
+        className: 'form-control',
+        label: 'Tag 1',
+        onChange: (event) => {
+            console.log(`Tag: ${event.target.value}`);
+        },
+    },
+    {
+        id: 'tags',
+        element: 'input',
+        type: 'checkbox',
+        name: 'tag2',
+        checked: true,
+        required: true,
+        value: 'tag2',
+        className: 'form-control',
+        label: 'Tag 2',
+        onChange: (event) => {
+            console.log(`Tag: ${event.target.value}`);
+        },
+    },
+];
 const fields = [
     {
         id: 'name',
@@ -54,6 +82,7 @@ const fields = [
         },
     },
     statusPost,
+    tags,
 ];
 /**
  * Render all fields into a custom html block.
