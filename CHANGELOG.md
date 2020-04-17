@@ -1,3 +1,12 @@
+#### 1.6.1 (2020-04-17)
+
+##### Refactors
+
+*  Refactoring textarea component inheritance ([ce55a0d9](https://github.com/jojo5716/form-builder-js/commit/ce55a0d9383e2d95fba01c30799a6cb54faef8dd))
+*  Refactoring select component inheritance ([8da32310](https://github.com/jojo5716/form-builder-js/commit/8da3231033661a57b7fb58a0be610f26a27d36d5))
+*  Refactoring checkbox component inheritance ([abc90243](https://github.com/jojo5716/form-builder-js/commit/abc902435037ff1178e3760106cf1389fff233f5))
+*  Refactoring components inheritance ([be5fa618](https://github.com/jojo5716/form-builder-js/commit/be5fa618602d72a598c22393244d11cc9e5d450f))
+
 ### 1.6.0 (2020-04-13)
 
 ##### New Features
