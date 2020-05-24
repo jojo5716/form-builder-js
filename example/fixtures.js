@@ -202,5 +202,5 @@ export const form = {
 };
 
 export const submitProps = {
-    className: "submit-button"
+    className: 'submit-button',
 };

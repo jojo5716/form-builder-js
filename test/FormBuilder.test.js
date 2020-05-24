@@ -50,7 +50,7 @@ describe('FormBuilder', () => {
 
         it('Default container', () => {
             wrapper = mount(<FormBuilder fields={fieldFixtures} container={null}/>);
-            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(9);
+            expect(wrapper.find('EMPTY_CONTAINER').length).toEqual(10);
             expect(wrapper.find('EMPTY_FIELD_CONTAINER').length).toEqual(11);
         });
 
