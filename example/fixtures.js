@@ -201,6 +201,6 @@ export const form = {
     id: 'form',
 };
 
-export submitProps = {
+export const submitProps = {
     className: "submit-button"
 };

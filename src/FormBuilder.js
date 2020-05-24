@@ -156,7 +156,7 @@ class FormBuilder extends React.Component {
             <Container {...attributes}>
                 <Component {...attributes} />
             </Container>
-        )
+        );
     }
 
     renderFormErrorMessage() {
