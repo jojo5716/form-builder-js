@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Loader from './views/loader/index.jsx';
 import FormView from './views/index.jsx';
 import BasicInput from './views/elements/inputs/BasicInput';
 import Button from './views/elements/Button';
-import { MAP_ELEMENTS } from './elements-mapping';
+import { MAP_ELEMENTS, map } from './elements-mapping';
 import { EMPTY_CALLBACK, EMPTY_CONTAINER } from './constants';
 import { buildFormState, isObjectArray } from './helpers';
 
@@ -18,13 +19,71 @@ class FormBuilder extends React.Component {
             fields: buildFormState(props),
             hasToShowFormError: false,
             hasToShowFieldErrors: false,
+            modulesLoaded: false,
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.renderInput = this.renderInput.bind(this);
         this.renderElement = this.renderElement.bind(this);
         this.renderGroup = this.renderGroup.bind(this);
         this.renderGroupElements = this.renderGroupElements.bind(this);
+        this.loadElementModules = this.loadElementModules.bind(this);
         this.nodes = {};
+        this.fieldModules = {};
+    }
+
+    componentDidMount() {
+        // Iterate each field to load it module
+        this.props.fields.map(this.loadElementModules);
+        console.log(this.fieldModules);
+        console.log(map);
+
+        const imports = Object.keys(this.fieldModules).map((element) => {
+            return Object.keys(this.fieldModules[ element ]).map((fieldType) => {
+                return this.fieldModules[ element ][ fieldType ];
+            });
+        });
+
+        Promise.all(map.values()).then((modules) => {
+            console.log(modules);
+            //console.log(this.fieldModules);
+
+        });
+
+
+        /*
+            this.setState({
+                modulesLoaded: true,
+            });
+        */
+    }
+
+    loadElementModules(inputData) {
+        if (isObjectArray(inputData)) {
+            inputData.map(this.loadElementModules);
+        } else if (typeof inputData.fields !== 'undefined') {
+
+            inputData.fields.map(this.loadElementModules);
+        } else {
+            this.loadElementModule(inputData);
+        }
+    }
+
+    loadElementModule(field) {
+        const fieldType = field.type || 'default';
+        const fieldModule = MAP_ELEMENTS[ field.element ][ fieldType ];
+        const moduleType = fieldModule ? fieldType : 'default';
+
+        if (!(this.fieldModules[ field.element ])) {
+            this.fieldModules[ field.element ] = {};
+        }
+
+        if (!(this.fieldModules[ field.element ][ moduleType ])) {
+            const moduleLoaded = MAP_ELEMENTS[ field.element ][ moduleType ];
+            this.fieldModules[ field.element ][ moduleType ] = moduleLoaded;
+
+            return this.fieldModules;
+        }
+
     }
 
     componentDidUpdate(prevProps) {
@@ -36,7 +95,7 @@ class FormBuilder extends React.Component {
     }
 
     renderGroupElements(inputData, containerPropName, index) {
-        const Container = this.props[containerPropName] || EMPTY_CONTAINER;
+        const Container = this.props[ containerPropName ] || EMPTY_CONTAINER;
 
         return (
             <Container key={`index-parent-field-${index}-${inputData.length}`}>
@@ -72,13 +131,19 @@ class FormBuilder extends React.Component {
         return html;
     }
 
+
     renderInput(inputData, index) {
-        const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
-        const Component = inputTypes[inputData.type] || inputTypes.default;
+        const inputTypes = MAP_ELEMENTS[ inputData.element ] || MAP_ELEMENTS.default;
+        const Component = inputTypes[ inputData.type ] || inputTypes.default;
+
+        console.log(inputTypes);
+        console.log(Component);
+        // const inputTypes = MAP_ELEMENTS[ inputData.element ] || MAP_ELEMENTS.default;
+        // const Component = inputTypes[ inputData.type ] || inputTypes.default;
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
-                [inputData.name]: elementValue,
+                [ inputData.name ]: elementValue,
             },
         });
 
@@ -87,7 +152,7 @@ class FormBuilder extends React.Component {
             key={index}
             setReference={(node) => {
                 if (node) {
-                    this.nodes[node.name] = node;
+                    this.nodes[ node.name ] = node;
                 }
             }}
             setFieldValueState={setFieldValueState}
@@ -95,7 +160,7 @@ class FormBuilder extends React.Component {
             parentFieldContainer={this.props.fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
-            fieldValueState={this.state.fields[inputData.name]}
+            fieldValueState={this.state.fields[ inputData.name ]}
             hasToShowErrorMessage={this.state.hasToShowFieldErrors}
             onChangeField={this.props.onChange}
         /> : null;
@@ -111,7 +176,7 @@ class FormBuilder extends React.Component {
         const errors = {};
         Object.values(this.nodes).forEach((node) => {
             if (node && !(node.validity.valid)) {
-                errors[node.name] = node.validationMessage || '';
+                errors[ node.name ] = node.validationMessage || '';
             }
         });
 
@@ -177,8 +242,13 @@ class FormBuilder extends React.Component {
     }
 
     render() {
-
-        return isObjectArray(this.props.fields) ? this.renderForm() : null;
+        let html;
+        if (this.state.modulesLoaded && isObjectArray(this.props.fields)) {
+            html = this.renderForm();
+        } else {
+            html = <Loader/>;
+        }
+        return html;
     }
 }
 
@@ -226,3 +296,4 @@ FormBuilder.defaultProps = {
     method: 'GET',
     customFormErrorMessage: 'Invalid fields',
 };
+

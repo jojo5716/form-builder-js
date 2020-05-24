@@ -7,9 +7,25 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import { form, fields } from './fixtures';
-// import { form } from './fixtures';
+// import { form, fields } from './fixtures';
+import { form } from './fixtures';
 
+const fields = [
+    {
+        id: 'name',
+        element: 'input',
+        name: 'name',
+        value: 'JhonDoe',
+        minLength: 4,
+        type: 'text',
+        className: 'form-control',
+        required: true,
+        placeholder: 'Name',
+        onChange: (event) => {
+            console.log(`Name: ${event.target.value}`);
+        },
+    },
+];
 /**
  * Render all fields into a custom html block.
  */

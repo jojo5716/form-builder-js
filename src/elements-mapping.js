@@ -1,29 +1,15 @@
-// Input elements
-import BasicInput from './views/elements/inputs/BasicInput';
-import BasicRadio from './views/elements/inputs/radio/BasicRadio';
-
-// Checkbox elements
-import BasicCheckBox from './views/elements/inputs/checkbox/BasicCheckBox';
-
-// Select elements
-import BasicSelect from './views/elements/select/BasicSelect';
-
-// Select elements
-import BasicTextArea from './views/elements/textarea/BasicTextArea';
-
-
 export const MAP_INPUT_TYPES = {
-    default: BasicInput,
-    radio: BasicRadio,
-    checkbox: BasicCheckBox,
+    radio: import('./views/elements/inputs/radio/BasicRadio'),
+    checkbox: import('./views/elements/inputs/checkbox/BasicCheckBox'),
+    default: import('./views/elements/inputs/BasicInput'),
 };
 
 export const MAP_SELECT_TYPES = {
-    default: BasicSelect,
+    default: import('./views/elements/select/BasicSelect'),
 };
 
 export const MAP_TEXTAREA_TYPES = {
-    default: BasicTextArea,
+    default: import('./views/elements/textarea/BasicTextArea'),
 };
 
 export const MAP_ELEMENTS = {
@@ -32,3 +18,5 @@ export const MAP_ELEMENTS = {
     textarea: MAP_TEXTAREA_TYPES,
     default: MAP_INPUT_TYPES,
 };
+
+export const map = new Map([['input', MAP_INPUT_TYPES]]);

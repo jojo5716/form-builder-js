@@ -15,7 +15,7 @@ const ONCHANGE_CALLBACK_NAME = 'onChange';
 class BasicInput extends Element {
     constructor(props) {
         super(props);
-
+        this.lol = 'jojo';
         this.elementComponent = componentProps => <input {...componentProps}/>;
     }
 
@@ -60,3 +60,4 @@ BasicInput.defaultProps = {
     onChangeField: EMPTY_CALLBACK,
     extraData: {},
 };
+
