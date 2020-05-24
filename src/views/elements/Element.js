@@ -63,11 +63,11 @@ class Element extends React.Component {
     }
 
     isFieldValid() {
-        return this.ref.validity.valid;
+        return this.ref && this.ref.validity.valid;
     }
 
     getValidationMessage() {
-        return this.ref.validationMessage || this.props.errorMessage || '';
+        return (this.ref && this.ref.validationMessage) || this.props.errorMessage || '';
     }
 
     showErrorMessage() {
