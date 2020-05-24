@@ -1,3 +1,14 @@
+### 1.7.0 (2020-05-24)
+
+##### Chores
+
+*  Adding submit props and container ([cc0a8939](https://github.com/jojo5716/form-builder-js/commit/cc0a8939ba6629da734ba34336b092c8c38f3b2b))
+
+##### Other Changes
+
+*  Fix test ([1ef3a78c](https://github.com/jojo5716/form-builder-js/commit/1ef3a78c3d3cd2891e87de9ee1fcb440e8d61872))
+*  Fix fixture const declaration ([08b89bc1](https://github.com/jojo5716/form-builder-js/commit/08b89bc11598ad350df62cd56214d8b86245d0b0))
+
 #### 1.6.2 (2020-04-17)
 
 #### 1.6.1 (2020-04-17)
