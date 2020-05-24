@@ -1,3 +1,9 @@
+#### 1.7.1 (2020-05-24)
+
+##### Bug Fixes
+
+*  Fix submit validation on empty option select reference ([acf04367](https://github.com/jojo5716/form-builder-js/commit/acf04367d911880bf334a4dc5bdc82f59c144b00))
+
 ### 1.7.0 (2020-05-24)
 
 ##### Chores
