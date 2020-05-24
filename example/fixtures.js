@@ -200,3 +200,7 @@ export const form = {
     method: 'GET',
     id: 'form',
 };
+
+export submitProps = {
+    className: "submit-button"
+};

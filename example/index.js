@@ -7,7 +7,7 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import { form, fields } from './fixtures';
+import { form, fields, submitProps } from './fixtures';
 // import { form } from './fixtures';
 
 /**
@@ -108,6 +108,7 @@ ReactDOM.render(
         showFormErrorMessage={true}
         setErrorOnChange={true}
         showFieldsErrorsOnFailSubmit={true}
+        submit={submitProps}
     />,
     document.getElementById('root'),
 );

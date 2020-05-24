@@ -132,23 +132,31 @@ class FormBuilder extends React.Component {
     }
 
     renderSubmitButton() {
+        const Container = this.props.submitContainer || EMPTY_CONTAINER;
         let Component;
         let attributes;
+
         if (this.props.hasToSubmit) {
             Component = BasicInput;
             attributes = {
+                ...this.props.submit,
                 type: 'submit',
                 fieldValueState: this.props.submitButtonText,
             };
         } else {
             Component = Button;
             attributes = {
+                ...this.props.submit,
                 text: this.props.submitButtonText,
                 onClick: this.onSubmit,
             };
         }
 
-        return <Component {...attributes} />;
+        return (
+            <Container {...attributes}>
+                <Component {...attributes} />
+            </Container>
+        )
     }
 
     renderFormErrorMessage() {
@@ -187,6 +195,7 @@ export default FormBuilder;
 
 FormBuilder.propTypes = {
     form: PropTypes.object,
+    submit: PropTypes.object,
     fields: PropTypes.array,
     container: PropTypes.any,
     groupContainer: PropTypes.any,
@@ -208,6 +217,7 @@ FormBuilder.propTypes = {
 
 FormBuilder.defaultProps = {
     form: {},
+    submit: {},
     fields: [],
     container: null,
     groupContainer: null,
