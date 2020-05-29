@@ -24,7 +24,14 @@ function getFieldNamesFromForm(formData, formState) {
     } else if (formData.fields) {
         formData.fields.forEach(group => getFieldNamesFromForm(group, formState));
     } else {
-        formState[formData.name] = getInitialStateFromElementType(formData); // eslint-disable-line no-param-reassign
+        const isRadioButton = formData.type === 'radio';
+        const isRadioButtonDefaultValue = isRadioButton && formData.checked;
+        const existRadioButtonFieldState = isRadioButton && !!formState[formData.name];
+        const fieldState = formState[formData.name];
+
+        if (!fieldState || (isRadioButton && (isRadioButtonDefaultValue || !existRadioButtonFieldState))) {
+            formState[formData.name] = getInitialStateFromElementType(formData); // eslint-disable-line no-param-reassign
+        }
     }
 
     return formState;

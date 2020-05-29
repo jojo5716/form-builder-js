@@ -11,7 +11,6 @@ const ONCHANGE_CALLBACK_NAME = 'onClick';
  * This class represent a basic input type radio
  * */
 class BasicRadio extends BasicInput {
-
     getFieldValueState() {
         return this.props.fieldValueState === this.props.value;
     }

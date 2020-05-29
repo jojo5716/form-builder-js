@@ -16,6 +16,7 @@ const PROPS_TO_DELETE = [
     'fieldValueState',
     'setErrorOnChange',
     'elementType',
+    'element',
     'errorMessage',
     'hasToShowFieldErrors',
     'hasToShowErrorMessage',
@@ -39,7 +40,7 @@ class Element extends React.Component {
         this.ref = null;
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(_, prevState) {
         if (prevState.hasToShowErrorMessage !== this.props.hasToShowErrorMessage && !(this.isFieldValid())) {
             this.setState({
                 hasToShowErrorMessage: this.props.hasToShowErrorMessage,

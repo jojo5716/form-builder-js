@@ -58,11 +58,14 @@ class FormBuilder extends React.Component {
         if (isObjectArray(inputData)) {
             html = this.renderGroupElements(inputData, 'fieldGroupContainer', index);
         } else if (typeof inputData.fields !== 'undefined') {
-            const Container = this.props.groupContainer || inputData.container || EMPTY_CONTAINER;
+            const Container = this.props.groupContainer || EMPTY_CONTAINER;
+            const GroupContainer = inputData.container || EMPTY_CONTAINER;
 
             html = (
                 <Container {...inputData} key={`group-container-${index}`}>
-                    {this.renderGroupElements(inputData.fields, 'fieldGroupContainer', index)}
+                    <GroupContainer {...inputData.extraData}>
+                        {this.renderGroupElements(inputData.fields, 'fieldGroupContainer', index)}
+                    </GroupContainer>
                 </Container>
             );
         } else {
