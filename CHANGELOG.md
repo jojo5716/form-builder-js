@@ -1,3 +1,17 @@
+### 1.8.0 (2020-06-07)
+
+##### New Features
+
+*  Adding initialState prop and basic file input ([07cc2762](https://github.com/jojo5716/form-builder-js/commit/07cc27621b900c6395bfc2b895a1f53d7b662a08))
+
+##### Bug Fixes
+
+*  Setting radio button initial value condition ([ebf5132f](https://github.com/jojo5716/form-builder-js/commit/ebf5132f7cda553840f8345d11ff01e85b571366))
+
+##### Tests
+
+*  Adding input file test ([a9dae3ce](https://github.com/jojo5716/form-builder-js/commit/a9dae3cec6bfbfeef4620502b8a94e9d188dade7))
+
 #### 1.7.1 (2020-05-24)
 
 ##### Bug Fixes
