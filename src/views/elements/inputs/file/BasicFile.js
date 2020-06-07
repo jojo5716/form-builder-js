@@ -28,6 +28,7 @@ class BasicFile extends BasicInput {
                 return { file, id: index, src };
             });
         }
+        console.log(files)
 
         return files;
     }

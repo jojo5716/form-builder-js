@@ -99,7 +99,6 @@ class Element extends React.Component {
     onChangeFieldValue(event) {
         this.showOrHideErrorMessage();
         const currentValue = this.getFieldValue(event);
-
         this.props.setFieldValueState(currentValue);
         this.props.onChangeField(this.props.name, currentValue);
         this.props.onChange(event);
