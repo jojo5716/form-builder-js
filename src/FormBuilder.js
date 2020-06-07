@@ -76,8 +76,13 @@ class FormBuilder extends React.Component {
     }
 
     renderInput(inputData, index) {
+        const { fieldsContainers } = this.props;
         const inputTypes = MAP_ELEMENTS[inputData.element] || MAP_ELEMENTS.default;
         const Component = inputTypes[inputData.type] || inputTypes.default;
+        const fieldContainer = (
+            fieldsContainers[inputData.type] || this.props.fieldContainer || fieldsContainers.defaults
+        );
+
         const setFieldValueState = elementValue => this.setState({
             fields: {
                 ...this.state.fields,
@@ -95,7 +100,7 @@ class FormBuilder extends React.Component {
             }}
             setFieldValueState={setFieldValueState}
             setErrorOnChange={this.props.setErrorOnChange}
-            parentFieldContainer={this.props.fieldContainer}
+            parentFieldContainer={fieldContainer}
             labelContainer={this.props.labelContainer}
             hasToShowLabel={this.props.hasToShowLabel}
             fieldValueState={this.state.fields[inputData.name]}
@@ -199,6 +204,8 @@ export default FormBuilder;
 FormBuilder.propTypes = {
     form: PropTypes.object,
     submit: PropTypes.object,
+    initialState: PropTypes.object,
+    fieldsContainers: PropTypes.obj,
     fields: PropTypes.array,
     container: PropTypes.any,
     groupContainer: PropTypes.any,
@@ -221,6 +228,8 @@ FormBuilder.propTypes = {
 FormBuilder.defaultProps = {
     form: {},
     submit: {},
+    initialState: {},
+    fieldsContainers: {},
     fields: [],
     container: null,
     groupContainer: null,

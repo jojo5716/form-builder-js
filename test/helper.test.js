@@ -10,15 +10,15 @@ import { fields } from '../example/fixtures';
 
 describe('Helpers', () => {
     describe('Index', () => {
-        it('buildFormState return fields initial state', () => {
+        it('current_test buildFormState return fields initial state', () => {
             const expectedState = {
                 birthday: '',
                 category: 'category2',
                 comment: '',
                 email: '',
-                lastName: '',
+                lastName: 'Doe',
                 mobile: '',
-                name: 'JhonDoe',
+                name: '',
                 status: 'public',
                 tag1: false,
                 tag2: true,

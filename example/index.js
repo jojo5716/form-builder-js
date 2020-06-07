@@ -7,7 +7,9 @@ import FormBuilder from '../src';
 import './style.less';
 
 // Example of use of the component in an application
-import { form, fields, submitProps } from './fixtures';
+import {
+    form, fields, submitProps, initialState,
+} from './fixtures';
 // import { form } from './fixtures';
 
 /**
@@ -74,6 +76,17 @@ const labelContainer = ({ children }) => (
     </label>
 );
 
+
+const customEmailContainer = ({ children, label, errorMessage }) => (
+    <div className="input-group mb-3">
+        {label}
+        {children}
+        <div className="input-group-append">
+            <span className="input-group-text" id="basic-addon2">@example.com</span>
+        </div>
+        <div className="error-message">{errorMessage}</div>
+    </div>
+);
 /**
  * Called on submit button.
  * Return all fields data as json
@@ -90,13 +103,20 @@ function onError(fieldsWithError) {
     console.log(fieldsWithError);
 }
 
+const fieldsContainers = {
+    email: customEmailContainer,
+    default: fieldContainer,
+};
+
 ReactDOM.render(
     <FormBuilder
         form={form}
+        initialState={initialState}
         fields={fields}
         container={Container}
         groupContainer={groupContainer}
         fieldContainer={fieldContainer}
+        fieldsContainers={fieldsContainers}
         fieldGroupContainer={fieldGroupContainer}
         labelContainer={labelContainer}
         formErrorContainer={formErrorContainer}

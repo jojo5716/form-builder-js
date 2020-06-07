@@ -8,21 +8,21 @@ module.exports = {
 };
 
 const mapGetterStateByElementType = {
-    checkbox: elementData => elementData.checked || false,
-    default: elementData => elementData.value || '',
+    checkbox: (elementData, initialState) => initialState || elementData.checked || false,
+    default: (elementData, initialState) => initialState || elementData.value || '',
 };
 
-const getInitialStateFromElementType = (formData) => {
+const getInitialStateFromElementType = (formData, initialState) => {
     const getterStateMethod = mapGetterStateByElementType[formData.type] || mapGetterStateByElementType.default;
 
-    return getterStateMethod(formData);
+    return getterStateMethod(formData, initialState);
 };
 
-function getFieldNamesFromForm(formData, formState) {
+function getFieldNamesFromForm(formData, formState, initialState) {
     if (isObjectArray(formData)) {
-        formData.forEach(group => getFieldNamesFromForm(group, formState));
+        formData.forEach(group => getFieldNamesFromForm(group, formState, initialState));
     } else if (formData.fields) {
-        formData.fields.forEach(group => getFieldNamesFromForm(group, formState));
+        formData.fields.forEach(group => getFieldNamesFromForm(group, formState, initialState));
     } else {
         const isRadioButton = formData.type === 'radio';
         const isRadioButtonDefaultValue = isRadioButton && formData.checked;
@@ -30,17 +30,18 @@ function getFieldNamesFromForm(formData, formState) {
         const fieldState = formState[formData.name];
 
         if (!fieldState || (isRadioButton && (isRadioButtonDefaultValue || !existRadioButtonFieldState))) {
-            formState[formData.name] = getInitialStateFromElementType(formData); // eslint-disable-line no-param-reassign
+            console.log(formState)
+            formState[formData.name] = getInitialStateFromElementType(formData, initialState[formData.name]); // eslint-disable-line
         }
     }
 
     return formState;
 }
 
-function buildFormState({ fields }) {
+function buildFormState({ fields, initialState={} }) {
     const newFormState = {};
 
-    return getFieldNamesFromForm(fields, newFormState);
+    return getFieldNamesFromForm(fields, newFormState, initialState);
 }
 
 function isObjectArray(object) {

@@ -138,15 +138,24 @@ class Element extends React.Component {
         const label = this.renderLabel();
         const errorMessage = this.renderErrorMessage();
         const inputProps = this.calculateElementProps();
+        const currentValue = this.getFieldValueState();
+
         const elementProps = {
             ...inputProps,
-            [valueAttrName]: this.getFieldValueState(),
+            [valueAttrName]: currentValue,
             [onChangeCallbackName]: this.onChangeFieldValue,
             ref: this.setElementReference,
         };
         const elementRendered = element(elementProps);
+
         return (
-            <Container errorMessage={errorMessage} {...inputProps} {...this.props.extraData} label={label}>
+            <Container
+                errorMessage={errorMessage}
+                {...inputProps}
+                {...this.props.extraData}
+                label={label}
+                currentValue={currentValue}
+            >
                 {elementRendered}
             </Container>
         );

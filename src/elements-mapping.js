@@ -1,6 +1,7 @@
 // Input elements
 import BasicInput from './views/elements/inputs/BasicInput';
 import BasicRadio from './views/elements/inputs/radio/BasicRadio';
+import BasicFile from './views/elements/inputs/file/BasicFile';
 
 // Checkbox elements
 import BasicCheckBox from './views/elements/inputs/checkbox/BasicCheckBox';
@@ -16,6 +17,7 @@ export const MAP_INPUT_TYPES = {
     default: BasicInput,
     radio: BasicRadio,
     checkbox: BasicCheckBox,
+    file: BasicFile,
 };
 
 export const MAP_SELECT_TYPES = {

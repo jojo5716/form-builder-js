@@ -5,7 +5,7 @@ module.exports = {
     testURL: 'http://localhost/',
     coverageDirectory: 'coverage/',
     coverageReporters: ['lcov', 'text'],
-    collectCoverageFrom: ['src/**/*.(js|jsx)'],
+    collectCoverageFrom: ['src/**/*.(js|jsx)', '!<rootDir>/src/polyfills/'],
     coverageThreshold: {
         global: {
             branches: 70,

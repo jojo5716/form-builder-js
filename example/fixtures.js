@@ -1,22 +1,9 @@
-import React from 'react';
-
-const customEmailContainer = ({ children, label, errorMessage }) => (
-    <div className="input-group mb-3">
-        {label}
-        {children}
-        <div className="input-group-append">
-            <span className="input-group-text" id="basic-addon2">@example.com</span>
-        </div>
-        <div className="error-message">{errorMessage}</div>
-    </div>
-);
-
 const authorFields = [
     {
         id: 'name',
         element: 'input',
         name: 'name',
-        value: 'JhonDoe',
+        // value: 'JhonDoe',
         minLength: 4,
         type: 'text',
         className: 'form-control',
@@ -30,6 +17,7 @@ const authorFields = [
         id: 'last_name',
         element: 'input',
         name: 'lastName',
+        value: 'Doe',
         minLength: 3,
         type: 'text',
         className: 'form-control',
@@ -74,7 +62,7 @@ const contactFields = [
         required: true,
         placeholder: 'Email',
         pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
-        fieldContainer: customEmailContainer,
+        // fieldContainer: customEmailContainer,
         onChange: (event) => {
             console.log(`Email: ${event.target.value}`);
         },
@@ -203,4 +191,8 @@ export const form = {
 
 export const submitProps = {
     className: 'submit-button',
+};
+
+export const initialState = {
+    name: 'Jhon',
 };
