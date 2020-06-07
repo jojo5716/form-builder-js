@@ -71,9 +71,9 @@ describe('File element', () => {
             const event = {
                 target: {
                     files: [
-                        { file: 'file.jpg', src: 'localhost:8080/file.jpg' }
-                    ]
-                }
+                        { file: 'file.jpg', src: 'localhost:8080/file.jpg' },
+                    ],
+                },
             };
 
             wrapper.find('input[type="file"]').simulate('change', event);
@@ -83,12 +83,12 @@ describe('File element', () => {
             expect(setFieldValueStateMock).toHaveBeenCalledWith(
                 [
                     {
-                        "file": {
-                            "file": "file.jpg", "src": "localhost:8080/file.jpg"
+                        file: {
+                            file: 'file.jpg', src: 'localhost:8080/file.jpg',
                         },
-                        "id": 0,
-                        "src": "localhost:8080/file.jpg"
-                    }]
+                        id: 0,
+                        src: 'localhost:8080/file.jpg',
+                    }],
             );
 
             expect(wrapper.state().hasToShowErrorMessage).toBe(false);
