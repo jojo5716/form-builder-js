@@ -30,7 +30,6 @@ function getFieldNamesFromForm(formData, formState, initialState) {
         const fieldState = formState[formData.name];
 
         if (!fieldState || (isRadioButton && (isRadioButtonDefaultValue || !existRadioButtonFieldState))) {
-            console.log(formState)
             formState[formData.name] = getInitialStateFromElementType(formData, initialState[formData.name]); // eslint-disable-line
         }
     }
@@ -38,7 +37,7 @@ function getFieldNamesFromForm(formData, formState, initialState) {
     return formState;
 }
 
-function buildFormState({ fields, initialState={} }) {
+function buildFormState({ fields, initialState = {} }) {
     const newFormState = {};
 
     return getFieldNamesFromForm(fields, newFormState, initialState);
