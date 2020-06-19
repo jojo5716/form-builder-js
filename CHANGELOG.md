@@ -1,3 +1,9 @@
+### 1.9.0 (2020-06-19)
+
+##### Chores
+
+*  Return image ([f59471f9](https://github.com/jojo5716/form-builder-js/commit/f59471f913dc75d531cc8caf82ad086a2dca20b7))
+
 ### 1.8.0 (2020-06-07)
 
 ##### New Features
