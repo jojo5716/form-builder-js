@@ -29,7 +29,8 @@ class BasicFile extends BasicInput {
             });
         }
 
-        return files;
+        return files ? files[0].file : files;
+
     }
 
     render() {

@@ -53,7 +53,7 @@ describe('File element', () => {
             expect(wrapper.state().hasToShowErrorMessage).toBe(false);
         });
 
-        it('current_test call setFieldValueState with file content on change ', () => {
+        it('call setFieldValueState with file content on change ', () => {
             const setFieldValueStateMock = jest.fn();
             const onChangeMock = jest.fn();
             window.URL.createObjectURL = jest.fn(() => 'localhost:8080/file.jpg');
@@ -81,14 +81,7 @@ describe('File element', () => {
             wrapper.update();
 
             expect(setFieldValueStateMock).toHaveBeenCalledWith(
-                [
-                    {
-                        file: {
-                            file: 'file.jpg', src: 'localhost:8080/file.jpg',
-                        },
-                        id: 0,
-                        src: 'localhost:8080/file.jpg',
-                    }],
+                { file: 'file.jpg', src: 'localhost:8080/file.jpg' },
             );
 
             expect(wrapper.state().hasToShowErrorMessage).toBe(false);
